@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="es" class="paper-substrate-cotton">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="¡Se armó el fiesta de cumpleaños de Manuel Urias! Halloween Costume Party 🎃. Viernes 16 de Octubre de 2026.">
+  <meta name="theme-color" content="#08070F">
+  
+  <title>Manuel Urias | ¡Fiesta de Disfraces de Halloween! 🎃</title>
+
+  <!-- Google Fonts: Orbitron, Space Grotesk & DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- JSON-LD Schema.org Event -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Cumpleaños Manuel Urias - Halloween Costume Party",
+    "startDate": "2026-10-16T22:00:00-06:00",
+    "endDate": "2026-10-17T05:00:00-06:00",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "location": {
+      "@type": "Place",
+      "name": "Casa de la Fiesta",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Ubicación en Google Maps",
+        "addressCountry": "MX"
+      }
+    },
+    "description": "¡Se armó la fiesta de cumpleaños de Manuel Urias! Disfraces obligatorios, chupe y diversión total.",
+    "organizer": {
+      "@type": "Person",
+      "name": "Manuel Urias"
+    }
+  }
+  </script>
+
+  <style>
+    /* ==========================================================================
+       SYSTEM DESIGN TOKENS - HALLOWEEN NEON CHAVOS STYLE
+       ========================================================================== */
+    :root {
+      --surface-ground: #08070F; /* Noche Abisal */
+      --surface-card: rgba(16, 12, 28, 0.82);
+      --text-primary: #FFFFFF;
+      --text-muted: #B0B5D0;
+      
+      /* Tonos Neón */
+      --neon-orange: #FF6B00; /* Naranja Calabaza */
+      --neon-green: #00FF66;  /* Verde Tóxico Slime */
+      --neon-purple: #B026FF; /* Púrpura Bruja */
+      --neon-pink: #FF007F;   /* Magenta Party */
+      --neon-cyan: #00F0FF;   /* Cian Neón */
+
+      --border-primary: rgba(255, 107, 0, 0.55);
+      --border-secondary: rgba(0, 255, 102, 0.3);
+      
+      --card-radius: 12px;
+      --card-elevation: 0 16px 48px rgba(0, 0, 0, 0.85), 0 0 30px rgba(255, 107, 0, 0.2);
+
+      /* Tipografías */
+      --font-display: 'Orbitron', sans-serif;
+      --font-accent: 'Space Grotesk', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+
+      --fs-hero: clamp(2.4rem, 7vw, 4.5rem);
+      --fs-title-lg: clamp(1.8rem, 4.5vw, 3rem);
+      --fs-title-md: clamp(1.2rem, 3vw, 2rem);
+      --fs-body: clamp(0.95rem, 1.6vw, 1.1rem);
+      --fs-subtext: clamp(0.85rem, 1.2vw, 0.98rem);
+    }
+
+    /* Resets Básicos */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      background-color: var(--surface-ground);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* MEJORA 1: Textura Papel Algodón & Substrato Fog Neón */
+    .paper-substrate-cotton {
+      position: relative;
+      background-color: var(--surface-ground);
+      overflow-x: hidden;
+    }
+    .paper-substrate-cotton::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      filter: url(#paper-cotton-noise);
+      opacity: 0.25;
+      mix-blend-mode: color-dodge;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* MEJORA 2: Animación Neon Glow & Flicker */
+    .text-neon-glow {
+      color: #FFFFFF;
+      text-shadow: 
+        0 0 5px #FFFFFF,
+        0 0 12px var(--neon-orange),
+        0 0 24px var(--neon-orange),
+        0 0 45px var(--neon-orange),
+        0 0 80px var(--neon-orange);
+      animation: neon-flicker-pulse 4s infinite alternate;
+    }
+
+    @keyframes neon-flicker-pulse {
+      0%, 100% {
+        text-shadow: 
+          0 0 5px #FFFFFF,
+          0 0 12px var(--neon-orange),
+          0 0 24px var(--neon-orange),
+          0 0 45px var(--neon-orange),
+          0 0 80px var(--neon-orange);
+      }
+      48% {
+        text-shadow: 
+          0 0 3px #FFFFFF,
+          0 0 8px var(--neon-green),
+          0 0 16px var(--neon-green),
+          0 0 32px var(--neon-green);
+      }
+      50% { text-shadow: none; }
+      52% {
+        text-shadow: 
+          0 0 5px #FFFFFF,
+          0 0 12px var(--neon-orange),
+          0 0 24px var(--neon-orange);
+      }
+    }
+
+    .text-neon-green {
+      color: var(--neon-green);
+      text-shadow: 0 0 12px rgba(0, 255, 102, 0.6);
+    }
+
+    /* MEJORA 3: Scroll-Driven Animations & Card Luxury */
+    .card-luxury {
+      background: var(--surface-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1.5px solid var(--border-primary);
+      border-radius: var(--card-radius);
+      box-shadow: var(--card-elevation);
+      padding: clamp(1.5rem, 4vw, 2.8rem);
+      margin: 0 auto;
+      position: relative;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-luxury:hover {
+      border-color: var(--neon-green);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.9), 0 0 32px rgba(0, 255, 102, 0.3);
+    }
+
+    @supports (animation-timeline: view()) {
+      .card-luxury {
+        animation: luxuryEntrance 1ms both;
+        animation-timeline: view();
+        animation-range: entry 10% cover 30%;
+      }
+    }
+    @keyframes luxuryEntrance {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 30px, 0) scale(0.97);
+      }
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+    }
+
+    /* Layout & Sections */
+    section {
+      content-visibility: auto;
+      contain-intrinsic-size: 1px 500px;
+      padding: clamp(3rem, 7vw, 5rem) 1.25rem;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    /* Controles de Audio Ambiental (<aside>) */
+    .ambient-audio-bar {
+      position: fixed;
+      bottom: max(1.5rem, env(safe-area-inset-bottom));
+      right: max(1.5rem, env(safe-area-inset-right));
+      z-index: 1000;
+    }
+    .audio-btn {
+      background: rgba(8, 7, 15, 0.92);
+      border: 2px solid var(--neon-orange);
+      color: var(--text-primary);
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(255, 107, 0, 0.5);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .audio-btn:hover {
+      transform: scale(1.12);
+      border-color: var(--neon-green);
+      box-shadow: 0 0 35px rgba(0, 255, 102, 0.8);
+    }
+    .audio-btn.is-active {
+      border-color: var(--neon-green);
+      animation: pulse-neon 1.8s infinite;
+    }
+    .audio-btn svg {
+      width: 26px;
+      height: 26px;
+      fill: var(--neon-orange);
+      transition: fill 0.3s;
+    }
+    .audio-btn.is-active svg {
+      fill: var(--neon-green);
+    }
+    @keyframes pulse-neon {
+      0% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0.7); }
+      70% { box-shadow: 0 0 0 18px rgba(0, 255, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0); }
+    }
+
+    /* HERO HEADER */
+    header.hero-header {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 3rem 1.5rem 2rem 1.5rem;
+      position: relative;
+      background: 
+        radial-gradient(circle at 50% 20%, rgba(255, 107, 0, 0.25) 0%, transparent 60%),
+        radial-gradient(circle at 80% 80%, rgba(0, 255, 102, 0.18) 0%, transparent 50%),
+        radial-gradient(circle at 20% 70%, rgba(176, 38, 255, 0.2) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(8,7,15,0.5) 0%, rgba(8,7,15,1) 100%);
+    }
+
+    .hero-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        radial-gradient(2px 2px at 50px 70px, var(--neon-orange), rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 150px 180px, var(--neon-green), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 220px 90px, var(--neon-purple), rgba(0,0,0,0));
+      background-size: 240px 240px;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-accent);
+      font-size: var(--fs-subtext);
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      color: var(--neon-green);
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+      text-shadow: 0 0 10px rgba(0, 255, 102, 0.5);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-hero);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 0.6rem;
+      letter-spacing: 2px;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-accent);
+      font-size: var(--fs-title-md);
+      color: var(--text-primary);
+      margin-bottom: 2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ESTÉTICA DE LA FOTO DEL FESTEJADO (PORTADA) */
+    .hero-photo-wrapper {
+      position: relative;
+      max-width: 320px;
+      width: 100%;
+      margin: 0 auto 2.2rem auto;
+      border-radius: 16px;
+      padding: 6px;
+      background: linear-gradient(135deg, var(--neon-orange), var(--neon-green), var(--neon-purple));
+      box-shadow: 0 0 35px rgba(255, 107, 0, 0.5);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .hero-photo-wrapper:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 50px rgba(0, 255, 102, 0.7);
+    }
+    .hero-photo {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+    }
+    .hero-photo-tag {
+      position: absolute;
+      bottom: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #08070F;
+      border: 1.5px solid var(--neon-green);
+      color: var(--neon-green);
+      font-family: var(--font-accent);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      padding: 0.4rem 1.2rem;
+      border-radius: 30px;
+      white-space: nowrap;
+      box-shadow: 0 0 15px rgba(0, 255, 102, 0.5);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.8rem;
+      border: 1.5px solid var(--neon-orange);
+      border-radius: 40px;
+      background: rgba(16, 12, 28, 0.75);
+      font-family: var(--font-accent);
+      font-size: var(--fs-subtext);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      box-shadow: 0 0 20px rgba(255, 107, 0, 0.35);
+      margin-top: 1rem;
+    }
+    .hero-badge::before, .hero-badge::after {
+      content: "🎃";
+      font-size: 1rem;
+    }
+
+    /* SECTORES & TITULARES NEÓN */
+    .section-header {
+      text-align: center;
+      margin-bottom: 2.2rem;
+    }
+    .section-tag {
+      font-family: var(--font-accent);
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--neon-green);
+      display: block;
+      margin-bottom: 0.4rem;
+      font-weight: 700;
+      text-shadow: 0 0 8px rgba(0, 255, 102, 0.4);
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-title-lg);
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: 1px;
+    }
+
+    /* SECCION COUNTDOWN NEON */
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(0.75rem, 2vw, 1.5rem);
+      text-align: center;
+    }
+    .countdown-box {
+      background: rgba(8, 7, 15, 0.9);
+      border: 1.5px solid var(--border-primary);
+      border-radius: var(--card-radius);
+      padding: clamp(1rem, 2.5vw, 1.8rem) 0.5rem;
+      position: relative;
+      box-shadow: 0 0 15px rgba(255, 107, 0, 0.2);
+    }
+    .countdown-number {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      font-weight: 900;
+      color: var(--neon-orange);
+      text-shadow: 0 0 15px rgba(255, 107, 0, 0.7);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .countdown-label {
+      font-family: var(--font-accent);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--neon-green);
+      font-weight: 700;
+    }
+
+    /* GALERÍA INTEGRADA: ASÍ SE PUSO EL AÑO PASADO 🔥 */
+    .past-party-intro {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+    .past-photos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .polaroid-card {
+      background: rgba(16, 12, 28, 0.9);
+      border: 1.5px solid rgba(255, 107, 0, 0.4);
+      border-radius: var(--card-radius);
+      padding: 0.8rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    .polaroid-card:hover {
+      transform: translateY(-6px) rotate(1deg);
+      border-color: var(--neon-green);
+      box-shadow: 0 15px 40px rgba(0, 255, 102, 0.3);
+    }
+    .polaroid-img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+    .polaroid-caption {
+      font-family: var(--font-accent);
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      text-align: center;
+      font-weight: 600;
+    }
+
+    /* SECCIÓN UBICACIÓN EN CASA */
+    .venue-info {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .venue-name {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      color: #FFFFFF;
+      margin-bottom: 0.6rem;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+    }
+    .venue-desc {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 540px;
+      margin: 0 auto 1.8rem auto;
+      line-height: 1.6;
+    }
+
+    /* SECCION DRESS CODE (DISFRACES SOLAMENTE) */
+    .dress-code-box {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 2.5rem auto;
+    }
+    .dress-code-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      color: var(--neon-orange);
+      margin-bottom: 1rem;
+      text-shadow: 0 0 12px rgba(255, 107, 0, 0.5);
+    }
+    .dress-code-text {
+      font-size: 1.1rem;
+      color: var(--text-primary);
+      line-height: 1.7;
+    }
+    .dress-code-text strong {
+      color: var(--neon-green);
+    }
+
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 1.5rem;
+      justify-items: center;
+    }
+    .swatch-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .hexagon-wrapper {
+      width: 78px;
+      height: 88px;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5px;
+      transition: transform 0.3s ease;
+    }
+    .swatch-card:hover .hexagon-wrapper {
+      transform: scale(1.12);
+    }
+    .hexagon-inner {
+      width: 100%;
+      height: 100%;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    }
+    .swatch-name {
+      font-family: var(--font-accent);
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    /* SECCION SPOTIFY MUSIC CARD */
+    .spotify-card {
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(10, 14, 23, 0.9);
+      border: 1.5px solid var(--neon-green);
+      border-radius: var(--card-radius);
+      box-shadow: 0 0 25px rgba(0, 255, 102, 0.2);
+    }
+
+    /* SECCION REGALOS & BOTÓN PRINCIPAL */
+    .gifts-container {
+      text-align: center;
+    }
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      padding: 1.1rem 2.6rem;
+      background: linear-gradient(135deg, #FF6B00 0%, #FF9900 50%, #FF6B00 100%);
+      color: #08070F;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 0.95rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: var(--card-radius);
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(255, 107, 0, 0.6);
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+    .btn-gold:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(135deg, #00FF66 0%, #33FF88 50%, #00FF66 100%);
+      box-shadow: 0 0 35px rgba(0, 255, 102, 0.8);
+      color: #08070F;
+    }
+
+    /* MODAL <dialog> REGALOS CHAVOS STYLE */
+    dialog.modal-luxury {
+      border: 2px solid var(--neon-green);
+      border-radius: var(--card-radius);
+      background: #0C0A16;
+      color: var(--text-primary);
+      padding: 0;
+      max-width: 520px;
+      width: 90%;
+      margin: auto;
+      box-shadow: 0 0 40px rgba(0, 255, 102, 0.4), 0 25px 60px rgba(0, 0, 0, 0.95);
+    }
+    dialog::backdrop {
+      background: rgba(4, 3, 8, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .modal-content {
+      padding: 2.2rem;
+      position: relative;
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-secondary);
+      padding-bottom: 1rem;
+    }
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: var(--neon-green);
+      text-shadow: 0 0 10px rgba(0, 255, 102, 0.5);
+    }
+    .modal-close {
+      background: transparent;
+      border: none;
+      color: var(--neon-orange);
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: transform 0.2s, color 0.2s;
+    }
+    .modal-close:hover {
+      color: var(--neon-green);
+      transform: scale(1.2);
+    }
+    .modal-body {
+      font-size: 1.05rem;
+      color: var(--text-primary);
+      line-height: 1.7;
+    }
+    .gift-rule-box {
+      background: rgba(255, 107, 0, 0.15);
+      border-left: 4px solid var(--neon-orange);
+      padding: 1.2rem 1.4rem;
+      margin: 1.5rem 0;
+      font-family: var(--font-accent);
+      border-radius: 4px;
+      box-shadow: 0 0 15px rgba(255, 107, 0, 0.15);
+    }
+    .gift-rule-box strong {
+      color: var(--neon-orange);
+      font-size: 1.1rem;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      border-top: 1px solid var(--border-secondary);
+      color: var(--text-muted);
+      font-family: var(--font-accent);
+      font-size: 0.88rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 600px) {
+      .countdown-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .past-photos-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="paper-substrate-cotton">
+
+  <!-- MEJORA 1: SVG de Ruido para Substrato Neblina Neón -->
+  <svg style="position: absolute; width: 0; height: 0; pointer-events: none;" aria-hidden="true">
+    <defs>
+      <filter id="paper-cotton-noise" x="0%" y="0%" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" result="noise" />
+        <feDiffuseLighting in="noise" lighting-color="#00FF66" surfaceScale="1.1" result="light">
+          <feDistantLight azimuth="60" elevation="65" />
+        </feDiffuseLighting>
+        <feComponentTransfer>
+          <feFuncA type="linear" slope="0.15" />
+        </feComponentTransfer>
+        <feBlend mode="multiply" in="SourceGraphic" result="blend" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- ASIDE: Control de Audio Ambiental con la canción TOKETEO (Bella Peya) -->
+  <aside class="ambient-audio-bar" aria-label="Control de Audio Ambiental">
+    <audio id="ambient-audio" loop preload="none">
+      <source src="https://p.scdn.co/mp3-preview/40ba57f033fb320855bfe6f0df16797347dc41a8" type="audio/mpeg">
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+    <button id="ambient-audio-trigger" class="audio-btn" aria-label="Reproducir o pausar canción TOKETEO" aria-pressed="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+      </svg>
+    </button>
+  </aside>
+
+  <!-- HEADER: Hero con la Foto del Festejado (portada.jpg) -->
+  <header class="hero-header">
+    <div class="hero-bg-overlay"></div>
+    
+    <p class="hero-eyebrow">🎃 ¡Se armó el festín de Halloween! 🎃</p>
+
+    <!-- FOTO ESTÉTICA DEL FESTEJADO CON ALAS -->
+    <div class="hero-photo-wrapper">
+      <img src="portada.jpg" alt="Manuel Urias" class="hero-photo" width="320" height="427" style="aspect-ratio: 3/4;">
+      <div class="hero-photo-tag">El Cumpleañero 🔥</div>
+    </div>
+
+    <!-- TÍTULO EN NEÓN GLOW -->
+    <h1 class="hero-title text-neon-glow">Manuel Urias</h1>
+    
+    <p class="hero-subtitle">¡Fiesta de Cumpleaños & Disfraces!</p>
+
+    <div class="hero-badge">
+      Viernes, 16 de Octubre • 10:00 PM
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+
+    <!-- SECCIÓN 1: CUENTA REGRESIVA -->
+    <section id="cuenta-regresiva" aria-live="polite">
+      <div class="card-luxury">
+        <div class="section-header">
+          <span class="section-tag">⏳ Faltan poquitos días ⏳</span>
+          <h2 class="section-title">Cuenta Regresiva</h2>
+        </div>
+
+        <div class="countdown-grid">
+          <div class="countdown-box">
+            <div id="cd-days" class="countdown-number">00</div>
+            <div class="countdown-label">Días</div>
+          </div>
+          <div class="countdown-box">
+            <div id="cd-hours" class="countdown-number">00</div>
+            <div class="countdown-label">Horas</div>
+          </div>
+          <div class="countdown-box">
+            <div id="cd-minutes" class="countdown-number">00</div>
+            <div class="countdown-label">Minutos</div>
+          </div>
+          <div class="countdown-box">
+            <div id="cd-seconds" class="countdown-number">00</div>
+            <div class="countdown-label">Segundos</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: MIRA CÓMO SE PUSO EL AÑO PASADO (FOTOS INTEGRADAS) -->
+    <section id="galeria-pasado">
+      <div class="card-luxury">
+        <div class="section-header">
+          <span class="section-tag">📸 Antecedentes de la Locura 📸</span>
+          <h2 class="section-title">Así se puso el año pasado 🔥</h2>
+        </div>
+
+        <p class="past-party-intro">
+          Para que te des una idea de lo que nos espera este año... ¡no te lo puedes perder por nada del mundo!
+        </p>
+
+        <div class="past-photos-grid">
+          <div class="polaroid-card">
+            <img src="pasado_1.jpg" alt="Fiesta del año pasado 1" class="polaroid-img" width="300" height="280" loading="lazy">
+            <p class="polaroid-caption">Puro ambiente del bueno 🥂✨</p>
+          </div>
+          <div class="polaroid-card">
+            <img src="pasado_2.jpg" alt="Fiesta del año pasado 2" class="polaroid-img" width="300" height="280" loading="lazy">
+            <p class="polaroid-caption">Risas, chupe y buena compañía 🥳🎉</p>
+          </div>
+          <div class="polaroid-card">
+            <img src="pasado_3.jpg" alt="Fiesta del año pasado 3" class="polaroid-img" width="300" height="280" loading="lazy">
+            <p class="polaroid-caption">Celebrando al festejado en grande 👑🔥</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: UBICACIÓN (CASA) CON GOOGLE MAPS LINK EXACTO -->
+    <section id="ubicacion">
+      <div class="card-luxury">
+        <div class="section-header">
+          <span class="section-tag">📍 ¿Dónde le caigo? 📍</span>
+          <h2 class="section-title">Ubicación de la Fiesta</h2>
+        </div>
+
+        <div class="venue-info">
+          <h3 class="venue-name">🏠 En la Casa de la Fiesta</h3>
+          <p class="venue-desc">
+            Es en una casa particular para pistear agusto y sin presiones. ¡Dale clic al botón de abajo para abrir la ubicación directa en Google Maps!
+          </p>
+
+          <a href="https://maps.app.goo.gl/dbtWrzhPxMKc2nbQ6" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="btn-gold">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            Abrir Ubicación en Google Maps
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: CÓDIGO DE VESTIMENTA (DISFRACES SOLAMENTE) -->
+    <section id="dress-code">
+      <div class="card-luxury">
+        <div class="section-header">
+          <span class="section-tag">🎭 Regla de Entrada 🎭</span>
+          <h2 class="section-title">Código de Vestimenta</h2>
+        </div>
+
+        <div class="dress-code-box">
+          <h3 class="dress-code-title">¡DISFRACES OBLIGATORIOS! 🧟‍♂️🧛‍♀️</h3>
+          <p class="dress-code-text">
+            La regla es súper clara: <strong>¡Sin disfraz NO hay entrada!</strong><br>
+            Ponte creativo, saca tu mejor disfraz de Halloween, aterrador, gracioso o épico. ¡Aquí venimos a divertirnos y romperla!
+          </p>
+        </div>
+
+        <!-- SWATCHES DE INSPIRACIÓN PARA DISFRACES -->
+        <div class="swatches-grid">
+          <div class="swatch-card">
+            <div class="hexagon-wrapper" style="background: #FF6B00; box-shadow: 0 0 20px #FF6B00;">
+              <div class="hexagon-inner" style="background-color: #FF6B00;"></div>
+            </div>
+            <span class="swatch-name">Horror Clásico</span>
+          </div>
+          <div class="swatch-card">
+            <div class="hexagon-wrapper" style="background: #00FF66; box-shadow: 0 0 20px #00FF66;">
+              <div class="hexagon-inner" style="background-color: #00FF66;"></div>
+            </div>
+            <span class="swatch-name">Creativo / DIY</span>
+          </div>
+          <div class="swatch-card">
+            <div class="hexagon-wrapper" style="background: #B026FF; box-shadow: 0 0 20px #B026FF;">
+              <div class="hexagon-inner" style="background-color: #B026FF;"></div>
+            </div>
+            <span class="swatch-name">Vampiros & Brujas</span>
+          </div>
+          <div class="swatch-card">
+            <div class="hexagon-wrapper" style="background: #00F0FF; box-shadow: 0 0 20px #00F0FF;">
+              <div class="hexagon-inner" style="background-color: #00F0FF;"></div>
+            </div>
+            <span class="swatch-name">Personajes Pop</span>
+          </div>
+          <div class="swatch-card">
+            <div class="hexagon-wrapper" style="background: #FF007F; box-shadow: 0 0 20px #FF007F;">
+              <div class="hexagon-inner" style="background-color: #0B0A10;"></div>
+            </div>
+            <span class="swatch-name">Cyber Rave</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 5: CANCIÓN OFICIAL (SPOTIFY) -->
+    <section id="musica">
+      <div class="card-luxury spotify-card">
+        <div class="section-header" style="margin-bottom: 1.2rem;">
+          <span class="section-tag">🎵 El Soundtrack de la Noche 🎵</span>
+          <h2 class="section-title">TOKETEO - Bella Peya</h2>
+        </div>
+        
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+          ¡Esta es la rola oficial de la fiesta! Escúchala en Spotify para calentar motores:
+        </p>
+
+        <!-- SPOTIFY EMBED IFRAME PLAYER -->
+        <div style="border-radius: 12px; overflow: hidden; margin-bottom: 1.5rem; border: 1px solid var(--border-secondary);">
+          <iframe src="https://open.spotify.com/embed/track/5p9hS6EiqXR09TXT31t0ds?utm_source=generator&theme=0" 
+                  width="100%" 
+                  height="152" 
+                  frameBorder="0" 
+                  allowfullscreen="" 
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                  loading="lazy"></iframe>
+        </div>
+
+        <a href="https://open.spotify.com/track/5p9hS6EiqXR09TXT31t0ds?si=8ybJwLgVRwS4V7Ku7TemfQ" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="btn-ghost" 
+           style="border-color: #1DB954; color: #1DB954; font-size: 0.85rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.516 17.31c-.217.356-.677.472-1.033.254-2.83-1.73-6.393-2.122-10.59-1.162-.405.093-.814-.158-.907-.563-.093-.405.158-.813.563-.906 4.606-1.053 8.544-.606 11.71 1.332.357.217.472.677.257 1.045zm1.472-3.275c-.273.444-.853.585-1.296.313-3.237-1.99-8.172-2.565-12.002-1.403-.5.152-1.025-.133-1.177-.633-.152-.5.133-1.024.633-1.177 4.38-1.33 9.81-.69 13.53 1.604.442.272.583.853.312 1.296zm.127-3.41c-3.88-2.304-10.28-2.517-13.974-1.396-.6.183-1.24-.162-1.423-.762-.183-.6.162-1.24.762-1.423 4.242-1.288 11.31-1.037 15.78 1.616.54.32.718 1.027.397 1.567-.32.538-1.027.717-1.542.398z"/></svg>
+          Abrir Canción en Spotify
+        </a>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 6: ENTRADA & REGALOS -->
+    <section id="regalos">
+      <div class="card-luxury gifts-container">
+        <div class="section-header">
+          <span class="section-tag">🍻 ¿Cómo está el show de la entrada? 🍻</span>
+          <h2 class="section-title">Mesa de Regalos & Pisteo</h2>
+        </div>
+
+        <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 1.05rem;">
+          ¡Aquí venimos a pasarla chido! Checa las indicaciones de consumo y regalos:
+        </p>
+
+        <button id="open-gifts-dialog" class="btn-gold" type="button">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+          Ver Indicaciones de la Fiesta
+        </button>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 7: RSVP POR WHATSAPP -->
+    <section id="rsvp">
+      <div class="card-luxury gifts-container">
+        <div class="section-header">
+          <span class="section-tag">📲 ¡Confirma tu lugar! 📲</span>
+          <h2 class="section-title">Confirmación de Asistencia</h2>
+        </div>
+
+        <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 520px; margin-left: auto; margin-right: auto; font-size: 1.05rem;">
+          Avisa por WhatsApp que le vas a caer para tenerte en cuenta en el conteo de la banda.
+        </p>
+
+        <!-- Enlace directo a WhatsApp de Manuel Urias -->
+        <a href="https://wa.me/525522194706?text=%C2%A1Qu%C3%A9%20onda%20Manuel!%20Ya%20estoy%20list%C3%ADsimo%20con%20mi%20disfraz%20y%20mi%20chupe%20para%20tu%20fiesta%20de%20cumplea%C3%B1os%20%F0%9F%8E%83%F0%9F%94%A5" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="btn-gold">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+          Confirmar por WhatsApp
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL INTERACTIVO <dialog> REGALOS Y PISTEO -->
+  <dialog id="modal-regalos" class="modal-luxury">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">¡Cero Rollos, Puro Festín! 🔥</h3>
+        <button id="close-gifts-dialog" class="modal-close" aria-label="Cerrar modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>
+          ¡Banda! La regla de oro de la noche es súper sencilla para que todos la pasemos increíble:
+        </p>
+        <div class="gift-rule-box">
+          <strong>¡NO COVER! 🍻</strong><br>
+          La única indicación es: <strong>Trae tu propio chupe / botella favorita</strong> para pistear a gusto toda la noche y <strong>un regalo chido para consentir al cumpleañero Manuel Urias</strong>.
+        </div>
+        <p style="font-size: 0.95rem; color: var(--text-muted); text-align: center;">
+          ¡Trae la mejor actitud y prepárate para la mejor fiesta de Halloween! 🎃⚡
+        </p>
+      </div>
+    </div>
+  </dialog>
+
+  <footer>
+    <p>© 2026 Manuel Urias • Halloween Birthday Party 🎃</p>
+  </footer>
+
+  <!-- LÓGICA JAVASCRIPT VANILLA (<6KB) -->
+  <script>
+    /* ==========================================================================
+       1. CONTROLADOR DE AUDIO AMBIENTAL EXACTO
+       ========================================================================== */
+    class AmbientMediaController {
+      constructor(audioNodeId, triggerNodeId) {
+        this.audio = document.getElementById(audioNodeId);
+        this.trigger = document.getElementById(triggerNodeId);
+        this.isPlaying = false; 
+        this.isUnlocked = false;
+        if (!this.audio || !this.trigger) return;
+        this.bindEvents();
+      }
+      bindEvents() {
+        this.trigger.addEventListener('click', (e) => { 
+          e.stopPropagation(); 
+          this.toggle(); 
+        });
+        const unlockPipeline = () => {
+          if (this.isUnlocked) return;
+          this.isUnlocked = true; 
+          this.audio.load();
+          window.removeEventListener('pointerdown', unlockPipeline);
+        };
+        window.addEventListener('pointerdown', unlockPipeline, { once: true });
+        this.audio.addEventListener('play', () => this.syncUi(true));
+        this.audio.addEventListener('pause', () => this.syncUi(false));
+      }
+      async toggle() {
+        if (this.isPlaying) {
+          this.audio.pause();
+        } else {
+          await this.audio.play().catch(err => this.syncUi(false));
+        }
+      }
+      syncUi(state) {
+        this.isPlaying = state;
+        this.trigger.setAttribute('aria-pressed', String(state));
+        this.trigger.classList.toggle('is-active', state);
+      }
+    }
+
+    /* ==========================================================================
+       2. CONTADOR REGRESIVO CON PAGE VISIBILITY API
+       ========================================================================== */
+    class LuxuryCountdown {
+      constructor(targetIsoDate) {
+        this.targetTime = new Date(targetIsoDate).getTime();
+        this.elDays = document.getElementById('cd-days');
+        this.elHours = document.getElementById('cd-hours');
+        this.elMinutes = document.getElementById('cd-minutes');
+        this.elSeconds = document.getElementById('cd-seconds');
+        this.timerId = null;
+
+        if (!this.elDays || isNaN(this.targetTime)) return;
+        this.init();
+      }
+
+      init() {
+        this.update();
+        this.start();
+
+        // Pausa con Page Visibility API para ahorrar recursos en WebViews
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) {
+            this.stop();
+          } else {
+            this.update();
+            this.start();
+          }
+        });
+      }
+
+      start() {
+        this.stop();
+        this.timerId = setInterval(() => this.update(), 1000);
+      }
+
+      stop() {
+        if (this.timerId) {
+          clearInterval(this.timerId);
+          this.timerId = null;
+        }
+      }
+
+      update() {
+        const now = new Date().getTime();
+        const diff = this.targetTime - now;
+
+        if (diff <= 0) {
+          this.stop();
+          this.render(0, 0, 0, 0);
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        this.render(days, hours, minutes, seconds);
+      }
+
+      render(d, h, m, s) {
+        this.elDays.textContent = String(d).padStart(2, '0');
+        this.elHours.textContent = String(h).padStart(2, '0');
+        this.elMinutes.textContent = String(m).padStart(2, '0');
+        this.elSeconds.textContent = String(s).padStart(2, '0');
+      }
+    }
+
+    /* ==========================================================================
+       3. MODAL <dialog> CONTROL DE EVENTOS
+       ========================================================================== */
+    function setupDialogEvents() {
+      const dialog = document.getElementById('modal-regalos');
+      const btnOpen = document.getElementById('open-gifts-dialog');
+      const btnClose = document.getElementById('close-gifts-dialog');
+
+      if (!dialog || !btnOpen || !btnClose) return;
+
+      btnOpen.addEventListener('click', () => dialog.showModal());
+      btnClose.addEventListener('click', () => dialog.close());
+
+      // Cerrar al hacer clic en el backdrop fuera del contenedor
+      dialog.addEventListener('click', (e) => {
+        const rect = dialog.getBoundingClientRect();
+        const isInDialog = (
+          rect.top <= e.clientY && e.clientY <= rect.bottom &&
+          rect.left <= e.clientX && e.clientX <= rect.right
+        );
+        if (!isInDialog) {
+          dialog.close();
+        }
+      });
+    }
+
+    /* INICIALIZACIÓN AL CARGAR DOM */
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Inicializar Controlador Audio
+      new AmbientMediaController('ambient-audio', 'ambient-audio-trigger');
+
+      // 2. Inicializar Contador (Fecha ISO: 2026-10-16T22:00:00-06:00)
+      new LuxuryCountdown('2026-10-16T22:00:00-06:00');
+
+      // 3. Inicializar Modales
+      setupDialogEvents();
+    });
+  </script>
+</body>
+</html>
