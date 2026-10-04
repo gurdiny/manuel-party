@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="¡Se armó el fiesta de cumpleaños de Manuel Urias! Halloween Costume Party 🎃. Viernes 16 de Octubre de 2026.">
+  <meta name="description" content="¡Urías Fest 3! Cumpleaños de Manuel Urias · Halloween Costume Party 🎃. Viernes 16 de Octubre de 2026, 10:00 PM.">
   <meta name="theme-color" content="#000000">
+  <!-- Activa la intro del sobre solo si hay JavaScript -->
+  <script>document.documentElement.classList.add('has-intro', 'intro-active');</script>
 
-  <title>Manuel Urias | ¡Fiesta de Disfraces de Halloween! 🎃</title>
+  <title>Urías Fest 3 | Cumpleaños de Manuel Urias 🎃</title>
 
   <!-- Google Fonts: Orbitron, Space Grotesk & DM Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +20,7 @@
   {
     "@context": "https://schema.org",
     "@type": "Event",
-    "name": "Cumpleaños Manuel Urias - Halloween Costume Party",
+    "name": "Urías Fest 3 - Cumpleaños de Manuel Urias (Halloween Costume Party)",
     "startDate": "2026-10-16T22:00:00-05:00",
     "endDate": "2026-10-17T05:00:00-05:00",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
@@ -100,6 +102,27 @@
       overflow-x: hidden;
     }
 
+    h1, h2, h3, .section-title, .card-title { text-wrap: balance; }
+    p, li { text-wrap: pretty; }
+    ::selection { background: var(--c-magenta); color: #fff; }
+    :focus-visible {
+      outline: 2px solid var(--c-amber);
+      outline-offset: 3px;
+    }
+    a, button, summary, [role="button"] { -webkit-tap-highlight-color: transparent; }
+
+    .section-lead {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 52ch;
+      margin: 0 auto 1.6rem;
+    }
+    .modal-footnote {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
     /* Grano de película sobre todo */
     body::after {
       content: "";
@@ -175,7 +198,7 @@
        CARDS + REVEAL
        ========================================================================== */
     section {
-      padding: clamp(2.5rem, 6vw, 4.5rem) 1rem;
+      padding: clamp(0.75rem, 2vw, 1.25rem) 1rem;
       max-width: 940px;
       margin: 0 auto;
       position: relative;
@@ -188,7 +211,7 @@
       border: 1px solid var(--border-secondary);
       border-radius: var(--card-radius);
       box-shadow: var(--card-elevation);
-      padding: clamp(1.5rem, 4vw, 2.8rem);
+      padding: clamp(1.25rem, 4vw, 2.5rem);
       position: relative;
       overflow: hidden;
       isolation: isolate;
@@ -213,8 +236,10 @@
     @keyframes spin-angle {
       to { --angle: 360deg; }
     }
-    .card-luxury:hover {
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 50px rgba(230, 0, 255, 0.28);
+    @media (hover: hover) {
+      .card-luxury:hover {
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 50px rgba(230, 0, 255, 0.28);
+      }
     }
 
     .reveal {
@@ -419,9 +444,8 @@
     /* Foto de portada con borde giratorio */
     .hero-photo-wrapper {
       position: relative;
-      max-width: 300px;
-      width: 78vw;
-      margin: 0 auto 2.4rem;
+      width: min(64vw, 300px);
+      margin: 0 auto 2.2rem;
       border-radius: 22px;
       padding: 4px;
       background: conic-gradient(from var(--angle), var(--c-orange), var(--c-amber), var(--c-magenta), var(--c-purple), var(--c-orange));
@@ -490,43 +514,63 @@
     }
 
     .hero-subtitle {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      column-gap: 0.6em;
       font-family: var(--font-accent);
-      font-size: var(--fs-title-md);
-      margin-bottom: 1.8rem;
+      font-size: clamp(0.95rem, 2.6vw, 1.35rem);
+      line-height: 1.35;
+      margin-bottom: 1.5rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 0.08em;
       animation: rise-in 1s var(--ease-out) 1.2s both;
+    }
+    .hero-subtitle-sep { color: var(--c-amber); }
+    @media (max-width: 640px) {
+      .hero-subtitle { flex-direction: column; }
+      .hero-subtitle-sep { display: none; }
     }
 
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-      padding: 0.8rem 1.6rem;
+      gap: 1rem;
+      padding: 0.7rem 1.4rem;
+      white-space: nowrap;
       border: 1.5px solid var(--c-orange);
       border-radius: 40px;
       background: rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(8px);
       font-family: var(--font-accent);
-      font-size: var(--fs-subtext);
-      letter-spacing: 2px;
+      font-size: clamp(0.82rem, 2.4vw, 0.95rem);
+      font-weight: 700;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: #fff;
       box-shadow: 0 0 22px rgba(255, 111, 0, 0.4);
       animation: rise-in 1s var(--ease-out) 1.4s both;
     }
+    .hero-badge-item { display: inline-flex; align-items: center; gap: 0.5rem; }
+    .hero-badge-divider {
+      width: 1px;
+      height: 1.1em;
+      background: linear-gradient(transparent, var(--c-orange), transparent);
+    }
     .hero-badge .pumpkin {
       display: inline-block;
       animation: pumpkin-bounce 1.6s ease-in-out infinite;
     }
-    .hero-badge .pumpkin:last-child { animation-delay: 0.8s; }
     @keyframes pumpkin-bounce {
       0%, 100% { transform: translateY(0) rotate(0); }
       30% { transform: translateY(-6px) rotate(-12deg); }
       60% { transform: translateY(0) rotate(8deg); }
     }
 
+    @media (max-width: 640px), (max-height: 820px) {
+      .scroll-hint { display: none; }
+    }
     .scroll-hint {
       position: absolute;
       bottom: 1.5rem;
@@ -560,7 +604,7 @@
     /* ==========================================================================
        TITULARES DE SECCIÓN
        ========================================================================== */
-    .section-header { text-align: center; margin-bottom: 2.2rem; }
+    .section-header { text-align: center; margin-bottom: clamp(1.25rem, 3vw, 1.75rem); }
     .section-tag {
       font-family: var(--font-accent);
       font-size: 0.85rem;
@@ -707,16 +751,21 @@
     .masonry-item figcaption {
       position: absolute;
       inset: auto 0 0 0;
-      padding: 2.4rem 1rem 0.9rem;
+      padding: 3rem 0.9rem 0.85rem;
       font-family: var(--font-accent);
       font-size: 0.92rem;
-      font-weight: 600;
-      background: linear-gradient(transparent, rgba(0, 0, 0, 0.88));
-      transform: translateY(30%);
-      opacity: 0.85;
-      transition: transform 0.5s var(--ease-out), opacity 0.5s;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #fff;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.6) 35%, rgba(0, 0, 0, 0.92));
     }
-    .masonry-item:hover figcaption { transform: none; opacity: 1; }
+    @media (max-width: 600px) {
+      .masonry-item figcaption {
+        font-size: 0.8rem;
+        padding: 2.4rem 0.65rem 0.65rem;
+      }
+    }
 
     /* Lightbox */
     dialog.lightbox {
@@ -850,26 +899,35 @@
        ========================================================================== */
     .gifts-container, .spotify-card { text-align: center; }
 
-    .btn-gold {
+    .btn-gold,
+    .btn-ghost {
       position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.8rem;
-      padding: 1.05rem 2.2rem;
-      background: var(--grad-fire);
-      color: var(--c-black);
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: clamp(0.78rem, 2.4vw, 0.92rem);
-      letter-spacing: 2px;
+      gap: 0.6rem;
+      min-height: 52px;
+      padding: 0 1.6rem;
+      font-family: var(--font-accent);
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: 0.08em;
+      line-height: 1.2;
       text-transform: uppercase;
-      border: none;
+      text-decoration: none;
+      white-space: nowrap;
       border-radius: 14px;
       cursor: pointer;
+    }
+    .btn-gold svg, .btn-ghost svg { flex-shrink: 0; }
+    .btn-gold:active, .btn-ghost:active { transform: scale(0.97); }
+
+    .btn-gold {
+      background: var(--grad-fire);
+      color: var(--c-black);
+      border: none;
       box-shadow: 0 0 25px rgba(255, 111, 0, 0.55);
       transition: transform 0.35s var(--ease-out), box-shadow 0.35s, color 0.35s;
-      text-decoration: none;
       overflow: hidden;
       isolation: isolate;
     }
@@ -897,33 +955,24 @@
       0%, 60% { left: -60%; }
       100% { left: 130%; }
     }
-    .btn-gold:hover {
-      transform: translateY(-3px) scale(1.03);
-      color: #fff;
-      box-shadow: 0 0 40px rgba(230, 0, 255, 0.75);
-    }
-    .btn-gold:hover::before { opacity: 1; }
-
     .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.85rem 1.8rem;
       border: 1.5px solid var(--c-magenta);
+      background: rgba(230, 0, 255, 0.06);
       color: #fff;
-      border-radius: 14px;
-      font-family: var(--font-accent);
-      font-weight: 700;
-      font-size: 0.88rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      text-decoration: none;
       transition: background 0.3s, box-shadow 0.3s, transform 0.3s var(--ease-out);
     }
-    .btn-ghost:hover {
-      background: rgba(230, 0, 255, 0.15);
-      box-shadow: 0 0 25px rgba(230, 0, 255, 0.5);
-      transform: translateY(-2px);
+    @media (hover: hover) {
+      .btn-gold:hover {
+        transform: translateY(-3px);
+        color: #fff;
+        box-shadow: 0 0 40px rgba(230, 0, 255, 0.75);
+      }
+      .btn-gold:hover::before { opacity: 1; }
+      .btn-ghost:hover {
+        background: rgba(230, 0, 255, 0.15);
+        box-shadow: 0 0 25px rgba(230, 0, 255, 0.5);
+        transform: translateY(-2px);
+      }
     }
 
     .spotify-embed {
@@ -986,6 +1035,222 @@
     .gift-rule-box strong { color: var(--c-amber); font-size: 1.05rem; }
 
     /* ==========================================================================
+       HERO CTA
+       ========================================================================== */
+    .hero-cta {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 1.6rem;
+      animation: rise-in 1s var(--ease-out) 1.6s both;
+    }
+    .hero-cta > a { min-width: 220px; }
+    @media (max-width: 640px) {
+      .hero-cta { flex-direction: column; width: min(100%, 340px); }
+      .hero-cta > a { width: 100%; min-width: 0; }
+    }
+
+    /* ==========================================================================
+       LO BÁSICO + AGENDA
+       ========================================================================== */
+    .kv-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 768px) {
+      .kv-grid { grid-template-columns: 1.15fr 0.85fr; align-items: stretch; }
+      .kv-grid.even { grid-template-columns: 1fr 1fr; }
+    }
+    .card-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      margin-bottom: 1.2rem;
+      line-height: 1.25;
+    }
+    .info-list { list-style: none; }
+    .info-list li {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 0.85rem;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    }
+    .info-list li:last-child { border-bottom: none; }
+    .info-list strong { color: var(--c-amber); }
+    .info-list a { color: var(--c-magenta); font-weight: 700; text-decoration: none; }
+    .info-list a:hover { text-decoration: underline; }
+    .info-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      font-size: 1.05rem;
+      background: linear-gradient(135deg, rgba(255, 111, 0, 0.22), rgba(170, 0, 255, 0.22));
+      border: 1px solid var(--border-primary);
+      box-shadow: 0 0 14px rgba(255, 111, 0, 0.2);
+      transition: transform 0.4s var(--ease-out);
+    }
+    .info-list li:hover .info-badge { transform: rotate(-10deg) scale(1.12); }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 1.4rem;
+      padding-left: 2.1rem;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(var(--c-orange), var(--c-magenta), var(--c-purple));
+      transform-origin: top;
+      transform: scaleY(0);
+      transition: transform 1.8s var(--ease-out) 0.3s;
+    }
+    .timeline.is-visible::before { transform: scaleY(1); }
+    .timeline-step { position: relative; }
+    .timeline-step::before {
+      content: "";
+      position: absolute;
+      left: -2.1rem;
+      top: 0.25rem;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--c-black);
+      border: 3px solid var(--c-magenta);
+      box-shadow: 0 0 12px var(--c-magenta);
+      animation: dot-pulse 2.4s ease-in-out infinite;
+      animation-delay: var(--d, 0s);
+    }
+    @keyframes dot-pulse {
+      50% { border-color: var(--c-orange); box-shadow: 0 0 20px var(--c-orange); }
+    }
+    .timeline-time {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      color: var(--c-orange);
+      margin-bottom: 0.15rem;
+    }
+    .timeline-step p { color: var(--text-muted); }
+    .timeline-step strong { color: #fff; }
+
+    /* ==========================================================================
+       QUÉ TRAER + CHISPA PICOSA
+       ========================================================================== */
+    .card-text { color: var(--text-muted); margin-bottom: 1rem; }
+    .card-text strong { color: var(--c-amber); }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .chip {
+      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-secondary);
+      background: rgba(170, 0, 255, 0.1);
+      font-family: var(--font-accent);
+      font-weight: 600;
+      font-size: 0.93rem;
+      transition: transform 0.35s var(--ease-out), border-color 0.3s, box-shadow 0.3s;
+    }
+    .chip:hover {
+      transform: translateY(-3px) rotate(-2deg);
+      border-color: var(--c-orange);
+      box-shadow: 0 0 18px rgba(255, 111, 0, 0.4);
+    }
+
+    /* ==========================================================================
+       FAQ
+       ========================================================================== */
+    .faq details {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      margin: 0.65rem 0;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .faq details[open] {
+      border-color: var(--border-primary);
+      background: rgba(255, 111, 0, 0.06);
+    }
+    .faq summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 1rem 1.2rem;
+      font-family: var(--font-accent);
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after {
+      content: "+";
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      line-height: 1;
+      color: var(--c-orange);
+      transition: transform 0.35s var(--ease-out), color 0.35s;
+    }
+    .faq details[open] summary::after { transform: rotate(45deg); color: var(--c-magenta); }
+    .faq details p {
+      padding: 0 1.2rem 1.1rem;
+      color: var(--text-muted);
+      animation: rise-in 0.5s var(--ease-out);
+    }
+
+    /* ==========================================================================
+       BARRA FIJA EN CELULAR
+       ========================================================================== */
+    .sticky-cta { display: none; }
+    @media (max-width: 640px) {
+      .sticky-cta {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 950;
+        display: flex;
+        gap: 0.5rem;
+        padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom));
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.5));
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-top: 1px solid var(--border-secondary);
+        transform: translateY(110%);
+        transition: transform 0.5s var(--ease-out);
+      }
+      .sticky-cta.is-shown { transform: none; }
+      .sticky-cta a {
+        flex: 1;
+        padding: 0.85rem 0.5rem;
+        font-size: 0.7rem;
+        letter-spacing: 1px;
+        justify-content: center;
+      }
+      .ambient-audio-bar { transition: bottom 0.5s var(--ease-out); }
+      body.has-sticky .ambient-audio-bar { bottom: calc(5.2rem + env(safe-area-inset-bottom)); }
+    }
+
+    .hashtag {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 4vw, 2rem);
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 0.6rem;
+      text-transform: none;
+    }
+    footer a { color: var(--c-amber); text-decoration: none; }
+
+    /* ==========================================================================
        FOOTER
        ========================================================================== */
     footer {
@@ -999,6 +1264,18 @@
       text-transform: uppercase;
     }
 
+    /* En pantallas táctiles no hay hover: evita estados "pegados" */
+    @media (hover: none) {
+      .countdown-box:hover,
+      .chip:hover,
+      .masonry-item:hover img,
+      .swatch-card:hover .hexagon-wrapper,
+      .info-list li:hover .info-badge { transform: none; }
+      .masonry-item:hover { transform: none; rotate: var(--r, 0deg); }
+    }
+
+    dialog.modal-luxury { max-height: 85dvh; overflow-y: auto; overscroll-behavior: contain; }
+
     @media (max-width: 600px) {
       .countdown-grid { grid-template-columns: repeat(2, 1fr); }
       .masonry { columns: 2; column-gap: 0.7rem; }
@@ -1006,6 +1283,242 @@
       .masonry { padding-bottom: 0; }
       .masonry-item:nth-child(2) { translate: none; }
       .bat:nth-child(n+4) { display: none; }
+    }
+
+    /* ==========================================================================
+       INTRO: SOBRE CON SELLO DE CERA
+       ========================================================================== */
+    html.has-intro, html.has-intro body { overflow: hidden; }
+    html.intro-active .hero-header,
+    html.intro-active .hero-header * { animation-play-state: paused !important; }
+
+    .intro {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.2rem;
+      padding: 1.5rem;
+      background:
+        radial-gradient(60vmax 50vmax at 50% 40%, rgba(170, 0, 255, 0.25), transparent 60%),
+        radial-gradient(40vmax 30vmax at 50% 95%, rgba(255, 111, 0, 0.2), transparent 60%),
+        var(--c-black);
+      perspective: 1200px;
+      transition: opacity 0.9s var(--ease-out), filter 0.9s var(--ease-out);
+    }
+    html.has-intro .intro { display: flex; }
+    .intro.is-leaving { opacity: 0; filter: blur(14px); pointer-events: none; }
+
+    .intro-kicker,
+    .intro-hint {
+      font-family: var(--font-accent);
+      font-weight: 700;
+      text-transform: uppercase;
+      text-align: center;
+      transition: opacity 0.4s;
+    }
+    .intro-kicker {
+      font-size: 0.85rem;
+      letter-spacing: 5px;
+      color: var(--c-amber);
+      text-shadow: 0 0 12px rgba(255, 153, 0, 0.5);
+      animation: rise-in 1s var(--ease-out) 0.2s both;
+    }
+    .intro-hint {
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      color: var(--text-muted);
+      animation: rise-in 1s var(--ease-out) 1s both, hint-pulse 2s ease-in-out 2s infinite;
+    }
+    @keyframes hint-pulse { 50% { opacity: 0.35; } }
+    .intro.is-breaking .intro-kicker,
+    .intro.is-breaking .intro-hint { opacity: 0; animation: none; }
+
+    .envelope-stage {
+      transform-style: preserve-3d;
+      transition: transform 0.4s ease-out;
+    }
+    .envelope {
+      --ew: min(86vw, 420px);
+      position: relative;
+      width: var(--ew);
+      height: calc(var(--ew) * 0.66);
+      transform-style: preserve-3d;
+      cursor: pointer;
+      animation: env-in 1.2s var(--ease-out) 0.3s both, env-float 5s ease-in-out 1.5s infinite;
+      transition: transform 0.9s var(--ease-out);
+    }
+    @keyframes env-in {
+      from { opacity: 0; transform: translateY(70px) rotateX(30deg) scale(0.8); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes env-float {
+      50% { transform: translateY(-10px) rotate(-1deg); }
+    }
+    .intro.is-breaking .envelope { animation: none; }
+    .intro.is-leaving .envelope { transform: translateY(8vh) scale(1.3); }
+
+    .env-back {
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      background: linear-gradient(160deg, #1d0629, #07000c);
+      border: 1px solid rgba(170, 0, 255, 0.4);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), 0 0 70px rgba(170, 0, 255, 0.35);
+    }
+
+    .env-letter {
+      position: absolute;
+      left: 6%;
+      right: 6%;
+      top: 6%;
+      height: 88%;
+      z-index: 2;
+      border-radius: 10px;
+      padding: 1.1rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      text-align: center;
+      background:
+        linear-gradient(#0d0013, #0d0013) padding-box,
+        conic-gradient(from var(--angle), var(--c-orange), var(--c-amber), var(--c-magenta), var(--c-purple), var(--c-orange)) border-box;
+      border: 2px solid transparent;
+      box-shadow: 0 0 35px rgba(230, 0, 255, 0.45);
+      animation: spin-angle 4s linear infinite;
+      transition: transform 1s var(--ease-out);
+    }
+    .intro.is-letter .env-letter { transform: translateY(-70%); }
+    .letter-tag {
+      font-family: var(--font-accent);
+      font-size: 0.72rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--c-amber);
+    }
+    .letter-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(1.25rem, 5.5vw, 1.8rem);
+      line-height: 1.1;
+      text-shadow: 0 0 6px #fff, 0 0 18px var(--c-orange), 0 0 36px var(--c-magenta);
+    }
+    .letter-date {
+      font-family: var(--font-accent);
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+    }
+
+    .env-pocket {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      border-radius: 12px;
+      clip-path: polygon(0 0, 50% 54%, 100% 0, 100% 100%, 0 100%);
+      background: linear-gradient(200deg, #260a38 0%, #0e0016 70%);
+    }
+    .env-to,
+    .env-brand {
+      position: absolute;
+      bottom: 11%;
+      font-family: var(--font-accent);
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+    .env-to { left: 8%; font-size: 0.95rem; color: #fff; }
+    .env-brand { right: 8%; font-size: 0.7rem; color: var(--c-orange); text-transform: uppercase; }
+
+    .env-flap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 56%;
+      z-index: 4;
+      transform-origin: top center;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      background: linear-gradient(180deg, #2e0b44, #13001d);
+      transition: transform 0.8s var(--ease-out);
+    }
+    .intro.is-open .env-flap { transform: rotateX(180deg); }
+    .intro.flap-back .env-flap { z-index: 1; }
+
+    .env-seal {
+      position: absolute;
+      left: 50%;
+      top: 56%;
+      width: 84px;
+      height: 84px;
+      margin: -42px 0 0 -42px;
+      z-index: 5;
+      border: none;
+      background: none;
+      padding: 0;
+      cursor: pointer;
+      border-radius: 50%;
+      animation: seal-pulse 2.2s ease-in-out 1.5s infinite;
+    }
+    @keyframes seal-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255, 111, 0, 0.6); }
+      60% { box-shadow: 0 0 0 20px rgba(255, 111, 0, 0); }
+    }
+    .env-seal:focus-visible { outline: 2px solid var(--c-amber); outline-offset: 6px; }
+    .seal-half {
+      position: absolute;
+      inset: 0;
+      border-radius: 48% 52% 45% 55% / 52% 46% 54% 48%;
+      background: radial-gradient(circle at 35% 30%, #FFC069, var(--c-orange) 45%, #9E3500);
+      box-shadow: inset 0 -4px 8px rgba(0, 0, 0, 0.35), inset 0 3px 6px rgba(255, 255, 255, 0.35), 0 6px 16px rgba(0, 0, 0, 0.6);
+      display: grid;
+      place-items: center;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.25rem;
+      color: rgba(90, 25, 0, 0.85);
+      text-shadow: 0 1px 0 rgba(255, 220, 170, 0.6);
+      transition: transform 0.7s var(--ease-out), opacity 0.7s;
+    }
+    .seal-half::before {
+      content: "";
+      position: absolute;
+      inset: 11px;
+      border-radius: 50%;
+      border: 2px dashed rgba(90, 25, 0, 0.35);
+    }
+    .seal-half.l { clip-path: polygon(0 0, 52% 0, 44% 22%, 56% 40%, 46% 60%, 55% 78%, 48% 100%, 0 100%); }
+    .seal-half.r { clip-path: polygon(52% 0, 100% 0, 100% 100%, 48% 100%, 55% 78%, 46% 60%, 56% 40%, 44% 22%); }
+    .env-seal:hover .seal-half { transform: scale(1.07); }
+    .intro.is-breaking .env-seal { animation: none; pointer-events: none; }
+    .intro.is-breaking .seal-half.l { transform: translate(-55px, 80px) rotate(-45deg); opacity: 0; }
+    .intro.is-breaking .seal-half.r { transform: translate(55px, 80px) rotate(45deg); opacity: 0; }
+
+    .spark {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      margin: -4px 0 0 -4px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 2001;
+      background: var(--c);
+      box-shadow: 0 0 12px var(--c);
+      animation: spark-burst 1s var(--ease-out) forwards;
+    }
+    .spark.bat-spark {
+      width: auto;
+      height: auto;
+      background: none;
+      box-shadow: none;
+      font-size: 1.4rem;
+      animation-duration: 1.4s;
+    }
+    @keyframes spark-burst {
+      to { transform: translate(var(--x), var(--y)) rotate(var(--rot, 0deg)) scale(0.2); opacity: 0; }
     }
 
     /* Accesibilidad: sin animaciones si el usuario lo pide */
@@ -1022,6 +1535,31 @@
   </style>
 </head>
 <body>
+
+  <!-- INTRO: SOBRE CON SELLO DE CERA -->
+  <div class="intro" id="intro" role="dialog" aria-modal="true" aria-label="Invitación cerrada">
+    <p class="intro-kicker">🦇 Tienes una invitación 🦇</p>
+    <div class="envelope-stage" id="envelope-stage">
+      <div class="envelope" id="envelope">
+        <div class="env-back"></div>
+        <div class="env-letter" aria-hidden="true">
+          <span class="letter-tag">Estás invitado a</span>
+          <strong class="letter-title">URÍAS FEST 3</strong>
+          <span class="letter-date">16 · OCT · 2026 · 10 PM</span>
+        </div>
+        <div class="env-pocket">
+          <span class="env-to">Para: ti 👻</span>
+          <span class="env-brand">Urías Fest 3</span>
+        </div>
+        <div class="env-flap"></div>
+        <button class="env-seal" id="env-seal" type="button" aria-label="Romper el sello y abrir la invitación">
+          <span class="seal-half l">UF3</span>
+          <span class="seal-half r">UF3</span>
+        </button>
+      </div>
+    </div>
+    <p class="intro-hint">Toca el sello para abrir</p>
+  </div>
 
   <!-- SÍMBOLOS SVG REUTILIZABLES -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1088,14 +1626,19 @@
         <div class="hero-photo-tag">El Cumpleañero 🔥</div>
       </div>
 
-      <h1 class="hero-title" data-split>Manuel Urias</h1>
+      <h1 id="top" class="hero-title" data-split>URÍAS FEST 3</h1>
 
-      <p class="hero-subtitle text-gradient">¡Fiesta de Cumpleaños & Disfraces!</p>
+      <p class="hero-subtitle"><span class="text-gradient">Cumpleaños de Manuel Urias</span><span class="hero-subtitle-sep" aria-hidden="true">·</span><span class="text-gradient">Fiesta de Disfraces</span></p>
 
-      <div class="hero-badge">
-        <span class="pumpkin" aria-hidden="true">🎃</span>
-        Viernes, 16 de Octubre • 10:00 PM
-        <span class="pumpkin" aria-hidden="true">🎃</span>
+      <time class="hero-badge" datetime="2026-10-16T22:00-05:00">
+        <span class="hero-badge-item"><span class="pumpkin" aria-hidden="true">🎃</span>Vie 16 Oct</span>
+        <span class="hero-badge-divider" aria-hidden="true"></span>
+        <span class="hero-badge-item">10:00 PM</span>
+      </time>
+
+      <div class="hero-cta" role="group" aria-label="Acciones principales">
+        <a class="btn-gold" href="https://wa.me/525522194706?text=%C2%A1Qu%C3%A9%20onda%20Manuel!%20Ya%20estoy%20list%C3%ADsimo%20con%20mi%20disfraz%20y%20mi%20chupe%20para%20tu%20fiesta%20de%20cumplea%C3%B1os%20%F0%9F%8E%83%F0%9F%94%A5" target="_blank" rel="noopener noreferrer">📲 Confirmar asistencia</a>
+        <a class="btn-ghost" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=UR%C3%8DAS%20FEST%203%20%F0%9F%8E%83&amp;dates=20261017T030000Z/20261017T100000Z&amp;details=Cumplea%C3%B1os%20de%20Manuel%20Urias%20%C2%B7%20Fiesta%20de%20Disfraces.%20%C2%A1Sin%20disfraz%20no%20hay%20entrada!&amp;location=21.1733894,-86.8515625" target="_blank" rel="noopener noreferrer">📅 Guardar fecha</a>
       </div>
     </div>
 
@@ -1105,7 +1648,7 @@
   <main>
 
     <!-- SECCIÓN 1: CUENTA REGRESIVA -->
-    <section id="cuenta-regresiva" aria-live="polite">
+    <section id="cuenta-regresiva" aria-label="Cuenta regresiva para la fiesta">
       <div class="card-luxury reveal">
         <div class="section-header">
           <span class="section-tag">⏳ Faltan poquitos días ⏳</span>
@@ -1130,6 +1673,52 @@
             <div class="countdown-label">Segundos</div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- LO BÁSICO + AGENDA -->
+    <section id="lo-basico" aria-label="Información clave del evento">
+      <div class="kv-grid">
+        <article class="card-luxury reveal">
+          <span class="section-tag">🦇 Lo que tienes que saber</span>
+          <h2 class="card-title">Lo Básico</h2>
+          <ul class="info-list">
+            <li><span class="info-badge" aria-hidden="true">📅</span><div><strong>Fecha:</strong> Viernes 16 de octubre, 2026</div></li>
+            <li><span class="info-badge" aria-hidden="true">⏰</span><div><strong>Hora:</strong> 10:00 PM</div></li>
+            <li><span class="info-badge" aria-hidden="true">📍</span><div><strong>Ubicación:</strong> Casa de la Fiesta · <a href="#ubicacion">Ver mapa</a></div></li>
+            <li><span class="info-badge" aria-hidden="true">🧛</span><div><strong>Dress code:</strong> Disfraz obligatorio. Sin disfraz no hay entrada.</div></li>
+            <li><span class="info-badge" aria-hidden="true">🍻</span><div><strong>Entrada:</strong> No cover · trae tu chupe.</div></li>
+            <li><span class="info-badge" aria-hidden="true">🎁</span><div><strong>Regalo:</strong> Algo chido para consentir al cumpleañero.</div></li>
+            <li><span class="info-badge" aria-hidden="true">🛟</span><div><strong>Seguridad:</strong> Conductor designado o pide tu ride.</div></li>
+          </ul>
+        </article>
+
+        <article class="card-luxury reveal" style="--d:0.15s">
+          <span class="section-tag">🕸️ El ritual de la noche</span>
+          <h2 class="card-title">Agenda</h2>
+          <div class="timeline reveal">
+            <div class="timeline-step reveal" style="--d:0.2s">
+              <span class="timeline-time">22:00</span>
+              <p><strong>Llegada:</strong> fotos con tu disfraz y primer shot de bienvenida.</p>
+            </div>
+            <div class="timeline-step reveal" style="--d:0.35s">
+              <span class="timeline-time">23:00</span>
+              <p><strong>Juegos:</strong> beer-pong y “baila o shot”.</p>
+            </div>
+            <div class="timeline-step reveal" style="--d:0.5s">
+              <span class="timeline-time">00:00</span>
+              <p><strong>Pastel + shots sincronizados:</strong> deseo de medianoche.</p>
+            </div>
+            <div class="timeline-step reveal" style="--d:0.65s">
+              <span class="timeline-time">01:00</span>
+              <p><strong>Concurso de disfraces:</strong> el más épico se lleva la gloria.</p>
+            </div>
+            <div class="timeline-step reveal" style="--d:0.8s">
+              <span class="timeline-time">02:00</span>
+              <p><strong>After:</strong> quien aguante, que le siga.</p>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -1239,15 +1828,48 @@
       </div>
     </section>
 
+    <!-- QUÉ TRAER + CHISPA PICOSA -->
+    <section id="que-traer" aria-label="Qué traer a la fiesta">
+      <div class="kv-grid even">
+        <article class="card-luxury reveal">
+          <span class="section-tag">🎒 Checklist</span>
+          <h2 class="card-title">Qué traer (no seas gorrón) 😘</h2>
+          <p class="card-text">La casa pone el mood. Tú pon el turbo: <strong>no seas gorrón y trae tu alcohol</strong> 🍾. Ayuda con hielos, vasos y snacks.</p>
+          <div class="chips" aria-label="Lista de esenciales">
+            <span class="chip">🍾 Botella favorita</span>
+            <span class="chip">🧊 Hielos</span>
+            <span class="chip">🥤 Vasos</span>
+            <span class="chip">🍿 Snacks</span>
+            <span class="chip">🎁 Regalo</span>
+            <span class="chip">🧟 Tu disfraz</span>
+          </div>
+        </article>
+
+        <article class="card-luxury reveal" style="--d:0.15s">
+          <span class="section-tag">🔥 Advertencia</span>
+          <h2 class="card-title">Antes de que te me calientes…</h2>
+          <p class="card-text">
+            Aquí venimos a asustar y a perrear, no a dormir. <strong>Tráete una tanga de repuesto</strong> por si el perreo se pone serio.
+            Y recuerda: <strong>no seas gorrón y trae tu alcohol</strong>.
+          </p>
+          <ul class="info-list">
+            <li><span class="info-badge" aria-hidden="true">🎭</span><div>Si no hay disfraz, no hay entrada.</div></li>
+            <li><span class="info-badge" aria-hidden="true">🎃</span><div>Si te pierdes, sigue a la calabaza.</div></li>
+            <li><span class="info-badge" aria-hidden="true">📸</span><div>Si no hay foto, te lo perdiste.</div></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
     <!-- SECCIÓN 5: CANCIÓN OFICIAL -->
     <section id="musica">
       <div class="card-luxury spotify-card reveal">
-        <div class="section-header" style="margin-bottom: 1.2rem;">
+        <div class="section-header">
           <span class="section-tag">🎵 El Soundtrack de la Noche 🎵</span>
           <h2 class="section-title">TOKETEO - Bella Peya</h2>
         </div>
 
-        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+        <p class="section-lead">
           ¡Esta es la rola oficial de la fiesta! Escúchala en Spotify para calentar motores:
         </p>
 
@@ -1271,6 +1893,36 @@
       </div>
     </section>
 
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="card-luxury faq reveal">
+        <div class="section-header">
+          <span class="section-tag">👻 Dudas rápidas 👻</span>
+          <h2 class="section-title">FAQ Express</h2>
+        </div>
+        <details>
+          <summary>¿Qué me pongo?</summary>
+          <p>Un disfraz, sí o sí: aterrador, gracioso o épico. Que sea cómodo para bailar toda la noche.</p>
+        </details>
+        <details>
+          <summary>¿Puedo llevar +1?</summary>
+          <p>Sí, pero avísale a Manuel por WhatsApp para tenerlo en la lista. Y también viene disfrazado.</p>
+        </details>
+        <details>
+          <summary>¿Hay cover?</summary>
+          <p>No. Solo trae tu chupe y un regalo chido para el cumpleañero.</p>
+        </details>
+        <details>
+          <summary>¿Hasta qué hora?</summary>
+          <p>Hasta que salga el sol (o hasta las 5 AM, lo que pase primero). After opcional para la élite del aguante.</p>
+        </details>
+        <details>
+          <summary>¿Cómo llego?</summary>
+          <p>Checa el mapa de arriba. Si vas a pistear, mejor pide ride o lleva conductor designado.</p>
+        </details>
+      </div>
+    </section>
+
     <!-- SECCIÓN 6: ENTRADA & REGALOS -->
     <section id="regalos">
       <div class="card-luxury gifts-container reveal">
@@ -1279,7 +1931,7 @@
           <h2 class="section-title">Mesa de Regalos & Pisteo</h2>
         </div>
 
-        <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 1.05rem;">
+        <p class="section-lead">
           ¡Aquí venimos a pasarla chido! Checa las indicaciones de consumo y regalos:
         </p>
 
@@ -1298,7 +1950,7 @@
           <h2 class="section-title">Confirmación de Asistencia</h2>
         </div>
 
-        <p style="color: var(--text-muted); margin: 0 auto 2rem; max-width: 520px; font-size: 1.05rem;">
+        <p class="section-lead">
           Avisa por WhatsApp que le vas a caer para tenerte en cuenta en el conteo de la banda.
         </p>
 
@@ -1329,7 +1981,7 @@
           <strong>¡NO COVER! 🍻</strong><br>
           La única indicación es: <strong>Trae tu propio chupe / botella favorita</strong> para pistear a gusto toda la noche y <strong>un regalo chido para consentir al cumpleañero Manuel Urias</strong>.
         </div>
-        <p style="font-size: 0.95rem; color: var(--text-muted); text-align: center;">
+        <p class="modal-footnote">
           ¡Trae la mejor actitud y prepárate para la mejor fiesta de Halloween! 🎃⚡
         </p>
       </div>
@@ -1342,8 +1994,15 @@
     <img id="lightbox-img" src="" alt="">
   </dialog>
 
+  <!-- BARRA FIJA SOLO EN CELULAR -->
+  <div class="sticky-cta" id="sticky-cta">
+    <a class="btn-gold" href="https://wa.me/525522194706?text=%C2%A1Qu%C3%A9%20onda%20Manuel!%20Ya%20estoy%20list%C3%ADsimo%20con%20mi%20disfraz%20y%20mi%20chupe%20para%20tu%20fiesta%20de%20cumplea%C3%B1os%20%F0%9F%8E%83%F0%9F%94%A5" target="_blank" rel="noopener noreferrer">📲 Confirmar</a>
+    <a class="btn-ghost" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=UR%C3%8DAS%20FEST%203%20%F0%9F%8E%83&amp;dates=20261017T030000Z/20261017T100000Z&amp;details=Cumplea%C3%B1os%20de%20Manuel%20Urias%20%C2%B7%20Fiesta%20de%20Disfraces.%20%C2%A1Sin%20disfraz%20no%20hay%20entrada!&amp;location=21.1733894,-86.8515625" target="_blank" rel="noopener noreferrer">📅 Guardar</a>
+  </div>
+
   <footer>
-    <p>© 2026 Manuel Urias • Halloween Birthday Party 🎃</p>
+    <p class="hashtag text-gradient">#UriasFest3</p>
+    <p>© 2026 Urías Fest 3 • Cumpleaños de Manuel Urias 🎃 • <a href="#top">Volver arriba</a></p>
   </footer>
 
   <script>
@@ -1578,14 +2237,100 @@
       document.addEventListener('pointerleave', () => glow.classList.remove('is-on'));
     }
 
+    function setupStickyCta() {
+      const bar = document.getElementById('sticky-cta');
+      const hero = document.querySelector('.hero-header');
+      if (!bar || !hero || !('IntersectionObserver' in window)) return;
+      new IntersectionObserver(([entry]) => {
+        const show = !entry.isIntersecting;
+        bar.classList.toggle('is-shown', show);
+        document.body.classList.toggle('has-sticky', show);
+      }, { threshold: 0.05 }).observe(hero);
+    }
+
+    function setupIntro() {
+      const root = document.documentElement;
+      const intro = document.getElementById('intro');
+      const seal = document.getElementById('env-seal');
+      const envelope = document.getElementById('envelope');
+      const stage = document.getElementById('envelope-stage');
+      if (!intro || !seal) return;
+
+      seal.focus({ preventScroll: true });
+
+      // Inclinación 3D siguiendo el mouse
+      const onMove = (e) => {
+        const x = e.clientX / window.innerWidth - 0.5;
+        const y = e.clientY / window.innerHeight - 0.5;
+        stage.style.transform = `rotateY(${x * 18}deg) rotateX(${-y * 14}deg)`;
+      };
+      if (!prefersReducedMotion) intro.addEventListener('pointermove', onMove);
+
+      const burst = () => {
+        const rect = seal.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const colors = ['#FF6F00', '#FF9900', '#E600FF', '#AA00FF'];
+        for (let i = 0; i < 34; i++) {
+          const el = document.createElement('span');
+          const isBat = i % 6 === 0;
+          el.className = isBat ? 'spark bat-spark' : 'spark';
+          if (isBat) el.textContent = '🦇';
+          const angle = Math.random() * Math.PI * 2;
+          const dist = 90 + Math.random() * (isBat ? 260 : 170);
+          el.style.left = cx + 'px';
+          el.style.top = cy + 'px';
+          el.style.setProperty('--c', colors[i % colors.length]);
+          el.style.setProperty('--x', Math.cos(angle) * dist + 'px');
+          el.style.setProperty('--y', Math.sin(angle) * dist + 'px');
+          el.style.setProperty('--rot', (Math.random() * 360 - 180) + 'deg');
+          document.body.appendChild(el);
+          el.addEventListener('animationend', () => el.remove());
+        }
+      };
+
+      let opened = false;
+      const open = () => {
+        if (opened) return;
+        opened = true;
+        intro.removeEventListener('pointermove', onMove);
+        stage.style.transform = '';
+
+        // Arranca la música aprovechando el clic
+        const audio = document.getElementById('ambient-audio');
+        if (audio) audio.play().catch(() => {});
+
+        intro.classList.add('is-breaking');
+        if (!prefersReducedMotion) burst();
+
+        const step = prefersReducedMotion ? 0.15 : 1;
+        setTimeout(() => intro.classList.add('is-open'), 350 * step);
+        setTimeout(() => intro.classList.add('flap-back'), 750 * step);
+        setTimeout(() => intro.classList.add('is-letter'), 1000 * step);
+        setTimeout(() => {
+          intro.classList.add('is-leaving');
+          root.classList.remove('intro-active');
+        }, 2400 * step);
+        setTimeout(() => {
+          root.classList.remove('has-intro');
+          intro.remove();
+        }, 3300 * step);
+      };
+
+      seal.addEventListener('click', (e) => { e.stopPropagation(); open(); });
+      envelope.addEventListener('click', open);
+    }
+
     /* INICIALIZACIÓN */
     document.addEventListener('DOMContentLoaded', () => {
+      setupIntro();
       splitTitle();
       setupReveal();
       new AmbientMediaController('ambient-audio', 'ambient-audio-trigger');
       new LuxuryCountdown('2026-10-16T22:00:00-05:00');
       setupDialogEvents();
       setupLightbox();
+      setupStickyCta();
       if (!prefersReducedMotion) {
         setupEmbers();
         setupCursorGlow();
