@@ -328,6 +328,15 @@
       animation: moon-float 9s ease-in-out infinite;
       z-index: 0;
     }
+    @media (max-width: 640px) {
+      .moon {
+        top: 0.9rem;
+        right: -28px;
+        width: 92px;
+      }
+      header.hero-header { padding-top: 7rem; }
+      .hero-eyebrow { letter-spacing: 3px; font-size: 0.78rem; }
+    }
     @keyframes moon-float {
       50% { transform: translateY(14px) scale(1.03); }
     }
@@ -432,7 +441,8 @@
       color: var(--c-amber);
       margin-bottom: 1.4rem;
       font-weight: 700;
-      text-shadow: 0 0 12px rgba(255, 153, 0, 0.55);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.95), 0 0 10px rgba(0, 0, 0, 0.9), 0 0 18px rgba(255, 153, 0, 0.45);
+      text-wrap: balance;
       animation: rise-in 1s var(--ease-out) both;
     }
 
@@ -767,6 +777,74 @@
       }
     }
 
+    /* Cinta de película (Así se vivió) */
+    .filmstrip {
+      position: relative;
+      margin: 0 calc(-1 * clamp(1.25rem, 4vw, 2.5rem));
+      padding: 22px 0;
+      background: #050007;
+      overflow: hidden;
+      -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    }
+    .filmstrip::before,
+    .filmstrip::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: repeating-linear-gradient(90deg, transparent 0 10px, rgba(255, 153, 0, 0.55) 10px 22px, transparent 22px 32px);
+      border-radius: 2px;
+    }
+    .filmstrip::before { top: 6px; }
+    .filmstrip::after { bottom: 6px; }
+    .filmstrip-track {
+      display: flex;
+      width: max-content;
+      animation: film-scroll calc(var(--n, 6) * 4.5s) linear infinite;
+    }
+    .filmstrip:hover .filmstrip-track,
+    .filmstrip:focus-within .filmstrip-track,
+    .filmstrip:active .filmstrip-track { animation-play-state: paused; }
+    @keyframes film-scroll {
+      to { transform: translateX(-50%); }
+    }
+    .film-frame {
+      flex: none;
+      margin-right: 10px;
+      padding: 0;
+      border: 2px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #0d0013;
+      cursor: zoom-in;
+      transition: border-color 0.3s, transform 0.4s var(--ease-out), box-shadow 0.4s;
+    }
+    .film-frame img {
+      height: clamp(190px, 32vw, 280px);
+      width: auto;
+      display: block;
+      filter: saturate(1.1) contrast(1.05);
+    }
+    @media (hover: hover) {
+      .film-frame:hover {
+        border-color: var(--c-magenta);
+        transform: scale(1.04);
+        box-shadow: 0 0 25px rgba(230, 0, 255, 0.45);
+      }
+    }
+    .filmstrip-hint {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .filmstrip { overflow-x: auto; }
+      .filmstrip-track { animation: none; }
+    }
+
     /* Lightbox */
     dialog.lightbox {
       border: none;
@@ -978,6 +1056,7 @@
     .spotify-embed {
       border-radius: 14px;
       overflow: hidden;
+      line-height: 0;
       margin-bottom: 1.5rem;
       border: 1px solid var(--border-secondary);
     }
@@ -1579,8 +1658,8 @@
 
   <!-- ASIDE: Control de Audio Ambiental con la canción TOKETEO (Bella Peya) -->
   <aside class="ambient-audio-bar" aria-label="Control de Audio Ambiental">
-    <audio id="ambient-audio" loop preload="none">
-      <source src="https://p.scdn.co/mp3-preview/40ba57f033fb320855bfe6f0df16797347dc41a8" type="audio/mpeg">
+    <audio id="ambient-audio" loop preload="auto">
+      <source src="audio/toketeo-bella-peya.mp3" type="audio/mpeg">
       Tu navegador no soporta el elemento de audio.
     </audio>
     <button id="ambient-audio-trigger" class="audio-btn" aria-label="Reproducir o pausar canción TOKETEO" aria-pressed="false">
@@ -1622,7 +1701,7 @@
       <p class="hero-eyebrow">🎃 ¡Se armó el festín de Halloween! 🎃</p>
 
       <div class="hero-photo-wrapper">
-        <img src="portada.jpeg" alt="Manuel Urias" class="hero-photo" width="300" height="400">
+        <img src="img/portada.webp" alt="Manuel Urias" class="hero-photo" width="300" height="400">
         <div class="hero-photo-tag">El Cumpleañero 🔥</div>
       </div>
 
@@ -1703,7 +1782,7 @@
             </div>
             <div class="timeline-step reveal" style="--d:0.35s">
               <span class="timeline-time">23:00</span>
-              <p><strong>Juegos:</strong> beer-pong y “baila o shot”.</p>
+              <p><strong>Calentar motores:</strong> arrancan los drinks 🍹</p>
             </div>
             <div class="timeline-step reveal" style="--d:0.5s">
               <span class="timeline-time">00:00</span>
@@ -1737,15 +1816,15 @@
 
         <div class="masonry">
           <figure class="masonry-item tall reveal" style="--d:0.1s" tabindex="0" role="button" aria-label="Ver foto en grande: Puro ambiente del bueno">
-            <img src="pasado_1.jpeg" alt="Fiesta del año pasado 1" width="960" height="1280" loading="lazy">
+            <img src="img/pasado-1.webp" alt="Fiesta del año pasado 1" width="960" height="1280" loading="lazy">
             <figcaption>Puro ambiente del bueno 🥂✨</figcaption>
           </figure>
           <figure class="masonry-item square reveal" style="--d:0.25s" tabindex="0" role="button" aria-label="Ver foto en grande: Risas, chupe y buena compañía">
-            <img src="pasado_2.jpeg" alt="Fiesta del año pasado 2" width="960" height="1280" loading="lazy">
+            <img src="img/pasado-2.webp" alt="Fiesta del año pasado 2" width="960" height="1280" loading="lazy">
             <figcaption>Risas, chupe y buena compañía 🥳🎉</figcaption>
           </figure>
           <figure class="masonry-item mid reveal" style="--d:0.4s" tabindex="0" role="button" aria-label="Ver foto en grande: Celebrando al festejado en grande">
-            <img src="pasado_3.jpeg" alt="Fiesta del año pasado 3" width="960" height="1280" loading="lazy">
+            <img src="img/pasado-3.webp" alt="Fiesta del año pasado 3" width="960" height="1280" loading="lazy">
             <figcaption>Celebrando al festejado en grande 👑🔥</figcaption>
           </figure>
         </div>
@@ -1861,6 +1940,22 @@
       </div>
     </section>
 
+    <!-- ASÍ SE VIVIÓ EL AÑO PASADO (cinta de película) -->
+    <!-- Las fotos se ponen en fotos/vivio/ y se generan con: python3 optimizar.py -->
+    <section id="asi-se-vivio" hidden>
+      <div class="card-luxury reveal">
+        <div class="section-header">
+          <span class="section-tag">🎞️ Urías Fest 2 🎞️</span>
+          <h2 class="section-title">Así se vivió el año pasado</h2>
+        </div>
+        <div class="filmstrip" aria-label="Fotos del Urías Fest 2">
+          <!-- GALERIA-VIVIO:INICIO (la genera optimizar.py, no editar a mano) -->
+          <!-- GALERIA-VIVIO:FIN -->
+        </div>
+        <p class="filmstrip-hint">Toca una foto para verla en grande</p>
+      </div>
+    </section>
+
     <!-- SECCIÓN 5: CANCIÓN OFICIAL -->
     <section id="musica">
       <div class="card-luxury spotify-card reveal">
@@ -1874,7 +1969,8 @@
         </p>
 
         <div class="spotify-embed">
-          <iframe src="https://open.spotify.com/embed/track/5p9hS6EiqXR09TXT31t0ds?utm_source=generator&theme=0"
+          <iframe src="https://open.spotify.com/embed/track/5p9hS6EiqXR09TXT31t0ds?utm_source=generator&amp;theme=0"
+                  title="TOKETEO de Bella Peya en Spotify"
                   width="100%"
                   height="152"
                   frameBorder="0"
@@ -1889,6 +1985,39 @@
            class="btn-ghost">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.516 17.31c-.217.356-.677.472-1.033.254-2.83-1.73-6.393-2.122-10.59-1.162-.405.093-.814-.158-.907-.563-.093-.405.158-.813.563-.906 4.606-1.053 8.544-.606 11.71 1.332.357.217.472.677.257 1.045zm1.472-3.275c-.273.444-.853.585-1.296.313-3.237-1.99-8.172-2.565-12.002-1.403-.5.152-1.025-.133-1.177-.633-.152-.5.133-1.024.633-1.177 4.38-1.33 9.81-.69 13.53 1.604.442.272.583.853.312 1.296zm.127-3.41c-3.88-2.304-10.28-2.517-13.974-1.396-.6.183-1.24-.162-1.423-.762-.183-.6.162-1.24.762-1.423 4.242-1.288 11.31-1.037 15.78 1.616.54.32.718 1.027.397 1.567-.32.538-1.027.717-1.542.398z"/></svg>
           Abrir Canción en Spotify
+        </a>
+      </div>
+    </section>
+
+    <!-- PLAYLIST DE LA FIESTA -->
+    <section id="playlist">
+      <div class="card-luxury spotify-card reveal">
+        <div class="section-header">
+          <span class="section-tag">🎧 Calienta motores 🎧</span>
+          <h2 class="section-title">La Playlist de la Noche</h2>
+        </div>
+
+        <p class="section-lead">
+          Dale play y ve entrando en modo fiesta. Esto es lo que va a sonar en el Urías Fest 3:
+        </p>
+
+        <div class="spotify-embed">
+          <iframe data-testid="embed-iframe"
+                  title="Playlist del Urías Fest 3 en Spotify"
+                  src="https://open.spotify.com/embed/playlist/2N6Jy6yudlNJr8QG0MMqWZ?utm_source=generator&amp;theme=0"
+                  width="100%"
+                  height="352"
+                  frameBorder="0"
+                  allowfullscreen=""
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"></iframe>
+        </div>
+
+        <a href="https://open.spotify.com/playlist/2N6Jy6yudlNJr8QG0MMqWZ"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="btn-ghost">
+          🎧 Abrir Playlist en Spotify
         </a>
       </div>
     </section>
@@ -2124,17 +2253,21 @@
       const img = document.getElementById('lightbox-img');
       document.getElementById('close-lightbox').addEventListener('click', () => box.close());
       closeOnBackdrop(box);
-      document.querySelectorAll('.masonry-item').forEach(item => {
+      document.querySelectorAll('.masonry-item, .film-frame').forEach(item => {
         const open = () => {
+          if (box.open) return;
           const src = item.querySelector('img');
-          img.src = src.src;
+          img.src = src.currentSrc || src.src;
           img.alt = src.alt;
           box.showModal();
         };
         item.addEventListener('click', open);
-        item.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
-        });
+        // Los <button> ya responden a Enter/Espacio; las <figure> necesitan ayuda
+        if (item.tagName !== 'BUTTON') {
+          item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+          });
+        }
       });
     }
 

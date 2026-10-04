@@ -1,0 +1,19 @@
+# Originales pesados: se quedan solo en tu compu.
+# Al repo suben únicamente las versiones optimizadas (img/ y audio/).
+fotos/
+audio-original/
+WhatsApp*
+*.mpeg
+
+# Temporales del script
+*.tmp.mp3
+__pycache__/
+*.pyc
+.venv/
+
+# Sistema / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
