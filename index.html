@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="es" class="paper-substrate-cotton">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="¡Se armó el fiesta de cumpleaños de Manuel Urias! Halloween Costume Party 🎃. Viernes 16 de Octubre de 2026.">
-  <meta name="theme-color" content="#08070F">
-  
+  <meta name="theme-color" content="#000000">
+
   <title>Manuel Urias | ¡Fiesta de Disfraces de Halloween! 🎃</title>
 
   <!-- Google Fonts: Orbitron, Space Grotesk & DM Sans -->
@@ -19,13 +19,14 @@
     "@context": "https://schema.org",
     "@type": "Event",
     "name": "Cumpleaños Manuel Urias - Halloween Costume Party",
-    "startDate": "2026-10-16T22:00:00-06:00",
-    "endDate": "2026-10-17T05:00:00-06:00",
+    "startDate": "2026-10-16T22:00:00-05:00",
+    "endDate": "2026-10-17T05:00:00-05:00",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
     "eventStatus": "https://schema.org/EventScheduled",
     "location": {
       "@type": "Place",
       "name": "Casa de la Fiesta",
+      "geo": { "@type": "GeoCoordinates", "latitude": 21.1733894, "longitude": -86.8515625 },
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Ubicación en Google Maps",
@@ -42,46 +43,51 @@
 
   <style>
     /* ==========================================================================
-       SYSTEM DESIGN TOKENS - HALLOWEEN NEON CHAVOS STYLE
+       SYSTEM DESIGN TOKENS - HALLOWEEN NEON (Naranja · Ámbar · Magenta · Púrpura · Negro)
        ========================================================================== */
     :root {
-      --surface-ground: #08070F; /* Noche Abisal */
-      --surface-card: rgba(16, 12, 28, 0.82);
+      --c-orange: #FF6F00;   /* Calabaza */
+      --c-amber: #FF9900;    /* Vela */
+      --c-magenta: #E600FF;  /* Poción */
+      --c-purple: #AA00FF;   /* Bruja */
+      --c-black: #000000;    /* Noche */
+
+      --surface-ground: var(--c-black);
+      --surface-card: rgba(14, 4, 22, 0.72);
       --text-primary: #FFFFFF;
-      --text-muted: #B0B5D0;
-      
-      /* Tonos Neón */
-      --neon-orange: #FF6B00; /* Naranja Calabaza */
-      --neon-green: #00FF66;  /* Verde Tóxico Slime */
-      --neon-purple: #B026FF; /* Púrpura Bruja */
-      --neon-pink: #FF007F;   /* Magenta Party */
-      --neon-cyan: #00F0FF;   /* Cian Neón */
+      --text-muted: #C9B8D9;
 
-      --border-primary: rgba(255, 107, 0, 0.55);
-      --border-secondary: rgba(0, 255, 102, 0.3);
-      
-      --card-radius: 12px;
-      --card-elevation: 0 16px 48px rgba(0, 0, 0, 0.85), 0 0 30px rgba(255, 107, 0, 0.2);
+      --border-primary: rgba(255, 111, 0, 0.45);
+      --border-secondary: rgba(170, 0, 255, 0.4);
 
-      /* Tipografías */
+      --card-radius: 18px;
+      --card-elevation: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(170, 0, 255, 0.18);
+
+      --grad-fire: linear-gradient(135deg, var(--c-orange), var(--c-amber));
+      --grad-potion: linear-gradient(135deg, var(--c-magenta), var(--c-purple));
+      --grad-all: linear-gradient(120deg, var(--c-orange), var(--c-amber), var(--c-magenta), var(--c-purple));
+
       --font-display: 'Orbitron', sans-serif;
       --font-accent: 'Space Grotesk', sans-serif;
       --font-body: 'DM Sans', sans-serif;
 
-      --fs-hero: clamp(2.4rem, 7vw, 4.5rem);
-      --fs-title-lg: clamp(1.8rem, 4.5vw, 3rem);
-      --fs-title-md: clamp(1.2rem, 3vw, 2rem);
-      --fs-body: clamp(0.95rem, 1.6vw, 1.1rem);
-      --fs-subtext: clamp(0.85rem, 1.2vw, 0.98rem);
+      --fs-hero: clamp(2.4rem, 8vw, 4.8rem);
+      --fs-title-lg: clamp(1.7rem, 4.5vw, 3rem);
+      --fs-title-md: clamp(1.1rem, 3vw, 1.8rem);
+      --fs-subtext: clamp(0.82rem, 1.2vw, 0.98rem);
+
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Resets Básicos */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    @property --angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
     }
 
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
     html, body {
       width: 100%;
       min-height: 100%;
@@ -92,123 +98,150 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
-      scroll-behavior: smooth;
     }
 
-    /* MEJORA 1: Textura Papel Algodón & Substrato Fog Neón */
-    .paper-substrate-cotton {
-      position: relative;
-      background-color: var(--surface-ground);
-      overflow-x: hidden;
-    }
-    .paper-substrate-cotton::before {
+    /* Grano de película sobre todo */
+    body::after {
       content: "";
       position: fixed;
       inset: 0;
-      filter: url(#paper-cotton-noise);
-      opacity: 0.25;
-      mix-blend-mode: color-dodge;
       pointer-events: none;
-      z-index: 999;
+      z-index: 900;
+      opacity: 0.07;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
 
-    /* MEJORA 2: Animación Neon Glow & Flicker */
-    .text-neon-glow {
-      color: #FFFFFF;
-      text-shadow: 
-        0 0 5px #FFFFFF,
-        0 0 12px var(--neon-orange),
-        0 0 24px var(--neon-orange),
-        0 0 45px var(--neon-orange),
-        0 0 80px var(--neon-orange);
-      animation: neon-flicker-pulse 4s infinite alternate;
+    /* Fondo atmosférico fijo */
+    .bg-aura {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(60vmax 50vmax at 15% 10%, rgba(170, 0, 255, 0.16), transparent 60%),
+        radial-gradient(50vmax 40vmax at 90% 40%, rgba(230, 0, 255, 0.10), transparent 60%),
+        radial-gradient(60vmax 45vmax at 30% 95%, rgba(255, 111, 0, 0.12), transparent 60%),
+        var(--c-black);
+      animation: aura-shift 18s ease-in-out infinite alternate;
+    }
+    @keyframes aura-shift {
+      to { filter: hue-rotate(-18deg) brightness(1.15); }
     }
 
-    @keyframes neon-flicker-pulse {
-      0%, 100% {
-        text-shadow: 
-          0 0 5px #FFFFFF,
-          0 0 12px var(--neon-orange),
-          0 0 24px var(--neon-orange),
-          0 0 45px var(--neon-orange),
-          0 0 80px var(--neon-orange);
-      }
-      48% {
-        text-shadow: 
-          0 0 3px #FFFFFF,
-          0 0 8px var(--neon-green),
-          0 0 16px var(--neon-green),
-          0 0 32px var(--neon-green);
-      }
-      50% { text-shadow: none; }
-      52% {
-        text-shadow: 
-          0 0 5px #FFFFFF,
-          0 0 12px var(--neon-orange),
-          0 0 24px var(--neon-orange);
-      }
+    #embers {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
     }
 
-    .text-neon-green {
-      color: var(--neon-green);
-      text-shadow: 0 0 12px rgba(0, 255, 102, 0.6);
+    /* Linterna que sigue al cursor */
+    .cursor-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 420px;
+      height: 420px;
+      margin: -210px 0 0 -210px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 153, 0, 0.13), rgba(230, 0, 255, 0.06) 40%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.4s;
+      will-change: transform;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .cursor-glow.is-on { opacity: 1; }
     }
 
-    /* MEJORA 3: Scroll-Driven Animations & Card Luxury */
+    /* ==========================================================================
+       TEXTOS NEÓN
+       ========================================================================== */
+    .text-gradient {
+      background: var(--grad-all);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: gradient-flow 6s linear infinite;
+    }
+    @keyframes gradient-flow {
+      to { background-position: 300% 0; }
+    }
+
+    /* ==========================================================================
+       CARDS + REVEAL
+       ========================================================================== */
+    section {
+      padding: clamp(2.5rem, 6vw, 4.5rem) 1rem;
+      max-width: 940px;
+      margin: 0 auto;
+      position: relative;
+    }
+
     .card-luxury {
       background: var(--surface-card);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1.5px solid var(--border-primary);
+      backdrop-filter: blur(18px) saturate(140%);
+      -webkit-backdrop-filter: blur(18px) saturate(140%);
+      border: 1px solid var(--border-secondary);
       border-radius: var(--card-radius);
       box-shadow: var(--card-elevation);
       padding: clamp(1.5rem, 4vw, 2.8rem);
-      margin: 0 auto;
       position: relative;
-      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+      isolation: isolate;
+      transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+    /* Borde que gira con los colores */
+    .card-luxury::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: conic-gradient(from var(--angle), transparent 0deg, var(--c-orange) 60deg, var(--c-magenta) 120deg, transparent 180deg, transparent 360deg);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      mask-composite: exclude;
+      animation: spin-angle 6s linear infinite;
+      opacity: 0.85;
+      pointer-events: none;
+    }
+    @keyframes spin-angle {
+      to { --angle: 360deg; }
     }
     .card-luxury:hover {
-      border-color: var(--neon-green);
-      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.9), 0 0 32px rgba(0, 255, 102, 0.3);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 50px rgba(230, 0, 255, 0.28);
     }
 
-    @supports (animation-timeline: view()) {
-      .card-luxury {
-        animation: luxuryEntrance 1ms both;
-        animation-timeline: view();
-        animation-range: entry 10% cover 30%;
-      }
+    .reveal {
+      opacity: 0;
+      transform: translate3d(0, 40px, 0) scale(0.97);
+      filter: blur(6px);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out), filter 0.9s var(--ease-out);
+      transition-delay: var(--d, 0s);
     }
-    @keyframes luxuryEntrance {
-      from {
-        opacity: 0;
-        transform: translate3d(0, 30px, 0) scale(0.97);
-      }
-      to {
-        opacity: 1;
-        transform: translate3d(0, 0, 0) scale(1);
-      }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+      filter: none;
     }
 
-    /* Layout & Sections */
-    section {
-      content-visibility: auto;
-      contain-intrinsic-size: 1px 500px;
-      padding: clamp(3rem, 7vw, 5rem) 1.25rem;
-      max-width: 920px;
-      margin: 0 auto;
-    }
-
-    /* Controles de Audio Ambiental (<aside>) */
+    /* ==========================================================================
+       AUDIO FLOTANTE
+       ========================================================================== */
     .ambient-audio-bar {
       position: fixed;
-      bottom: max(1.5rem, env(safe-area-inset-bottom));
-      right: max(1.5rem, env(safe-area-inset-right));
+      bottom: max(1.25rem, env(safe-area-inset-bottom));
+      right: max(1.25rem, env(safe-area-inset-right));
       z-index: 1000;
     }
     .audio-btn {
-      background: rgba(8, 7, 15, 0.92);
-      border: 2px solid var(--neon-orange);
+      background: rgba(0, 0, 0, 0.85);
+      border: 2px solid var(--c-orange);
       color: var(--text-primary);
       width: 58px;
       height: 58px;
@@ -217,35 +250,30 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 0 25px rgba(255, 107, 0, 0.5);
+      box-shadow: 0 0 25px rgba(255, 111, 0, 0.5);
       backdrop-filter: blur(10px);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 0.3s var(--ease-out), border-color 0.3s, box-shadow 0.3s;
     }
     .audio-btn:hover {
-      transform: scale(1.12);
-      border-color: var(--neon-green);
-      box-shadow: 0 0 35px rgba(0, 255, 102, 0.8);
+      transform: scale(1.12) rotate(-8deg);
+      border-color: var(--c-magenta);
+      box-shadow: 0 0 35px rgba(230, 0, 255, 0.7);
     }
     .audio-btn.is-active {
-      border-color: var(--neon-green);
-      animation: pulse-neon 1.8s infinite;
+      border-color: var(--c-magenta);
+      animation: pulse-ring 1.8s infinite;
     }
-    .audio-btn svg {
-      width: 26px;
-      height: 26px;
-      fill: var(--neon-orange);
-      transition: fill 0.3s;
-    }
-    .audio-btn.is-active svg {
-      fill: var(--neon-green);
-    }
-    @keyframes pulse-neon {
-      0% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0.7); }
-      70% { box-shadow: 0 0 0 18px rgba(0, 255, 102, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0); }
+    .audio-btn svg { width: 26px; height: 26px; fill: var(--c-orange); transition: fill 0.3s; }
+    .audio-btn.is-active svg { fill: var(--c-magenta); }
+    @keyframes pulse-ring {
+      0% { box-shadow: 0 0 0 0 rgba(230, 0, 255, 0.7); }
+      70% { box-shadow: 0 0 0 18px rgba(230, 0, 255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(230, 0, 255, 0); }
     }
 
-    /* HERO HEADER */
+    /* ==========================================================================
+       HERO
+       ========================================================================== */
     header.hero-header {
       min-height: 100dvh;
       display: flex;
@@ -253,36 +281,181 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 3rem 1.5rem 2rem 1.5rem;
+      padding: 4rem 1.25rem 3rem;
       position: relative;
-      background: 
-        radial-gradient(circle at 50% 20%, rgba(255, 107, 0, 0.25) 0%, transparent 60%),
-        radial-gradient(circle at 80% 80%, rgba(0, 255, 102, 0.18) 0%, transparent 50%),
-        radial-gradient(circle at 20% 70%, rgba(176, 38, 255, 0.2) 0%, transparent 50%),
-        linear-gradient(180deg, rgba(8,7,15,0.5) 0%, rgba(8,7,15,1) 100%);
+      overflow: hidden;
     }
 
-    .hero-bg-overlay {
+    /* Luna */
+    .moon {
+      position: absolute;
+      top: clamp(2rem, 8vh, 5rem);
+      right: clamp(-3rem, 6vw, 8rem);
+      width: clamp(110px, 20vw, 200px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 35%, rgba(0,0,0,0.18) 0 8%, transparent 9%),
+        radial-gradient(circle at 62% 60%, rgba(0,0,0,0.16) 0 11%, transparent 12%),
+        radial-gradient(circle at 45% 78%, rgba(0,0,0,0.12) 0 6%, transparent 7%),
+        radial-gradient(circle at 40% 35%, #FFD08A, var(--c-amber) 55%, var(--c-orange));
+      box-shadow: 0 0 60px rgba(255, 153, 0, 0.55), 0 0 140px rgba(255, 111, 0, 0.35), 0 0 260px rgba(230, 0, 255, 0.2);
+      animation: moon-float 9s ease-in-out infinite;
+      z-index: 0;
+    }
+    @keyframes moon-float {
+      50% { transform: translateY(14px) scale(1.03); }
+    }
+
+    /* Murciélagos */
+    .bats { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+    .bat {
+      position: absolute;
+      left: 0;
+      width: var(--s, 48px);
+      color: #050008;
+      filter: drop-shadow(0 0 6px rgba(230, 0, 255, 0.55));
+      offset-rotate: 0deg;
+      animation: bat-fly var(--t, 14s) linear infinite;
+      animation-delay: var(--delay, 0s);
+      top: var(--y, 20%);
+      opacity: 0;
+    }
+    .bat svg { width: 100%; height: auto; display: block; }
+    .bat .wings {
+      transform-origin: 50% 50%;
+      animation: flap 0.28s ease-in-out infinite alternate;
+    }
+    @keyframes flap {
+      from { transform: scaleY(1); }
+      to { transform: scaleY(0.35); }
+    }
+    @keyframes bat-fly {
+      0% { transform: translate(-15vw, 0) rotate(-6deg); opacity: 0; }
+      8% { opacity: 1; }
+      25% { transform: translate(20vw, -6vh) rotate(4deg); }
+      50% { transform: translate(50vw, 4vh) rotate(-4deg); }
+      75% { transform: translate(80vw, -5vh) rotate(6deg); }
+      92% { opacity: 1; }
+      100% { transform: translate(115vw, 2vh) rotate(0deg); opacity: 0; }
+    }
+
+    /* Araña colgante */
+    .spider {
+      position: absolute;
+      top: 0;
+      left: clamp(1rem, 10vw, 7rem);
+      width: 2px;
+      height: 0;
+      transform-origin: top center;
+      animation: spider-drop 2.4s var(--ease-out) 1.2s forwards, spider-swing 4s ease-in-out 3.6s infinite;
+      z-index: 2;
+    }
+    .spider::before {
+      content: "";
       position: absolute;
       inset: 0;
-      background-image: 
-        radial-gradient(2px 2px at 50px 70px, var(--neon-orange), rgba(0,0,0,0)),
-        radial-gradient(1.5px 1.5px at 150px 180px, var(--neon-green), rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 220px 90px, var(--neon-purple), rgba(0,0,0,0));
-      background-size: 240px 240px;
-      opacity: 0.7;
-      pointer-events: none;
+      background: linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.45));
     }
+    .spider svg {
+      position: absolute;
+      bottom: -22px;
+      left: 50%;
+      width: 40px;
+      transform: translateX(-50%);
+      filter: drop-shadow(0 0 8px rgba(255, 111, 0, 0.6));
+    }
+    @keyframes spider-drop { to { height: clamp(110px, 22vh, 210px); } }
+    @keyframes spider-swing {
+      0%, 100% { transform: rotate(4deg); }
+      50% { transform: rotate(-4deg); }
+    }
+
+    /* Niebla */
+    .fog {
+      position: absolute;
+      left: -50%;
+      bottom: -6%;
+      width: 200%;
+      height: 38%;
+      pointer-events: none;
+      z-index: 1;
+      background:
+        radial-gradient(40% 60% at 20% 70%, rgba(170, 0, 255, 0.22), transparent 70%),
+        radial-gradient(35% 55% at 55% 80%, rgba(255, 111, 0, 0.16), transparent 70%),
+        radial-gradient(40% 60% at 85% 70%, rgba(230, 0, 255, 0.18), transparent 70%);
+      filter: blur(30px);
+      animation: fog-drift 22s linear infinite alternate;
+    }
+    .fog.fog-2 {
+      animation-duration: 30s;
+      animation-direction: alternate-reverse;
+      opacity: 0.7;
+      bottom: -12%;
+    }
+    @keyframes fog-drift {
+      to { transform: translateX(25%); }
+    }
+
+    .hero-inner { position: relative; z-index: 3; display: flex; flex-direction: column; align-items: center; }
 
     .hero-eyebrow {
       font-family: var(--font-accent);
       font-size: var(--fs-subtext);
       text-transform: uppercase;
       letter-spacing: 5px;
-      color: var(--neon-green);
-      margin-bottom: 0.8rem;
+      color: var(--c-amber);
+      margin-bottom: 1.4rem;
       font-weight: 700;
-      text-shadow: 0 0 10px rgba(0, 255, 102, 0.5);
+      text-shadow: 0 0 12px rgba(255, 153, 0, 0.55);
+      animation: rise-in 1s var(--ease-out) both;
+    }
+
+    @keyframes rise-in {
+      from { opacity: 0; transform: translateY(24px); filter: blur(8px); }
+      to { opacity: 1; transform: none; filter: none; }
+    }
+
+    /* Foto de portada con borde giratorio */
+    .hero-photo-wrapper {
+      position: relative;
+      max-width: 300px;
+      width: 78vw;
+      margin: 0 auto 2.4rem;
+      border-radius: 22px;
+      padding: 4px;
+      background: conic-gradient(from var(--angle), var(--c-orange), var(--c-amber), var(--c-magenta), var(--c-purple), var(--c-orange));
+      animation: spin-angle 5s linear infinite, rise-in 1.2s var(--ease-out) 0.15s both, photo-bob 7s ease-in-out 1.4s infinite;
+      box-shadow: 0 0 45px rgba(230, 0, 255, 0.45), 0 0 90px rgba(255, 111, 0, 0.25);
+    }
+    @keyframes photo-bob {
+      50% { translate: 0 -10px; rotate: -1.2deg; }
+    }
+    .hero-photo {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border-radius: 18px;
+      display: block;
+      background: #0d0013;
+    }
+    .hero-photo-tag {
+      position: absolute;
+      bottom: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--c-black);
+      border: 1.5px solid var(--c-magenta);
+      color: #fff;
+      font-family: var(--font-accent);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      padding: 0.45rem 1.2rem;
+      border-radius: 30px;
+      white-space: nowrap;
+      box-shadow: 0 0 18px rgba(230, 0, 255, 0.55);
     }
 
     .hero-title {
@@ -290,411 +463,581 @@
       font-size: var(--fs-hero);
       font-weight: 900;
       line-height: 1.05;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.8rem;
       letter-spacing: 2px;
+    }
+    .hero-title .char {
+      display: inline-block;
+      color: #fff;
+      opacity: 0;
+      animation: char-in 0.9s var(--ease-out) forwards, neon-flicker 5s ease-in-out infinite;
+      animation-delay: calc(0.5s + var(--i) * 0.06s), calc(2s + var(--i) * 0.12s);
+      text-shadow: 0 0 6px #fff, 0 0 18px var(--c-orange), 0 0 40px var(--c-orange), 0 0 80px var(--c-magenta);
+    }
+    .hero-title .char.space { width: 0.4em; }
+    @keyframes char-in {
+      from { opacity: 0; transform: translateY(0.6em) rotate(12deg) scale(0.6); filter: blur(10px); }
+      to { opacity: 1; transform: none; filter: none; }
+    }
+    @keyframes neon-flicker {
+      0%, 18%, 22%, 62%, 64%, 100% {
+        text-shadow: 0 0 6px #fff, 0 0 18px var(--c-orange), 0 0 40px var(--c-orange), 0 0 80px var(--c-magenta);
+      }
+      20%, 63% { text-shadow: none; color: rgba(255, 255, 255, 0.55); }
+      40% {
+        text-shadow: 0 0 6px #fff, 0 0 18px var(--c-magenta), 0 0 40px var(--c-purple), 0 0 80px var(--c-purple);
+      }
     }
 
     .hero-subtitle {
       font-family: var(--font-accent);
       font-size: var(--fs-title-md);
-      color: var(--text-primary);
-      margin-bottom: 2rem;
+      margin-bottom: 1.8rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1px;
-    }
-
-    /* ESTÉTICA DE LA FOTO DEL FESTEJADO (PORTADA) */
-    .hero-photo-wrapper {
-      position: relative;
-      max-width: 320px;
-      width: 100%;
-      margin: 0 auto 2.2rem auto;
-      border-radius: 16px;
-      padding: 6px;
-      background: linear-gradient(135deg, var(--neon-orange), var(--neon-green), var(--neon-purple));
-      box-shadow: 0 0 35px rgba(255, 107, 0, 0.5);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-    .hero-photo-wrapper:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 50px rgba(0, 255, 102, 0.7);
-    }
-    .hero-photo {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 3 / 4;
-      object-fit: cover;
-      border-radius: 12px;
-      display: block;
-    }
-    .hero-photo-tag {
-      position: absolute;
-      bottom: -14px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #08070F;
-      border: 1.5px solid var(--neon-green);
-      color: var(--neon-green);
-      font-family: var(--font-accent);
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      padding: 0.4rem 1.2rem;
-      border-radius: 30px;
-      white-space: nowrap;
-      box-shadow: 0 0 15px rgba(0, 255, 102, 0.5);
+      animation: rise-in 1s var(--ease-out) 1.2s both;
     }
 
     .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 0.75rem;
-      padding: 0.75rem 1.8rem;
-      border: 1.5px solid var(--neon-orange);
+      padding: 0.8rem 1.6rem;
+      border: 1.5px solid var(--c-orange);
       border-radius: 40px;
-      background: rgba(16, 12, 28, 0.75);
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
       font-family: var(--font-accent);
       font-size: var(--fs-subtext);
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: #FFFFFF;
-      box-shadow: 0 0 20px rgba(255, 107, 0, 0.35);
-      margin-top: 1rem;
+      color: #fff;
+      box-shadow: 0 0 22px rgba(255, 111, 0, 0.4);
+      animation: rise-in 1s var(--ease-out) 1.4s both;
     }
-    .hero-badge::before, .hero-badge::after {
-      content: "🎃";
-      font-size: 1rem;
+    .hero-badge .pumpkin {
+      display: inline-block;
+      animation: pumpkin-bounce 1.6s ease-in-out infinite;
+    }
+    .hero-badge .pumpkin:last-child { animation-delay: 0.8s; }
+    @keyframes pumpkin-bounce {
+      0%, 100% { transform: translateY(0) rotate(0); }
+      30% { transform: translateY(-6px) rotate(-12deg); }
+      60% { transform: translateY(0) rotate(8deg); }
     }
 
-    /* SECTORES & TITULARES NEÓN */
-    .section-header {
-      text-align: center;
-      margin-bottom: 2.2rem;
+    .scroll-hint {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      translate: -50% 0;
+      z-index: 3;
+      width: 26px;
+      height: 42px;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      border-radius: 14px;
+      animation: rise-in 1s var(--ease-out) 2s both;
     }
+    .scroll-hint::after {
+      content: "";
+      position: absolute;
+      top: 7px;
+      left: 50%;
+      width: 4px;
+      height: 8px;
+      margin-left: -2px;
+      border-radius: 2px;
+      background: var(--c-amber);
+      animation: scroll-dot 1.8s ease-in-out infinite;
+    }
+    @keyframes scroll-dot {
+      0% { opacity: 0; transform: translateY(0); }
+      40% { opacity: 1; }
+      100% { opacity: 0; transform: translateY(14px); }
+    }
+
+    /* ==========================================================================
+       TITULARES DE SECCIÓN
+       ========================================================================== */
+    .section-header { text-align: center; margin-bottom: 2.2rem; }
     .section-tag {
       font-family: var(--font-accent);
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       text-transform: uppercase;
       letter-spacing: 3px;
-      color: var(--neon-green);
+      color: var(--c-amber);
       display: block;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.5rem;
       font-weight: 700;
-      text-shadow: 0 0 8px rgba(0, 255, 102, 0.4);
+      text-shadow: 0 0 10px rgba(255, 153, 0, 0.45);
     }
     .section-title {
       font-family: var(--font-display);
       font-size: var(--fs-title-lg);
       font-weight: 700;
-      color: #FFFFFF;
       letter-spacing: 1px;
+      line-height: 1.2;
     }
 
-    /* SECCION COUNTDOWN NEON */
+    /* Fantasmas decorativos */
+    .ghost {
+      position: absolute;
+      width: clamp(34px, 6vw, 54px);
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.85;
+      filter: drop-shadow(0 0 14px rgba(230, 0, 255, 0.7));
+      animation: ghost-float 6s ease-in-out infinite;
+    }
+    .ghost svg { width: 100%; height: auto; display: block; }
+    .ghost.g-left { left: -4px; top: 0.5rem; }
+    .ghost.g-right { right: -4px; top: 1rem; animation-delay: -3s; animation-duration: 7s; }
+    @keyframes ghost-float {
+      0%, 100% { transform: translate(0, 0) rotate(-6deg); }
+      50% { transform: translate(8px, -16px) rotate(6deg); }
+    }
+
+    /* ==========================================================================
+       CUENTA REGRESIVA
+       ========================================================================== */
     .countdown-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: clamp(0.75rem, 2vw, 1.5rem);
+      gap: clamp(0.6rem, 2vw, 1.4rem);
       text-align: center;
     }
     .countdown-box {
-      background: rgba(8, 7, 15, 0.9);
-      border: 1.5px solid var(--border-primary);
-      border-radius: var(--card-radius);
-      padding: clamp(1rem, 2.5vw, 1.8rem) 0.5rem;
+      background: linear-gradient(180deg, rgba(170, 0, 255, 0.12), rgba(0, 0, 0, 0.8));
+      border: 1px solid var(--border-primary);
+      border-radius: 14px;
+      padding: clamp(1rem, 2.5vw, 1.8rem) 0.4rem;
       position: relative;
-      box-shadow: 0 0 15px rgba(255, 107, 0, 0.2);
+      box-shadow: inset 0 0 20px rgba(255, 111, 0, 0.1);
+      transition: transform 0.4s var(--ease-out);
     }
+    .countdown-box:hover { transform: translateY(-6px); }
     .countdown-number {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 3.6rem);
+      font-size: clamp(1.8rem, 5vw, 3.6rem);
       font-weight: 900;
-      color: var(--neon-orange);
-      text-shadow: 0 0 15px rgba(255, 107, 0, 0.7);
+      background: var(--grad-fire);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 12px rgba(255, 111, 0, 0.6));
       line-height: 1;
       margin-bottom: 0.4rem;
+      display: inline-block;
+    }
+    .countdown-number.tick { animation: tick 0.5s var(--ease-out); }
+    @keyframes tick {
+      0% { transform: translateY(-40%) rotateX(80deg); opacity: 0; }
+      100% { transform: none; opacity: 1; }
     }
     .countdown-label {
       font-family: var(--font-accent);
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       text-transform: uppercase;
       letter-spacing: 2px;
-      color: var(--neon-green);
+      color: var(--c-magenta);
       font-weight: 700;
     }
 
-    /* GALERÍA INTEGRADA: ASÍ SE PUSO EL AÑO PASADO 🔥 */
+    /* ==========================================================================
+       GALERÍA MASONRY
+       ========================================================================== */
     .past-party-intro {
       text-align: center;
-      margin-bottom: 2rem;
+      margin: 0 auto 2rem;
+      max-width: 560px;
       color: var(--text-muted);
       font-size: 1.05rem;
     }
-    .past-photos-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
+    .masonry {
+      columns: 3 200px;
+      column-gap: 1rem;
+      padding-bottom: 2.2rem;
     }
-    .polaroid-card {
-      background: rgba(16, 12, 28, 0.9);
-      border: 1.5px solid rgba(255, 107, 0, 0.4);
-      border-radius: var(--card-radius);
-      padding: 0.8rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 1rem;
       position: relative;
-    }
-    .polaroid-card:hover {
-      transform: translateY(-6px) rotate(1deg);
-      border-color: var(--neon-green);
-      box-shadow: 0 15px 40px rgba(0, 255, 102, 0.3);
-    }
-    .polaroid-img {
-      width: 100%;
-      height: 280px;
-      object-fit: cover;
-      border-radius: 8px;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: zoom-in;
+      background: #0d0013;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      rotate: var(--r, 0deg);
+      transition: opacity 0.9s var(--ease-out), filter 0.9s var(--ease-out), transform 0.5s var(--ease-out), rotate 0.5s var(--ease-out), translate 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out), border-color 0.3s;
+      transition-delay: var(--d, 0s);
       display: block;
-      margin-bottom: 0.8rem;
+      width: 100%;
+      padding: 0;
+      font: inherit;
+      color: inherit;
+      text-align: left;
     }
-    .polaroid-caption {
+    .masonry-item:nth-child(1) { --r: -1.5deg; }
+    .masonry-item:nth-child(2) { --r: 1.2deg; translate: 0 2.2rem; }
+    .masonry-item:nth-child(3) { --r: -0.8deg; }
+    .masonry-item:hover,
+    .masonry-item:focus-visible {
+      transform: scale(1.03);
+      rotate: 0deg;
+      transition-delay: 0s;
+      border-color: var(--c-magenta);
+      box-shadow: 0 18px 50px rgba(230, 0, 255, 0.35), 0 0 30px rgba(255, 111, 0, 0.25);
+      z-index: 2;
+      outline: none;
+    }
+    .masonry-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-position: center 30%;
+      object-fit: cover;
+      transition: transform 0.8s var(--ease-out), filter 0.5s;
+      filter: saturate(1.05) contrast(1.05);
+    }
+    .masonry-item:hover img { transform: scale(1.08); filter: saturate(1.25) contrast(1.1); }
+    .masonry-item.tall img { aspect-ratio: 3 / 4.6; }
+    .masonry-item.square img { aspect-ratio: 1 / 1; }
+    .masonry-item.mid img { aspect-ratio: 4 / 5; }
+    .masonry-item figcaption {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 2.4rem 1rem 0.9rem;
       font-family: var(--font-accent);
-      font-size: 0.9rem;
-      color: var(--text-primary);
-      text-align: center;
+      font-size: 0.92rem;
       font-weight: 600;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.88));
+      transform: translateY(30%);
+      opacity: 0.85;
+      transition: transform 0.5s var(--ease-out), opacity 0.5s;
+    }
+    .masonry-item:hover figcaption { transform: none; opacity: 1; }
+
+    /* Lightbox */
+    dialog.lightbox {
+      border: none;
+      background: transparent;
+      max-width: min(92vw, 640px);
+      max-height: 92dvh;
+      margin: auto;
+      padding: 0;
+      overflow: visible;
+    }
+    dialog.lightbox img {
+      width: 100%;
+      max-height: 86dvh;
+      object-fit: contain;
+      border-radius: 16px;
+      display: block;
+      box-shadow: 0 0 60px rgba(230, 0, 255, 0.45);
+    }
+    dialog.lightbox[open] { animation: zoom-in 0.45s var(--ease-out); }
+    @keyframes zoom-in {
+      from { opacity: 0; transform: scale(0.85) rotate(-2deg); }
+      to { opacity: 1; transform: none; }
+    }
+    dialog.lightbox .modal-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--c-black);
+      border: 1.5px solid var(--c-orange);
     }
 
-    /* SECCIÓN UBICACIÓN EN CASA */
-    .venue-info {
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
+    /* ==========================================================================
+       UBICACIÓN + MAPA
+       ========================================================================== */
+    .venue-info { text-align: center; }
     .venue-name {
       font-family: var(--font-display);
-      font-size: 1.7rem;
-      color: #FFFFFF;
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
       margin-bottom: 0.6rem;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
     }
     .venue-desc {
       color: var(--text-muted);
       font-size: 1.05rem;
       max-width: 540px;
-      margin: 0 auto 1.8rem auto;
-      line-height: 1.6;
+      margin: 0 auto 1.6rem;
+    }
+    .map-frame {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 1.8rem;
+      border: 1px solid var(--border-primary);
+      box-shadow: 0 0 30px rgba(255, 111, 0, 0.2);
+      aspect-ratio: 16 / 10;
+      background: #0d0013;
+    }
+    .map-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      /* Mapa en modo oscuro con tinte morado */
+      filter: invert(0.9) hue-rotate(200deg) saturate(1.4) brightness(0.95);
+    }
+    .map-frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.7);
+      border-radius: inherit;
+    }
+    @media (max-width: 600px) {
+      .map-frame { aspect-ratio: 4 / 5; }
     }
 
-    /* SECCION DRESS CODE (DISFRACES SOLAMENTE) */
-    .dress-code-box {
-      text-align: center;
-      max-width: 650px;
-      margin: 0 auto 2.5rem auto;
-    }
+    /* ==========================================================================
+       DRESS CODE
+       ========================================================================== */
+    .dress-code-box { text-align: center; max-width: 650px; margin: 0 auto 2.5rem; }
     .dress-code-title {
       font-family: var(--font-display);
-      font-size: 1.6rem;
-      color: var(--neon-orange);
+      font-size: clamp(1.2rem, 3.4vw, 1.6rem);
       margin-bottom: 1rem;
-      text-shadow: 0 0 12px rgba(255, 107, 0, 0.5);
     }
-    .dress-code-text {
-      font-size: 1.1rem;
-      color: var(--text-primary);
-      line-height: 1.7;
-    }
-    .dress-code-text strong {
-      color: var(--neon-green);
-    }
+    .dress-code-text { font-size: 1.08rem; line-height: 1.7; }
+    .dress-code-text strong { color: var(--c-amber); }
 
     .swatches-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
       gap: 1.5rem;
       justify-items: center;
     }
-    .swatch-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.8rem;
-    }
+    .swatch-card { display: flex; flex-direction: column; align-items: center; gap: 0.8rem; }
     .hexagon-wrapper {
       width: 78px;
       height: 88px;
       clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
       padding: 2.5px;
-      transition: transform 0.3s ease;
+      background: var(--sw);
+      transition: transform 0.4s var(--ease-out);
+      animation: hex-glow 3s ease-in-out infinite;
+      animation-delay: var(--d, 0s);
     }
-    .swatch-card:hover .hexagon-wrapper {
-      transform: scale(1.12);
-    }
+    .swatch-card:hover .hexagon-wrapper { transform: scale(1.15) rotate(30deg); }
     .hexagon-inner {
       width: 100%;
       height: 100%;
-      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      clip-path: inherit;
+      background: var(--sw-inner, var(--sw));
+    }
+    @keyframes hex-glow {
+      50% { filter: brightness(1.35) drop-shadow(0 0 10px var(--sw)); }
     }
     .swatch-name {
       font-family: var(--font-accent);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       letter-spacing: 1px;
       text-transform: uppercase;
-      color: #FFFFFF;
       text-align: center;
       font-weight: 700;
     }
 
-    /* SECCION SPOTIFY MUSIC CARD */
-    .spotify-card {
-      text-align: center;
-      padding: 1.5rem;
-      background: rgba(10, 14, 23, 0.9);
-      border: 1.5px solid var(--neon-green);
-      border-radius: var(--card-radius);
-      box-shadow: 0 0 25px rgba(0, 255, 102, 0.2);
-    }
+    /* ==========================================================================
+       BOTONES
+       ========================================================================== */
+    .gifts-container, .spotify-card { text-align: center; }
 
-    /* SECCION REGALOS & BOTÓN PRINCIPAL */
-    .gifts-container {
-      text-align: center;
-    }
     .btn-gold {
+      position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 0.8rem;
-      padding: 1.1rem 2.6rem;
-      background: linear-gradient(135deg, #FF6B00 0%, #FF9900 50%, #FF6B00 100%);
-      color: #08070F;
+      padding: 1.05rem 2.2rem;
+      background: var(--grad-fire);
+      color: var(--c-black);
       font-family: var(--font-display);
       font-weight: 900;
-      font-size: 0.95rem;
+      font-size: clamp(0.78rem, 2.4vw, 0.92rem);
       letter-spacing: 2px;
       text-transform: uppercase;
       border: none;
-      border-radius: var(--card-radius);
+      border-radius: 14px;
       cursor: pointer;
-      box-shadow: 0 0 25px rgba(255, 107, 0, 0.6);
-      transition: all 0.3s ease;
+      box-shadow: 0 0 25px rgba(255, 111, 0, 0.55);
+      transition: transform 0.35s var(--ease-out), box-shadow 0.35s, color 0.35s;
       text-decoration: none;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .btn-gold::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--grad-potion);
+      opacity: 0;
+      transition: opacity 0.35s;
+      z-index: -1;
+    }
+    .btn-gold::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -60%;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+      transform: skewX(-20deg);
+      animation: shine 3.2s ease-in-out infinite;
+    }
+    @keyframes shine {
+      0%, 60% { left: -60%; }
+      100% { left: 130%; }
     }
     .btn-gold:hover {
-      transform: translateY(-3px);
-      background: linear-gradient(135deg, #00FF66 0%, #33FF88 50%, #00FF66 100%);
-      box-shadow: 0 0 35px rgba(0, 255, 102, 0.8);
-      color: #08070F;
+      transform: translateY(-3px) scale(1.03);
+      color: #fff;
+      box-shadow: 0 0 40px rgba(230, 0, 255, 0.75);
+    }
+    .btn-gold:hover::before { opacity: 1; }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.8rem;
+      border: 1.5px solid var(--c-magenta);
+      color: #fff;
+      border-radius: 14px;
+      font-family: var(--font-accent);
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.3s, box-shadow 0.3s, transform 0.3s var(--ease-out);
+    }
+    .btn-ghost:hover {
+      background: rgba(230, 0, 255, 0.15);
+      box-shadow: 0 0 25px rgba(230, 0, 255, 0.5);
+      transform: translateY(-2px);
     }
 
-    /* MODAL <dialog> REGALOS CHAVOS STYLE */
+    .spotify-embed {
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border-secondary);
+    }
+
+    /* ==========================================================================
+       MODAL REGALOS
+       ========================================================================== */
     dialog.modal-luxury {
-      border: 2px solid var(--neon-green);
+      border: 1.5px solid var(--c-magenta);
       border-radius: var(--card-radius);
-      background: #0C0A16;
+      background: #0a0010;
       color: var(--text-primary);
       padding: 0;
       max-width: 520px;
       width: 90%;
       margin: auto;
-      box-shadow: 0 0 40px rgba(0, 255, 102, 0.4), 0 25px 60px rgba(0, 0, 0, 0.95);
+      box-shadow: 0 0 50px rgba(230, 0, 255, 0.4), 0 25px 60px rgba(0, 0, 0, 0.95);
     }
+    dialog.modal-luxury[open] { animation: zoom-in 0.45s var(--ease-out); }
     dialog::backdrop {
-      background: rgba(4, 3, 8, 0.88);
+      background: rgba(0, 0, 0, 0.85);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
     }
-    .modal-content {
-      padding: 2.2rem;
-      position: relative;
-    }
+    .modal-content { padding: 2.2rem; position: relative; }
     .modal-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 1rem;
       margin-bottom: 1.5rem;
       border-bottom: 1px solid var(--border-secondary);
       padding-bottom: 1rem;
     }
-    .modal-title {
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      color: var(--neon-green);
-      text-shadow: 0 0 10px rgba(0, 255, 102, 0.5);
-    }
+    .modal-title { font-family: var(--font-display); font-size: 1.3rem; }
     .modal-close {
       background: transparent;
       border: none;
-      color: var(--neon-orange);
+      color: var(--c-orange);
       font-size: 2rem;
       cursor: pointer;
       line-height: 1;
-      transition: transform 0.2s, color 0.2s;
+      transition: transform 0.25s var(--ease-out), color 0.25s;
     }
-    .modal-close:hover {
-      color: var(--neon-green);
-      transform: scale(1.2);
-    }
-    .modal-body {
-      font-size: 1.05rem;
-      color: var(--text-primary);
-      line-height: 1.7;
-    }
+    .modal-close:hover { color: var(--c-magenta); transform: rotate(90deg) scale(1.15); }
+    .modal-body { font-size: 1.05rem; line-height: 1.7; }
     .gift-rule-box {
-      background: rgba(255, 107, 0, 0.15);
-      border-left: 4px solid var(--neon-orange);
+      background: rgba(255, 111, 0, 0.12);
+      border-left: 4px solid var(--c-orange);
       padding: 1.2rem 1.4rem;
       margin: 1.5rem 0;
       font-family: var(--font-accent);
-      border-radius: 4px;
-      box-shadow: 0 0 15px rgba(255, 107, 0, 0.15);
+      border-radius: 6px;
     }
-    .gift-rule-box strong {
-      color: var(--neon-orange);
-      font-size: 1.1rem;
-    }
+    .gift-rule-box strong { color: var(--c-amber); font-size: 1.05rem; }
 
-    /* FOOTER */
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
     footer {
       text-align: center;
-      padding: 3rem 1.5rem;
+      padding: 3rem 1.5rem 6rem;
       border-top: 1px solid var(--border-secondary);
       color: var(--text-muted);
       font-family: var(--font-accent);
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       letter-spacing: 2px;
       text-transform: uppercase;
     }
 
     @media (max-width: 600px) {
-      .countdown-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .countdown-grid { grid-template-columns: repeat(2, 1fr); }
+      .masonry { columns: 2; column-gap: 0.7rem; }
+      .masonry-item { margin-bottom: 0.7rem; }
+      .masonry { padding-bottom: 0; }
+      .masonry-item:nth-child(2) { translate: none; }
+      .bat:nth-child(n+4) { display: none; }
+    }
+
+    /* Accesibilidad: sin animaciones si el usuario lo pide */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
       }
-      .past-photos-grid {
-        grid-template-columns: 1fr;
-      }
+      .bats, .cursor-glow, #embers { display: none; }
+      .reveal { opacity: 1; transform: none; filter: none; }
+      .hero-title .char { opacity: 1; }
     }
   </style>
 </head>
-<body class="paper-substrate-cotton">
+<body>
 
-  <!-- MEJORA 1: SVG de Ruido para Substrato Neblina Neón -->
-  <svg style="position: absolute; width: 0; height: 0; pointer-events: none;" aria-hidden="true">
+  <!-- SÍMBOLOS SVG REUTILIZABLES -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
-      <filter id="paper-cotton-noise" x="0%" y="0%" width="100%" height="100%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" result="noise" />
-        <feDiffuseLighting in="noise" lighting-color="#00FF66" surfaceScale="1.1" result="light">
-          <feDistantLight azimuth="60" elevation="65" />
-        </feDiffuseLighting>
-        <feComponentTransfer>
-          <feFuncA type="linear" slope="0.15" />
-        </feComponentTransfer>
-        <feBlend mode="multiply" in="SourceGraphic" result="blend" />
-      </filter>
+      <symbol id="ghost" viewBox="0 0 40 48">
+        <path d="M20 2C10 2 4 10 4 20v24l5-4 5 4 6-4 6 4 5-4 5 4V20C36 10 30 2 20 2z" fill="#F4E9FF"/>
+        <ellipse cx="14.5" cy="20" rx="3" ry="4" fill="#000"/>
+        <ellipse cx="25.5" cy="20" rx="3" ry="4" fill="#000"/>
+        <ellipse cx="20" cy="30" rx="3" ry="2.4" fill="#000"/>
+      </symbol>
     </defs>
   </svg>
+
+  <div class="bg-aura" aria-hidden="true"></div>
+  <canvas id="embers" aria-hidden="true"></canvas>
+  <div class="cursor-glow" aria-hidden="true"></div>
 
   <!-- ASIDE: Control de Audio Ambiental con la canción TOKETEO (Bella Peya) -->
   <aside class="ambient-audio-bar" aria-label="Control de Audio Ambiental">
@@ -709,34 +1052,61 @@
     </button>
   </aside>
 
-  <!-- HEADER: Hero con la Foto del Festejado (portada.jpg) -->
+  <!-- HEADER -->
   <header class="hero-header">
-    <div class="hero-bg-overlay"></div>
-    
-    <p class="hero-eyebrow">🎃 ¡Se armó el festín de Halloween! 🎃</p>
+    <div class="moon" aria-hidden="true"></div>
 
-    <!-- FOTO ESTÉTICA DEL FESTEJADO CON ALAS -->
-    <div class="hero-photo-wrapper">
-      <img src="portada.jpg" alt="Manuel Urias" class="hero-photo" width="320" height="427" style="aspect-ratio: 3/4;">
-      <div class="hero-photo-tag">El Cumpleañero 🔥</div>
+    <div class="bats" aria-hidden="true">
+      <div class="bat" style="--y:14%; --t:13s; --delay:0s; --s:54px"><svg viewBox="0 0 64 32"><g class="wings"><path fill="currentColor" d="M32 10c-1.5-3-2.5-5-2-7l-2 4c-5-4-14-6-24-3 5 2 7 6 7 11 5-2 11-1 15 4 1.5-2 3.5-3 6-3s4.5 1 6 3c4-5 10-6 15-4 0-5 2-9 7-11-10-3-19-1-24 3l-2-4c.5 2-.5 4-2 7z"/></g></svg></div>
+      <div class="bat" style="--y:30%; --t:17s; --delay:-6s; --s:36px"><svg viewBox="0 0 64 32"><g class="wings"><path fill="currentColor" d="M32 10c-1.5-3-2.5-5-2-7l-2 4c-5-4-14-6-24-3 5 2 7 6 7 11 5-2 11-1 15 4 1.5-2 3.5-3 6-3s4.5 1 6 3c4-5 10-6 15-4 0-5 2-9 7-11-10-3-19-1-24 3l-2-4c.5 2-.5 4-2 7z"/></g></svg></div>
+      <div class="bat" style="--y:8%; --t:21s; --delay:-12s; --s:28px"><svg viewBox="0 0 64 32"><g class="wings"><path fill="currentColor" d="M32 10c-1.5-3-2.5-5-2-7l-2 4c-5-4-14-6-24-3 5 2 7 6 7 11 5-2 11-1 15 4 1.5-2 3.5-3 6-3s4.5 1 6 3c4-5 10-6 15-4 0-5 2-9 7-11-10-3-19-1-24 3l-2-4c.5 2-.5 4-2 7z"/></g></svg></div>
+      <div class="bat" style="--y:52%; --t:19s; --delay:-3s; --s:42px"><svg viewBox="0 0 64 32"><g class="wings"><path fill="currentColor" d="M32 10c-1.5-3-2.5-5-2-7l-2 4c-5-4-14-6-24-3 5 2 7 6 7 11 5-2 11-1 15 4 1.5-2 3.5-3 6-3s4.5 1 6 3c4-5 10-6 15-4 0-5 2-9 7-11-10-3-19-1-24 3l-2-4c.5 2-.5 4-2 7z"/></g></svg></div>
+      <div class="bat" style="--y:22%; --t:15s; --delay:-9s; --s:30px"><svg viewBox="0 0 64 32"><g class="wings"><path fill="currentColor" d="M32 10c-1.5-3-2.5-5-2-7l-2 4c-5-4-14-6-24-3 5 2 7 6 7 11 5-2 11-1 15 4 1.5-2 3.5-3 6-3s4.5 1 6 3c4-5 10-6 15-4 0-5 2-9 7-11-10-3-19-1-24 3l-2-4c.5 2-.5 4-2 7z"/></g></svg></div>
     </div>
 
-    <!-- TÍTULO EN NEÓN GLOW -->
-    <h1 class="hero-title text-neon-glow">Manuel Urias</h1>
-    
-    <p class="hero-subtitle">¡Fiesta de Cumpleaños & Disfraces!</p>
-
-    <div class="hero-badge">
-      Viernes, 16 de Octubre • 10:00 PM
+    <div class="spider" aria-hidden="true">
+      <svg viewBox="0 0 40 40">
+        <g stroke="#111" stroke-width="2.2" fill="none" stroke-linecap="round">
+          <path d="M14 18 L4 10 L1 4"/><path d="M14 21 L3 18 L0 14"/><path d="M14 24 L3 27 L1 33"/><path d="M15 27 L6 34 L5 39"/>
+          <path d="M26 18 L36 10 L39 4"/><path d="M26 21 L37 18 L40 14"/><path d="M26 24 L37 27 L39 33"/><path d="M25 27 L34 34 L35 39"/>
+        </g>
+        <ellipse cx="20" cy="24" rx="7.5" ry="9" fill="#111"/>
+        <circle cx="20" cy="13" r="5" fill="#111"/>
+        <circle cx="18" cy="12.5" r="1.4" fill="#FF6F00"/>
+        <circle cx="22" cy="12.5" r="1.4" fill="#FF6F00"/>
+      </svg>
     </div>
+
+    <div class="fog" aria-hidden="true"></div>
+    <div class="fog fog-2" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <p class="hero-eyebrow">🎃 ¡Se armó el festín de Halloween! 🎃</p>
+
+      <div class="hero-photo-wrapper">
+        <img src="portada.jpeg" alt="Manuel Urias" class="hero-photo" width="300" height="400">
+        <div class="hero-photo-tag">El Cumpleañero 🔥</div>
+      </div>
+
+      <h1 class="hero-title" data-split>Manuel Urias</h1>
+
+      <p class="hero-subtitle text-gradient">¡Fiesta de Cumpleaños & Disfraces!</p>
+
+      <div class="hero-badge">
+        <span class="pumpkin" aria-hidden="true">🎃</span>
+        Viernes, 16 de Octubre • 10:00 PM
+        <span class="pumpkin" aria-hidden="true">🎃</span>
+      </div>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true"></div>
   </header>
 
-  <!-- MAIN CONTENT -->
   <main>
 
     <!-- SECCIÓN 1: CUENTA REGRESIVA -->
     <section id="cuenta-regresiva" aria-live="polite">
-      <div class="card-luxury">
+      <div class="card-luxury reveal">
         <div class="section-header">
           <span class="section-tag">⏳ Faltan poquitos días ⏳</span>
           <h2 class="section-title">Cuenta Regresiva</h2>
@@ -763,9 +1133,10 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 2: MIRA CÓMO SE PUSO EL AÑO PASADO (FOTOS INTEGRADAS) -->
+    <!-- SECCIÓN 2: GALERÍA MASONRY -->
     <section id="galeria-pasado">
-      <div class="card-luxury">
+      <div class="ghost g-left" aria-hidden="true"><svg><use href="#ghost"/></svg></div>
+      <div class="card-luxury reveal">
         <div class="section-header">
           <span class="section-tag">📸 Antecedentes de la Locura 📸</span>
           <h2 class="section-title">Así se puso el año pasado 🔥</h2>
@@ -775,128 +1146,125 @@
           Para que te des una idea de lo que nos espera este año... ¡no te lo puedes perder por nada del mundo!
         </p>
 
-        <div class="past-photos-grid">
-          <div class="polaroid-card">
-            <img src="pasado_1.jpg" alt="Fiesta del año pasado 1" class="polaroid-img" width="300" height="280" loading="lazy">
-            <p class="polaroid-caption">Puro ambiente del bueno 🥂✨</p>
-          </div>
-          <div class="polaroid-card">
-            <img src="pasado_2.jpg" alt="Fiesta del año pasado 2" class="polaroid-img" width="300" height="280" loading="lazy">
-            <p class="polaroid-caption">Risas, chupe y buena compañía 🥳🎉</p>
-          </div>
-          <div class="polaroid-card">
-            <img src="pasado_3.jpg" alt="Fiesta del año pasado 3" class="polaroid-img" width="300" height="280" loading="lazy">
-            <p class="polaroid-caption">Celebrando al festejado en grande 👑🔥</p>
-          </div>
+        <div class="masonry">
+          <figure class="masonry-item tall reveal" style="--d:0.1s" tabindex="0" role="button" aria-label="Ver foto en grande: Puro ambiente del bueno">
+            <img src="pasado_1.jpeg" alt="Fiesta del año pasado 1" width="960" height="1280" loading="lazy">
+            <figcaption>Puro ambiente del bueno 🥂✨</figcaption>
+          </figure>
+          <figure class="masonry-item square reveal" style="--d:0.25s" tabindex="0" role="button" aria-label="Ver foto en grande: Risas, chupe y buena compañía">
+            <img src="pasado_2.jpeg" alt="Fiesta del año pasado 2" width="960" height="1280" loading="lazy">
+            <figcaption>Risas, chupe y buena compañía 🥳🎉</figcaption>
+          </figure>
+          <figure class="masonry-item mid reveal" style="--d:0.4s" tabindex="0" role="button" aria-label="Ver foto en grande: Celebrando al festejado en grande">
+            <img src="pasado_3.jpeg" alt="Fiesta del año pasado 3" width="960" height="1280" loading="lazy">
+            <figcaption>Celebrando al festejado en grande 👑🔥</figcaption>
+          </figure>
         </div>
       </div>
     </section>
 
-    <!-- SECCIÓN 3: UBICACIÓN (CASA) CON GOOGLE MAPS LINK EXACTO -->
+    <!-- SECCIÓN 3: UBICACIÓN CON MAPA -->
     <section id="ubicacion">
-      <div class="card-luxury">
+      <div class="card-luxury reveal">
         <div class="section-header">
           <span class="section-tag">📍 ¿Dónde le caigo? 📍</span>
           <h2 class="section-title">Ubicación de la Fiesta</h2>
         </div>
 
         <div class="venue-info">
-          <h3 class="venue-name">🏠 En la Casa de la Fiesta</h3>
+          <h3 class="venue-name text-gradient">🏠 En la Casa de la Fiesta</h3>
           <p class="venue-desc">
-            Es en una casa particular para pistear agusto y sin presiones. ¡Dale clic al botón de abajo para abrir la ubicación directa en Google Maps!
+            Es en una casa particular para pistear agusto y sin presiones. Aquí abajo está el mapa; si quieres la ruta, ábrelo directo en Google Maps.
           </p>
 
-          <a href="https://maps.app.goo.gl/dbtWrzhPxMKc2nbQ6" 
-             target="_blank" 
-             rel="noopener noreferrer" 
+          <div class="map-frame">
+            <iframe
+              src="https://maps.google.com/maps?q=21.1733894,-86.8515625&z=17&hl=es&output=embed"
+              title="Mapa de la ubicación de la fiesta"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen></iframe>
+          </div>
+
+          <a href="https://maps.app.goo.gl/dbtWrzhPxMKc2nbQ6"
+             target="_blank"
+             rel="noopener noreferrer"
              class="btn-gold">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
-            Abrir Ubicación en Google Maps
+            Cómo llegar
           </a>
         </div>
       </div>
     </section>
 
-    <!-- SECCIÓN 4: CÓDIGO DE VESTIMENTA (DISFRACES SOLAMENTE) -->
+    <!-- SECCIÓN 4: CÓDIGO DE VESTIMENTA -->
     <section id="dress-code">
-      <div class="card-luxury">
+      <div class="ghost g-right" aria-hidden="true"><svg><use href="#ghost"/></svg></div>
+      <div class="card-luxury reveal">
         <div class="section-header">
           <span class="section-tag">🎭 Regla de Entrada 🎭</span>
           <h2 class="section-title">Código de Vestimenta</h2>
         </div>
 
         <div class="dress-code-box">
-          <h3 class="dress-code-title">¡DISFRACES OBLIGATORIOS! 🧟‍♂️🧛‍♀️</h3>
+          <h3 class="dress-code-title text-gradient">¡DISFRACES OBLIGATORIOS! 🧟‍♂️🧛‍♀️</h3>
           <p class="dress-code-text">
             La regla es súper clara: <strong>¡Sin disfraz NO hay entrada!</strong><br>
             Ponte creativo, saca tu mejor disfraz de Halloween, aterrador, gracioso o épico. ¡Aquí venimos a divertirnos y romperla!
           </p>
         </div>
 
-        <!-- SWATCHES DE INSPIRACIÓN PARA DISFRACES -->
         <div class="swatches-grid">
-          <div class="swatch-card">
-            <div class="hexagon-wrapper" style="background: #FF6B00; box-shadow: 0 0 20px #FF6B00;">
-              <div class="hexagon-inner" style="background-color: #FF6B00;"></div>
-            </div>
+          <div class="swatch-card reveal" style="--d:0.05s">
+            <div class="hexagon-wrapper" style="--sw:#FF6F00; --d:0s"><div class="hexagon-inner"></div></div>
             <span class="swatch-name">Horror Clásico</span>
           </div>
-          <div class="swatch-card">
-            <div class="hexagon-wrapper" style="background: #00FF66; box-shadow: 0 0 20px #00FF66;">
-              <div class="hexagon-inner" style="background-color: #00FF66;"></div>
-            </div>
+          <div class="swatch-card reveal" style="--d:0.15s">
+            <div class="hexagon-wrapper" style="--sw:#FF9900; --d:0.4s"><div class="hexagon-inner"></div></div>
             <span class="swatch-name">Creativo / DIY</span>
           </div>
-          <div class="swatch-card">
-            <div class="hexagon-wrapper" style="background: #B026FF; box-shadow: 0 0 20px #B026FF;">
-              <div class="hexagon-inner" style="background-color: #B026FF;"></div>
-            </div>
-            <span class="swatch-name">Vampiros & Brujas</span>
-          </div>
-          <div class="swatch-card">
-            <div class="hexagon-wrapper" style="background: #00F0FF; box-shadow: 0 0 20px #00F0FF;">
-              <div class="hexagon-inner" style="background-color: #00F0FF;"></div>
-            </div>
-            <span class="swatch-name">Personajes Pop</span>
-          </div>
-          <div class="swatch-card">
-            <div class="hexagon-wrapper" style="background: #FF007F; box-shadow: 0 0 20px #FF007F;">
-              <div class="hexagon-inner" style="background-color: #0B0A10;"></div>
-            </div>
+          <div class="swatch-card reveal" style="--d:0.25s">
+            <div class="hexagon-wrapper" style="--sw:#E600FF; --d:0.8s"><div class="hexagon-inner"></div></div>
             <span class="swatch-name">Cyber Rave</span>
+          </div>
+          <div class="swatch-card reveal" style="--d:0.35s">
+            <div class="hexagon-wrapper" style="--sw:#AA00FF; --d:1.2s"><div class="hexagon-inner"></div></div>
+            <span class="swatch-name">Vampiros &amp; Brujas</span>
+          </div>
+          <div class="swatch-card reveal" style="--d:0.45s">
+            <div class="hexagon-wrapper" style="--sw:#E600FF; --sw-inner:#000; --d:1.6s"><div class="hexagon-inner"></div></div>
+            <span class="swatch-name">Personajes Pop</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECCIÓN 5: CANCIÓN OFICIAL (SPOTIFY) -->
+    <!-- SECCIÓN 5: CANCIÓN OFICIAL -->
     <section id="musica">
-      <div class="card-luxury spotify-card">
+      <div class="card-luxury spotify-card reveal">
         <div class="section-header" style="margin-bottom: 1.2rem;">
           <span class="section-tag">🎵 El Soundtrack de la Noche 🎵</span>
           <h2 class="section-title">TOKETEO - Bella Peya</h2>
         </div>
-        
+
         <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
           ¡Esta es la rola oficial de la fiesta! Escúchala en Spotify para calentar motores:
         </p>
 
-        <!-- SPOTIFY EMBED IFRAME PLAYER -->
-        <div style="border-radius: 12px; overflow: hidden; margin-bottom: 1.5rem; border: 1px solid var(--border-secondary);">
-          <iframe src="https://open.spotify.com/embed/track/5p9hS6EiqXR09TXT31t0ds?utm_source=generator&theme=0" 
-                  width="100%" 
-                  height="152" 
-                  frameBorder="0" 
-                  allowfullscreen="" 
-                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+        <div class="spotify-embed">
+          <iframe src="https://open.spotify.com/embed/track/5p9hS6EiqXR09TXT31t0ds?utm_source=generator&theme=0"
+                  width="100%"
+                  height="152"
+                  frameBorder="0"
+                  allowfullscreen=""
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                   loading="lazy"></iframe>
         </div>
 
-        <a href="https://open.spotify.com/track/5p9hS6EiqXR09TXT31t0ds?si=8ybJwLgVRwS4V7Ku7TemfQ" 
-           target="_blank" 
-           rel="noopener noreferrer" 
-           class="btn-ghost" 
-           style="border-color: #1DB954; color: #1DB954; font-size: 0.85rem;">
+        <a href="https://open.spotify.com/track/5p9hS6EiqXR09TXT31t0ds?si=8ybJwLgVRwS4V7Ku7TemfQ"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="btn-ghost">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.516 17.31c-.217.356-.677.472-1.033.254-2.83-1.73-6.393-2.122-10.59-1.162-.405.093-.814-.158-.907-.563-.093-.405.158-.813.563-.906 4.606-1.053 8.544-.606 11.71 1.332.357.217.472.677.257 1.045zm1.472-3.275c-.273.444-.853.585-1.296.313-3.237-1.99-8.172-2.565-12.002-1.403-.5.152-1.025-.133-1.177-.633-.152-.5.133-1.024.633-1.177 4.38-1.33 9.81-.69 13.53 1.604.442.272.583.853.312 1.296zm.127-3.41c-3.88-2.304-10.28-2.517-13.974-1.396-.6.183-1.24-.162-1.423-.762-.183-.6.162-1.24.762-1.423 4.242-1.288 11.31-1.037 15.78 1.616.54.32.718 1.027.397 1.567-.32.538-1.027.717-1.542.398z"/></svg>
           Abrir Canción en Spotify
         </a>
@@ -905,7 +1273,7 @@
 
     <!-- SECCIÓN 6: ENTRADA & REGALOS -->
     <section id="regalos">
-      <div class="card-luxury gifts-container">
+      <div class="card-luxury gifts-container reveal">
         <div class="section-header">
           <span class="section-tag">🍻 ¿Cómo está el show de la entrada? 🍻</span>
           <h2 class="section-title">Mesa de Regalos & Pisteo</h2>
@@ -917,27 +1285,26 @@
 
         <button id="open-gifts-dialog" class="btn-gold" type="button">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
-          Ver Indicaciones de la Fiesta
+          Ver Indicaciones
         </button>
       </div>
     </section>
 
     <!-- SECCIÓN 7: RSVP POR WHATSAPP -->
     <section id="rsvp">
-      <div class="card-luxury gifts-container">
+      <div class="card-luxury gifts-container reveal">
         <div class="section-header">
           <span class="section-tag">📲 ¡Confirma tu lugar! 📲</span>
           <h2 class="section-title">Confirmación de Asistencia</h2>
         </div>
 
-        <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 520px; margin-left: auto; margin-right: auto; font-size: 1.05rem;">
+        <p style="color: var(--text-muted); margin: 0 auto 2rem; max-width: 520px; font-size: 1.05rem;">
           Avisa por WhatsApp que le vas a caer para tenerte en cuenta en el conteo de la banda.
         </p>
 
-        <!-- Enlace directo a WhatsApp de Manuel Urias -->
-        <a href="https://wa.me/525522194706?text=%C2%A1Qu%C3%A9%20onda%20Manuel!%20Ya%20estoy%20list%C3%ADsimo%20con%20mi%20disfraz%20y%20mi%20chupe%20para%20tu%20fiesta%20de%20cumplea%C3%B1os%20%F0%9F%8E%83%F0%9F%94%A5" 
-           target="_blank" 
-           rel="noopener noreferrer" 
+        <a href="https://wa.me/525522194706?text=%C2%A1Qu%C3%A9%20onda%20Manuel!%20Ya%20estoy%20list%C3%ADsimo%20con%20mi%20disfraz%20y%20mi%20chupe%20para%20tu%20fiesta%20de%20cumplea%C3%B1os%20%F0%9F%8E%83%F0%9F%94%A5"
+           target="_blank"
+           rel="noopener noreferrer"
            class="btn-gold">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
           Confirmar por WhatsApp
@@ -947,11 +1314,11 @@
 
   </main>
 
-  <!-- MODAL INTERACTIVO <dialog> REGALOS Y PISTEO -->
+  <!-- MODAL REGALOS Y PISTEO -->
   <dialog id="modal-regalos" class="modal-luxury">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title">¡Cero Rollos, Puro Festín! 🔥</h3>
+        <h3 class="modal-title text-gradient">¡Cero Rollos, Puro Festín! 🔥</h3>
         <button id="close-gifts-dialog" class="modal-close" aria-label="Cerrar modal">&times;</button>
       </div>
       <div class="modal-body">
@@ -969,36 +1336,32 @@
     </div>
   </dialog>
 
+  <!-- LIGHTBOX GALERÍA -->
+  <dialog id="lightbox" class="lightbox" aria-label="Foto ampliada">
+    <button class="modal-close" id="close-lightbox" aria-label="Cerrar foto">&times;</button>
+    <img id="lightbox-img" src="" alt="">
+  </dialog>
+
   <footer>
     <p>© 2026 Manuel Urias • Halloween Birthday Party 🎃</p>
   </footer>
 
-  <!-- LÓGICA JAVASCRIPT VANILLA (<6KB) -->
   <script>
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     /* ==========================================================================
-       1. CONTROLADOR DE AUDIO AMBIENTAL EXACTO
+       1. CONTROLADOR DE AUDIO AMBIENTAL
        ========================================================================== */
     class AmbientMediaController {
       constructor(audioNodeId, triggerNodeId) {
         this.audio = document.getElementById(audioNodeId);
         this.trigger = document.getElementById(triggerNodeId);
-        this.isPlaying = false; 
-        this.isUnlocked = false;
+        this.isPlaying = false;
         if (!this.audio || !this.trigger) return;
-        this.bindEvents();
-      }
-      bindEvents() {
-        this.trigger.addEventListener('click', (e) => { 
-          e.stopPropagation(); 
-          this.toggle(); 
+        this.trigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          this.toggle();
         });
-        const unlockPipeline = () => {
-          if (this.isUnlocked) return;
-          this.isUnlocked = true; 
-          this.audio.load();
-          window.removeEventListener('pointerdown', unlockPipeline);
-        };
-        window.addEventListener('pointerdown', unlockPipeline, { once: true });
         this.audio.addEventListener('play', () => this.syncUi(true));
         this.audio.addEventListener('pause', () => this.syncUi(false));
       }
@@ -1006,7 +1369,7 @@
         if (this.isPlaying) {
           this.audio.pause();
         } else {
-          await this.audio.play().catch(err => this.syncUi(false));
+          await this.audio.play().catch(() => this.syncUi(false));
         }
       }
       syncUi(state) {
@@ -1017,26 +1380,17 @@
     }
 
     /* ==========================================================================
-       2. CONTADOR REGRESIVO CON PAGE VISIBILITY API
+       2. CONTADOR REGRESIVO (con animación al cambiar cada dígito)
        ========================================================================== */
     class LuxuryCountdown {
       constructor(targetIsoDate) {
         this.targetTime = new Date(targetIsoDate).getTime();
-        this.elDays = document.getElementById('cd-days');
-        this.elHours = document.getElementById('cd-hours');
-        this.elMinutes = document.getElementById('cd-minutes');
-        this.elSeconds = document.getElementById('cd-seconds');
+        this.els = ['cd-days', 'cd-hours', 'cd-minutes', 'cd-seconds'].map(id => document.getElementById(id));
         this.timerId = null;
+        if (this.els.some(el => !el) || isNaN(this.targetTime)) return;
 
-        if (!this.elDays || isNaN(this.targetTime)) return;
-        this.init();
-      }
-
-      init() {
         this.update();
         this.start();
-
-        // Pausa con Page Visibility API para ahorrar recursos en WebViews
         document.addEventListener('visibilitychange', () => {
           if (document.hidden) {
             this.stop();
@@ -1046,81 +1400,196 @@
           }
         });
       }
-
       start() {
         this.stop();
         this.timerId = setInterval(() => this.update(), 1000);
       }
-
       stop() {
         if (this.timerId) {
           clearInterval(this.timerId);
           this.timerId = null;
         }
       }
-
       update() {
-        const now = new Date().getTime();
-        const diff = this.targetTime - now;
-
+        const diff = this.targetTime - Date.now();
         if (diff <= 0) {
           this.stop();
-          this.render(0, 0, 0, 0);
+          this.render([0, 0, 0, 0]);
           return;
         }
-
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-        this.render(days, hours, minutes, seconds);
+        this.render([
+          Math.floor(diff / 86400000),
+          Math.floor((diff % 86400000) / 3600000),
+          Math.floor((diff % 3600000) / 60000),
+          Math.floor((diff % 60000) / 1000)
+        ]);
       }
-
-      render(d, h, m, s) {
-        this.elDays.textContent = String(d).padStart(2, '0');
-        this.elHours.textContent = String(h).padStart(2, '0');
-        this.elMinutes.textContent = String(m).padStart(2, '0');
-        this.elSeconds.textContent = String(s).padStart(2, '0');
+      render(values) {
+        values.forEach((v, i) => {
+          const el = this.els[i];
+          const text = String(v).padStart(2, '0');
+          if (el.textContent === text) return;
+          el.textContent = text;
+          el.classList.remove('tick');
+          void el.offsetWidth; // reinicia la animación
+          el.classList.add('tick');
+        });
       }
     }
 
     /* ==========================================================================
-       3. MODAL <dialog> CONTROL DE EVENTOS
+       3. MODALES <dialog>
        ========================================================================== */
+    function closeOnBackdrop(dialog) {
+      dialog.addEventListener('click', (e) => {
+        const rect = dialog.getBoundingClientRect();
+        const isInDialog =
+          rect.top <= e.clientY && e.clientY <= rect.bottom &&
+          rect.left <= e.clientX && e.clientX <= rect.right;
+        if (!isInDialog) dialog.close();
+      });
+    }
+
     function setupDialogEvents() {
       const dialog = document.getElementById('modal-regalos');
       const btnOpen = document.getElementById('open-gifts-dialog');
       const btnClose = document.getElementById('close-gifts-dialog');
-
       if (!dialog || !btnOpen || !btnClose) return;
-
       btnOpen.addEventListener('click', () => dialog.showModal());
       btnClose.addEventListener('click', () => dialog.close());
+      closeOnBackdrop(dialog);
+    }
 
-      // Cerrar al hacer clic en el backdrop fuera del contenedor
-      dialog.addEventListener('click', (e) => {
-        const rect = dialog.getBoundingClientRect();
-        const isInDialog = (
-          rect.top <= e.clientY && e.clientY <= rect.bottom &&
-          rect.left <= e.clientX && e.clientX <= rect.right
-        );
-        if (!isInDialog) {
-          dialog.close();
-        }
+    function setupLightbox() {
+      const box = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      document.getElementById('close-lightbox').addEventListener('click', () => box.close());
+      closeOnBackdrop(box);
+      document.querySelectorAll('.masonry-item').forEach(item => {
+        const open = () => {
+          const src = item.querySelector('img');
+          img.src = src.src;
+          img.alt = src.alt;
+          box.showModal();
+        };
+        item.addEventListener('click', open);
+        item.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+        });
       });
     }
 
-    /* INICIALIZACIÓN AL CARGAR DOM */
+    /* ==========================================================================
+       4. ANIMACIONES: título letra por letra, reveal al hacer scroll,
+          brasas flotantes y linterna del cursor
+       ========================================================================== */
+    function splitTitle() {
+      document.querySelectorAll('[data-split]').forEach(el => {
+        const text = el.textContent.trim();
+        el.setAttribute('aria-label', text);
+        el.innerHTML = [...text].map((ch, i) =>
+          `<span class="char${ch === ' ' ? ' space' : ''}" style="--i:${i}" aria-hidden="true">${ch === ' ' ? '&nbsp;' : ch}</span>`
+        ).join('');
+      });
+    }
+
+    function setupReveal() {
+      const items = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        items.forEach(el => el.classList.add('is-visible'));
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      items.forEach(el => io.observe(el));
+    }
+
+    function setupEmbers() {
+      const canvas = document.getElementById('embers');
+      const ctx = canvas.getContext('2d');
+      const colors = ['#FF6F00', '#FF9900', '#E600FF', '#AA00FF'];
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      let w, h, particles = [], rafId = null;
+
+      const resize = () => {
+        w = canvas.clientWidth;
+        h = canvas.clientHeight;
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      };
+      const spawn = (initial) => ({
+        x: Math.random() * w,
+        y: initial ? Math.random() * h : h + 10,
+        r: Math.random() * 2.2 + 0.6,
+        vy: Math.random() * 0.5 + 0.2,
+        drift: Math.random() * Math.PI * 2,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        life: Math.random() * 0.5 + 0.5
+      });
+
+      resize();
+      const count = w < 600 ? 28 : 55;
+      for (let i = 0; i < count; i++) particles.push(spawn(true));
+
+      const tick = () => {
+        ctx.clearRect(0, 0, w, h);
+        for (const p of particles) {
+          p.y -= p.vy;
+          p.drift += 0.02;
+          p.x += Math.sin(p.drift) * 0.35;
+          if (p.y < -10) Object.assign(p, spawn(false));
+          const alpha = Math.min(1, p.y / h + 0.2) * p.life * (0.6 + Math.sin(p.drift * 3) * 0.4);
+          ctx.globalAlpha = Math.max(0, alpha);
+          ctx.fillStyle = p.color;
+          ctx.shadowColor = p.color;
+          ctx.shadowBlur = 12;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        rafId = requestAnimationFrame(tick);
+      };
+
+      window.addEventListener('resize', resize);
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          cancelAnimationFrame(rafId);
+        } else {
+          rafId = requestAnimationFrame(tick);
+        }
+      });
+      rafId = requestAnimationFrame(tick);
+    }
+
+    function setupCursorGlow() {
+      const glow = document.querySelector('.cursor-glow');
+      if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+      window.addEventListener('pointermove', (e) => {
+        glow.classList.add('is-on');
+        glow.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+      }, { passive: true });
+      document.addEventListener('pointerleave', () => glow.classList.remove('is-on'));
+    }
+
+    /* INICIALIZACIÓN */
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. Inicializar Controlador Audio
+      splitTitle();
+      setupReveal();
       new AmbientMediaController('ambient-audio', 'ambient-audio-trigger');
-
-      // 2. Inicializar Contador (Fecha ISO: 2026-10-16T22:00:00-06:00)
-      new LuxuryCountdown('2026-10-16T22:00:00-06:00');
-
-      // 3. Inicializar Modales
+      new LuxuryCountdown('2026-10-16T22:00:00-05:00');
       setupDialogEvents();
+      setupLightbox();
+      if (!prefersReducedMotion) {
+        setupEmbers();
+        setupCursorGlow();
+      }
     });
   </script>
 </body>
