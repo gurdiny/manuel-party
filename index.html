@@ -383,7 +383,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 4rem 1.25rem 3rem;
+      padding: 2.5rem 1.25rem 3rem;
       position: relative;
       overflow: hidden;
     }
@@ -414,7 +414,7 @@
       }
 
       header.hero-header {
-        padding-top: 7rem;
+        padding-top: 6rem;
       }
 
       .hero-eyebrow {
@@ -593,8 +593,10 @@
       text-transform: uppercase;
       letter-spacing: 5px;
       color: var(--c-amber);
-      margin-bottom: 1.4rem;
+      margin-bottom: 0.4rem;
       font-weight: 700;
+      position: relative;
+      z-index: 5;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.95), 0 0 10px rgba(0, 0, 0, 0.9), 0 0 18px rgba(255, 153, 0, 0.45);
       text-wrap: balance;
       animation: rise-in 1s var(--ease-out) both;
@@ -614,54 +616,322 @@
       }
     }
 
-    /* Foto de portada con borde giratorio */
-    .hero-photo-wrapper {
+    /* ==========================================================================
+       PORTADA PROTAGONISTA: personaje recortado en escenario
+       ========================================================================== */
+    .hero-stage {
+      --px: 0;
+      --py: 0;
       position: relative;
-      width: min(64vw, 300px);
-      margin: 0 auto 2.2rem;
-      border-radius: 22px;
-      padding: 4px;
-      background: conic-gradient(from var(--angle), var(--c-orange), var(--c-amber), var(--c-magenta), var(--c-purple), var(--c-orange));
-      animation: spin-angle 5s linear infinite, rise-in 1.2s var(--ease-out) 0.15s both, photo-bob 7s ease-in-out 1.4s infinite;
-      box-shadow: 0 0 45px rgba(230, 0, 255, 0.45), 0 0 90px rgba(255, 111, 0, 0.25);
+      width: min(100%, 760px);
+      height: clamp(400px, 66vh, 760px);
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      margin-bottom: calc(-1 * clamp(1.6rem, 5vw, 3.6rem));
+      isolation: isolate;
     }
 
-    @keyframes photo-bob {
-      50% {
-        translate: 0 -10px;
-        rotate: -1.2deg;
+    /* Nombre gigante en contorno detrás del personaje */
+    .hero-backword {
+      position: absolute;
+      left: 50%;
+      top: 16%;
+      z-index: 1;
+      translate: calc(-50% + var(--px) * 18px) calc(var(--py) * 10px);
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(4.6rem, 25vw, 15rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      color: transparent;
+      -webkit-text-stroke: 2px rgba(255, 153, 0, 0.7);
+      background: linear-gradient(180deg, rgba(230, 0, 255, 0.28), rgba(255, 111, 0, 0.06) 70%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      filter: drop-shadow(0 0 18px rgba(255, 111, 0, 0.45));
+      pointer-events: none;
+      user-select: none;
+      animation: backword-in 1.6s var(--ease-out) 0.2s both;
+      transition: translate 0.3s ease-out;
+    }
+
+    @keyframes backword-in {
+      from {
+        opacity: 0;
+        letter-spacing: 0.35em;
+        filter: blur(14px);
+      }
+
+      to {
+        opacity: 1;
+        letter-spacing: -0.02em;
+        filter: drop-shadow(0 0 18px rgba(255, 111, 0, 0.45));
       }
     }
 
-    .hero-photo {
-      width: 100%;
-      height: auto;
-      aspect-ratio: 3 / 4;
-      object-fit: cover;
-      border-radius: 18px;
-      display: block;
-      background: #0d0013;
+    /* Rayos de luz girando */
+    .hero-rays {
+      position: absolute;
+      left: 50%;
+      top: 40%;
+      z-index: 0;
+      width: 160vmax;
+      aspect-ratio: 1;
+      translate: -50% -50%;
+      background: repeating-conic-gradient(from 0deg,
+          rgba(255, 153, 0, 0.12) 0deg 3deg,
+          transparent 3deg 13deg,
+          rgba(230, 0, 255, 0.1) 13deg 16deg,
+          transparent 16deg 30deg);
+      -webkit-mask: radial-gradient(circle, #000 0%, transparent 42%);
+      mask: radial-gradient(circle, #000 0%, transparent 42%);
+      animation: rays-spin 80s linear infinite;
+      pointer-events: none;
     }
 
+    @keyframes rays-spin {
+      to {
+        rotate: 360deg;
+      }
+    }
+
+    /* Halo y portal detrás de la cabeza */
+    .hero-halo {
+      position: absolute;
+      left: 50%;
+      top: 2%;
+      z-index: 1;
+      width: min(80%, 540px);
+      aspect-ratio: 1;
+      translate: -50% 0;
+      border-radius: 50%;
+      background: radial-gradient(circle,
+          rgba(255, 153, 0, 0.55) 0%,
+          rgba(230, 0, 255, 0.32) 32%,
+          rgba(170, 0, 255, 0.14) 52%,
+          transparent 68%);
+      animation: halo-pulse 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .hero-halo::after {
+      content: "";
+      position: absolute;
+      inset: 14%;
+      border-radius: 50%;
+      padding: 2px;
+      background: conic-gradient(from var(--angle), transparent 0deg, var(--c-amber) 80deg, var(--c-magenta) 160deg, transparent 240deg);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      mask-composite: exclude;
+      filter: drop-shadow(0 0 8px var(--c-magenta));
+      animation: spin-angle 5s linear infinite;
+    }
+
+    @keyframes halo-pulse {
+      50% {
+        scale: 1.08;
+        opacity: 0.8;
+      }
+    }
+
+    /* El personaje */
+    .hero-photo {
+      position: relative;
+      z-index: 3;
+      height: 100%;
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+      object-position: bottom center;
+      display: block;
+      translate: calc(var(--px) * -10px) calc(var(--py) * -6px);
+      filter:
+        drop-shadow(0 0 1.5px rgba(255, 255, 255, 0.7))
+        drop-shadow(0 0 12px rgba(230, 0, 255, 0.85))
+        drop-shadow(0 0 36px rgba(255, 111, 0, 0.5));
+      transform-origin: 50% 85%;
+      will-change: transform;
+      animation: hero-rise 1.6s var(--ease-out) 0.1s both, hero-breathe 6s ease-in-out 1.8s infinite;
+      transition: translate 0.3s ease-out;
+    }
+
+    @keyframes hero-rise {
+      0% {
+        opacity: 0;
+        transform: translateY(18%) scale(0.86);
+        filter: brightness(3) blur(12px);
+      }
+
+      60% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes hero-breathe {
+      50% {
+        transform: scale(1.025) translateY(-6px);
+      }
+    }
+
+    /* Luz en el piso y niebla al frente */
+    .hero-floor {
+      position: absolute;
+      bottom: 4%;
+      left: 50%;
+      z-index: 2;
+      width: 70%;
+      height: 60px;
+      translate: -50% 0;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(255, 111, 0, 0.6), rgba(230, 0, 255, 0.25) 45%, transparent 70%);
+      filter: blur(10px);
+      animation: halo-pulse 4s ease-in-out infinite;
+    }
+
+    .hero-fog-front {
+      position: absolute;
+      left: -20%;
+      right: -20%;
+      bottom: -2px;
+      z-index: 4;
+      height: 30%;
+      background:
+        radial-gradient(50% 70% at 30% 100%, rgba(170, 0, 255, 0.35), transparent 70%),
+        radial-gradient(45% 60% at 72% 100%, rgba(255, 111, 0, 0.22), transparent 70%),
+        linear-gradient(transparent, rgba(0, 0, 0, 0.92) 80%);
+      animation: fog-drift 14s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    /* Relámpago ocasional en toda la portada */
+    header.hero-header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: radial-gradient(70% 60% at 50% 30%, rgba(230, 180, 255, 0.55), transparent 70%);
+      opacity: 0;
+      pointer-events: none;
+      mix-blend-mode: screen;
+      animation: lightning 11s linear 3s infinite;
+    }
+
+    @keyframes lightning {
+
+      0%,
+      90%,
+      92%,
+      95%,
+      100% {
+        opacity: 0;
+      }
+
+      91% {
+        opacity: 0.7;
+      }
+
+      93% {
+        opacity: 1;
+      }
+
+      94% {
+        opacity: 0.3;
+      }
+    }
+
+    /* Sticker del festejado */
     .hero-photo-tag {
       position: absolute;
-      bottom: -16px;
-      left: 50%;
-      transform: translateX(-50%);
+      right: max(4%, calc(50% - 300px));
+      bottom: 30%;
+      z-index: 5;
+      rotate: -8deg;
       background: var(--c-black);
       border: 1.5px solid var(--c-magenta);
       color: #fff;
       font-family: var(--font-accent);
       font-size: 0.85rem;
       font-weight: 700;
-      letter-spacing: 2px;
-      padding: 0.45rem 1.2rem;
+      letter-spacing: 1.5px;
+      padding: 0.5rem 1.1rem;
       border-radius: 30px;
       white-space: nowrap;
       box-shadow: 0 0 18px rgba(230, 0, 255, 0.55);
+      animation: rise-in 0.8s var(--ease-out) 1.4s both, tag-wobble 3.5s ease-in-out 2.4s infinite;
+    }
+
+    @keyframes tag-wobble {
+      50% {
+        rotate: -3deg;
+        translate: 0 -4px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-stage {
+        width: 100vw;
+        height: clamp(380px, 60vh, 560px);
+        margin-bottom: -1.4rem;
+      }
+
+      /* El nombre entra completo y queda arriba de las alas */
+      .hero-backword {
+        top: 1%;
+        font-size: 16vw;
+        letter-spacing: 0;
+        -webkit-text-stroke-width: 1.5px;
+      }
+
+      @keyframes backword-in {
+        from {
+          opacity: 0;
+          letter-spacing: 0.25em;
+          filter: blur(10px);
+        }
+
+        to {
+          opacity: 1;
+          letter-spacing: 0;
+          filter: drop-shadow(0 0 14px rgba(255, 111, 0, 0.45));
+        }
+      }
+
+      .hero-halo {
+        top: 6%;
+        width: 88%;
+      }
+
+      /* Sticker sobre la niebla, a los pies, sin tapar la cara ni las alas */
+      .hero-photo-tag {
+        right: auto;
+        left: 50%;
+        bottom: 9%;
+        translate: -50% 0;
+        rotate: -4deg;
+        font-size: 0.74rem;
+        padding: 0.4rem 0.9rem;
+      }
+
+      @keyframes tag-wobble {
+        50% {
+          rotate: -1deg;
+          translate: -50% -3px;
+        }
+      }
     }
 
     .hero-title {
+      position: relative;
+      z-index: 5;
       font-family: var(--font-display);
       font-size: var(--fs-hero);
       font-weight: 900;
@@ -1090,98 +1360,6 @@
       .masonry-item figcaption {
         font-size: 0.8rem;
         padding: 2.4rem 0.65rem 0.65rem;
-      }
-    }
-
-    /* Cinta de película (Así se vivió) */
-    .filmstrip {
-      position: relative;
-      margin: 0 calc(-1 * clamp(1.25rem, 4vw, 2.5rem));
-      padding: 22px 0;
-      background: #050007;
-      overflow: hidden;
-      -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-      mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-    }
-
-    .filmstrip::before,
-    .filmstrip::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      height: 10px;
-      background: repeating-linear-gradient(90deg, transparent 0 10px, rgba(255, 153, 0, 0.55) 10px 22px, transparent 22px 32px);
-      border-radius: 2px;
-    }
-
-    .filmstrip::before {
-      top: 6px;
-    }
-
-    .filmstrip::after {
-      bottom: 6px;
-    }
-
-    .filmstrip-track {
-      display: flex;
-      width: max-content;
-      animation: film-scroll calc(var(--n, 6) * 4.5s) linear infinite;
-    }
-
-    .filmstrip:hover .filmstrip-track,
-    .filmstrip:focus-within .filmstrip-track,
-    .filmstrip:active .filmstrip-track {
-      animation-play-state: paused;
-    }
-
-    @keyframes film-scroll {
-      to {
-        transform: translateX(-50%);
-      }
-    }
-
-    .film-frame {
-      flex: none;
-      margin-right: 10px;
-      padding: 0;
-      border: 2px solid rgba(255, 255, 255, 0.08);
-      border-radius: 8px;
-      overflow: hidden;
-      background: #0d0013;
-      cursor: zoom-in;
-      transition: border-color 0.3s, transform 0.4s var(--ease-out), box-shadow 0.4s;
-    }
-
-    .film-frame img {
-      height: clamp(190px, 32vw, 280px);
-      width: auto;
-      display: block;
-      filter: saturate(1.1) contrast(1.05);
-    }
-
-    @media (hover: hover) {
-      .film-frame:hover {
-        border-color: var(--c-magenta);
-        transform: scale(1.04);
-        box-shadow: 0 0 25px rgba(230, 0, 255, 0.45);
-      }
-    }
-
-    .filmstrip-hint {
-      text-align: center;
-      margin-top: 1rem;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .filmstrip {
-        overflow-x: auto;
-      }
-
-      .filmstrip-track {
-        animation: none;
       }
     }
 
@@ -2421,8 +2599,14 @@
     <div class="hero-inner">
       <p class="hero-eyebrow">🎃 ¡Se armó el festín de Halloween! 🎃</p>
 
-      <div class="hero-photo-wrapper">
-        <img src="img/portada.webp" alt="Manuel Urias" class="hero-photo" width="300" height="400">
+      <div class="hero-stage" id="hero-stage">
+        <div class="hero-rays" aria-hidden="true"></div>
+        <div class="hero-halo" aria-hidden="true"></div>
+        <span class="hero-backword" aria-hidden="true">MANUEL</span>
+        <div class="hero-floor" aria-hidden="true"></div>
+        <img src="img/portada.webp" alt="Manuel Urias disfrazado con alas negras" class="hero-photo" width="994"
+          height="1092" fetchpriority="high" decoding="async">
+        <div class="hero-fog-front" aria-hidden="true"></div>
         <div class="hero-photo-tag">El Cumpleañero 🔥</div>
       </div>
 
@@ -2703,22 +2887,6 @@
             </li>
           </ul>
         </article>
-      </div>
-    </section>
-
-    <!-- ASÍ SE VIVIÓ EL AÑO PASADO (cinta de película) -->
-    <!-- Las fotos se ponen en fotos/vivio/ y se generan con: python3 optimizar.py -->
-    <section id="asi-se-vivio" hidden>
-      <div class="card-luxury reveal">
-        <div class="section-header">
-          <span class="section-tag">🎞️ Urías Fest 2 🎞️</span>
-          <h2 class="section-title">Así se vivió el año pasado</h2>
-        </div>
-        <div class="filmstrip" aria-label="Fotos del Urías Fest 2">
-          <!-- GALERIA-VIVIO:INICIO (la genera optimizar.py, no editar a mano) -->
-          <!-- GALERIA-VIVIO:FIN -->
-        </div>
-        <p class="filmstrip-hint">Toca una foto para verla en grande</p>
       </div>
     </section>
 
@@ -3021,7 +3189,7 @@
       const img = document.getElementById('lightbox-img');
       document.getElementById('close-lightbox').addEventListener('click', () => box.close());
       closeOnBackdrop(box);
-      document.querySelectorAll('.masonry-item, .film-frame').forEach(item => {
+      document.querySelectorAll('.masonry-item').forEach(item => {
         const open = () => {
           if (box.open) return;
           const src = item.querySelector('img');
@@ -3030,12 +3198,9 @@
           box.showModal();
         };
         item.addEventListener('click', open);
-        // Los <button> ya responden a Enter/Espacio; las <figure> necesitan ayuda
-        if (item.tagName !== 'BUTTON') {
-          item.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
-          });
-        }
+        item.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+        });
       });
     }
 
@@ -3221,6 +3386,25 @@
       intro.addEventListener('touchstart', open, { passive: true, once: true });
     }
 
+    function setupHeroParallax() {
+      const stage = document.getElementById('hero-stage');
+      const hero = document.querySelector('.hero-header');
+      if (!stage || !hero || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+      let frame = null;
+      hero.addEventListener('pointermove', (e) => {
+        if (frame) return;
+        frame = requestAnimationFrame(() => {
+          frame = null;
+          stage.style.setProperty('--px', (e.clientX / window.innerWidth - 0.5) * 2);
+          stage.style.setProperty('--py', (e.clientY / window.innerHeight - 0.5) * 2);
+        });
+      }, { passive: true });
+      hero.addEventListener('pointerleave', () => {
+        stage.style.setProperty('--px', 0);
+        stage.style.setProperty('--py', 0);
+      });
+    }
+
     /* INICIALIZACIÓN */
     document.addEventListener('DOMContentLoaded', () => {
       setupIntro();
@@ -3234,6 +3418,7 @@
       if (!prefersReducedMotion) {
         setupEmbers();
         setupCursorGlow();
+        setupHeroParallax();
       }
     });
   </script>

@@ -8,9 +8,8 @@ Uso:
 
 Qué hace:
   1. Fotos de fotos/pagina/ (portada, pasado_1, ...) -> img/<nombre>.webp
-  2. Fotos de fotos/vivio/ -> img/vivio/<nombre>.webp, y arma la galería
-     "Así se vivió el año pasado" dentro de index.html (si no hay fotos, la oculta).
-  3. Audios de la raíz y de audio-original/ -> audio/<nombre>.mp3
+     Las imágenes con fondo transparente se recortan al contorno del personaje.
+  2. Audios de la raíz y de audio-original/ -> audio/<nombre>.mp3
      Si el archivo se llama "WhatsApp Audio ...", usa el título de la canción.
 
 Requisitos:
@@ -22,7 +21,6 @@ Los archivos originales nunca se modifican ni se borran.
 """
 
 import argparse
-import html
 import re
 import shutil
 import subprocess
@@ -36,12 +34,9 @@ except ImportError:
     sys.exit("Falta Pillow. Instálalo con: sudo apt install python3-pil  (o pip install Pillow)")
 
 RAIZ = Path(__file__).resolve().parent
-INDEX = RAIZ / "index.html"
 
 DIR_IMG = RAIZ / "img"
 DIR_PAGINA_ORIGEN = RAIZ / "fotos" / "pagina"
-DIR_VIVIO_ORIGEN = RAIZ / "fotos" / "vivio"
-DIR_VIVIO_SALIDA = DIR_IMG / "vivio"
 DIR_AUDIO_ORIGEN = RAIZ / "audio-original"
 DIR_AUDIO_SALIDA = RAIZ / "audio"
 
@@ -50,15 +45,14 @@ EXT_AUDIO = {".mp3", ".mpeg", ".m4a", ".aac", ".ogg", ".opus", ".wav", ".flac"}
 
 LADO_MAXIMO = 1600       # px del lado más largo
 CALIDAD_WEBP = 80        # 0-100
+CALIDAD_WEBP_ALFA = 88   # un poco más alta para no ensuciar los bordes de los recortes
+MARGEN_RECORTE = 24      # px de aire alrededor del personaje al recortar transparencia
 BITRATE_AUDIO = "128k"   # suficiente para música en el celular
-
-MARCA_INICIO = "<!-- GALERIA-VIVIO:INICIO"
-MARCA_FIN = "<!-- GALERIA-VIVIO:FIN -->"
 
 
 def slug(texto: str) -> str:
     texto = unicodedata.normalize("NFKD", texto).encode("ascii", "ignore").decode()
-    texto = re.sub(r"[^a-zA-Z0-9]+", "-", texto).strip("-").lower()
+    texto = re.sub(r"[^a-zA-Z0-9_]+", "-", texto).strip("-_").lower()
     return texto or "archivo"
 
 
@@ -73,25 +67,34 @@ def necesita_proceso(origen: Path, destino: Path, forzar: bool) -> bool:
 # --------------------------------------------------------------------------
 # Imágenes
 # --------------------------------------------------------------------------
-def comprimir_imagen(origen: Path, destino: Path, forzar: bool) -> tuple[int, int]:
-    """Devuelve (ancho, alto) de la imagen resultante."""
+def recortar_transparencia(im: Image.Image) -> Image.Image:
+    """Quita el espacio vacío alrededor de un recorte con fondo transparente."""
+    caja = im.getchannel("A").point(lambda v: 255 if v > 8 else 0).getbbox()
+    if not caja:
+        return im
+    izq, arr, der, aba = caja
+    m = MARGEN_RECORTE
+    return im.crop((max(izq - m, 0), max(arr - m, 0), min(der + m, im.width), min(aba + m, im.height)))
+
+
+def comprimir_imagen(origen: Path, destino: Path, forzar: bool) -> None:
     destino.parent.mkdir(parents=True, exist_ok=True)
     if not necesita_proceso(origen, destino, forzar):
-        with Image.open(destino) as im:
-            return im.size
+        return
 
     with Image.open(origen) as im:
         im = ImageOps.exif_transpose(im)   # respeta la rotación del celular
-        if im.mode not in ("RGB", "RGBA"):
-            im = im.convert("RGB")
+        tiene_alfa = im.mode in ("RGBA", "LA") or (im.mode == "P" and "transparency" in im.info)
+        im = im.convert("RGBA" if tiene_alfa else "RGB")
+        if tiene_alfa:
+            im = recortar_transparencia(im)
         im.thumbnail((LADO_MAXIMO, LADO_MAXIMO), Image.LANCZOS)
-        im.save(destino, "WEBP", quality=CALIDAD_WEBP, method=6)
-        tamano = im.size
+        im.save(destino, "WEBP", quality=CALIDAD_WEBP_ALFA if tiene_alfa else CALIDAD_WEBP, method=6)
 
     antes, despues = origen.stat().st_size, destino.stat().st_size
-    print(f"  🖼  {origen.name} -> {destino.relative_to(RAIZ)}  "
-          f"{kb(antes)} -> {kb(despues)}  ({100 - despues * 100 // max(antes, 1)}% menos)")
-    return tamano
+    cambio = 100 - despues * 100 // max(antes, 1)
+    detalle = f"{cambio}% menos" if cambio > 0 else "recortada, sin ahorro de peso"
+    print(f"  🖼  {origen.name} -> {destino.relative_to(RAIZ)}  {kb(antes)} -> {kb(despues)}  ({detalle})")
 
 
 def procesar_imagenes_pagina(forzar: bool) -> None:
@@ -103,68 +106,6 @@ def procesar_imagenes_pagina(forzar: bool) -> None:
     print("Fotos de la página:")
     for foto in fotos:
         comprimir_imagen(foto, DIR_IMG / f"{slug(foto.stem)}.webp", forzar)
-
-
-def procesar_galeria_vivio(forzar: bool) -> None:
-    fotos = []
-    if DIR_VIVIO_ORIGEN.is_dir():
-        fotos = sorted(p for p in DIR_VIVIO_ORIGEN.rglob("*")
-                       if p.is_file() and p.suffix.lower() in EXT_IMAGEN)
-
-    items = []
-    if fotos:
-        print(f"Galería 'Así se vivió el año pasado' ({len(fotos)} fotos):")
-    for foto in fotos:
-        destino = DIR_VIVIO_SALIDA / f"{slug(foto.stem)}.webp"
-        ancho, alto = comprimir_imagen(foto, destino, forzar)
-        items.append((destino.relative_to(RAIZ).as_posix(), ancho, alto))
-
-    escribir_galeria_en_index(items)
-
-
-def escribir_galeria_en_index(items: list[tuple[str, int, int]]) -> None:
-    if not INDEX.exists():
-        return
-    contenido = INDEX.read_text(encoding="utf-8")
-    inicio = contenido.find(MARCA_INICIO)
-    fin = contenido.find(MARCA_FIN)
-    if inicio == -1 or fin == -1:
-        print("  ⚠  No encontré las marcas GALERIA-VIVIO en index.html; no toqué la galería.")
-        return
-
-    sangria = " " * 10
-
-    def cuadro(i: int, ruta: str, ancho: int, alto: int, copia: bool) -> str:
-        ruta = html.escape(ruta)
-        extra = ' tabindex="-1" aria-hidden="true"' if copia else ""
-        etiqueta = "" if copia else f' aria-label="Ver foto {i} en grande"'
-        return (f'{sangria}<button type="button" class="film-frame"{etiqueta}{extra}>'
-                f'<img src="{ruta}" alt="Urías Fest 2, foto {i}" width="{ancho}" height="{alto}" '
-                f'loading="lazy" decoding="async"></button>')
-
-    # Con pocas fotos se repiten hasta llenar la cinta (mínimo 8 cuadros por vuelta)
-    vuelta = [(i, item) for i, item in enumerate(items, 1)]
-    while vuelta and len(vuelta) < 8:
-        vuelta += vuelta[:len(items)]
-    lineas = [cuadro(i, *item, copia=pos >= len(items)) for pos, (i, item) in enumerate(vuelta)]
-    # Segunda vuelta idéntica para que la cinta gire sin cortes
-    lineas += [cuadro(i, *item, copia=True) for i, item in vuelta]
-
-    cierre_marca = contenido.find("-->", inicio) + 3
-    nuevo_bloque = (f'\n{sangria}<div class="filmstrip-track" style="--n:{len(vuelta)}">\n'
-                    + "\n".join(lineas)
-                    + f"\n{sangria}</div>\n{sangria}") if items else f"\n{sangria}"
-    contenido = contenido[:cierre_marca] + nuevo_bloque + contenido[fin:]
-
-    # Muestra u oculta la sección según haya fotos
-    patron = re.compile(r'<section id="asi-se-vivio"( hidden)?')
-    contenido = patron.sub('<section id="asi-se-vivio"' + ("" if items else " hidden"), contenido, count=1)
-
-    INDEX.write_text(contenido, encoding="utf-8")
-    if items:
-        print(f"  ✅ Galería actualizada en index.html con {len(items)} fotos.")
-    else:
-        print(f"Galería 'Así se vivió': sin fotos en {DIR_VIVIO_ORIGEN.relative_to(RAIZ)}/, la sección queda oculta.")
 
 
 # --------------------------------------------------------------------------
@@ -270,7 +211,6 @@ def main() -> None:
     args = parser.parse_args()
 
     procesar_imagenes_pagina(args.forzar)
-    procesar_galeria_vivio(args.forzar)
     procesar_audio(args.forzar)
     print("Listo ✨")
 

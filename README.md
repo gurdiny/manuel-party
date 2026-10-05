@@ -9,7 +9,6 @@ Es una sola página (`index.html`) sin frameworks ni dependencias: HTML, CSS y J
 ```
 index.html          La invitación (todo el diseño y la lógica viven aquí)
 img/                Fotos optimizadas en WebP (las genera optimizar.py)
-  vivio/            Fotos de la cinta "Así se vivió el año pasado"
 audio/              Música de fondo optimizada (la genera optimizar.py)
 optimizar.py        Script para comprimir fotos y audio (no se publica)
 .github/workflows/  Deploy automático a GitHub Pages
@@ -19,7 +18,6 @@ Carpetas que solo existen en tu compu (están en `.gitignore`):
 
 ```
 fotos/pagina/       Originales de la portada y de "Así se puso el año pasado"
-fotos/vivio/        Originales de la galería "Así se vivió el año pasado"
 audio-original/     Pon aquí audios originales (o déjalos en la raíz)
 ```
 
@@ -35,8 +33,7 @@ python3 -m http.server 8000
 ## Agregar o cambiar fotos y música
 
 1. Copia los archivos originales:
-   - Portada o fotos de la sección "Así se puso…": en `fotos/pagina/` (`portada.jpeg`, `pasado_1.jpeg`, …). Se convierten a `img/portada.webp`, `img/pasado-1.webp`, etc.
-   - Fotos para la cinta "Así se vivió el año pasado": en `fotos/vivio/`.
+   - Portada o fotos de la sección "Así se puso…": en `fotos/pagina/` (`portada.webp`, `pasado_1.jpeg`, …). Se convierten a `img/portada.webp`, `img/pasado_1.webp`, etc.
    - Música: en la raíz o en `audio-original/` (mp3, m4a, ogg, wav…). Si el archivo se llama "WhatsApp Audio…", el script usa el título de la canción como nombre.
 2. Corre el script:
 
@@ -48,7 +45,7 @@ python3 -m http.server 8000
 El script:
 
 - Convierte las fotos a WebP (máximo 1600 px, calidad 80) y respeta la rotación del celular.
-- Arma la cinta "Así se vivió" dentro de `index.html`. Si no hay fotos, oculta la sección.
+- Si la foto tiene fondo transparente (como la portada), la recorta al contorno del personaje.
 - Convierte el audio a MP3 de 128 kbps.
 
 Nunca borra ni modifica los originales.
