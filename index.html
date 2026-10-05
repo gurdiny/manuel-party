@@ -7,8 +7,21 @@
   <meta name="description"
     content="¡Urías Fest 3! Cumpleaños de Manuel Urias · Halloween Costume Party 🎃. Viernes 16 de Octubre de 2026, 10:00 PM.">
   <meta name="theme-color" content="#000000">
+
+  <!-- Vista previa al compartir por WhatsApp / redes -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_MX">
+  <meta property="og:url" content="https://gurdiny.github.io/manuel-party/">
+  <meta property="og:title" content="Urías Fest 3 🎃 Cumpleaños de Manuel Urias">
+  <meta property="og:description" content="Fiesta de disfraces · Viernes 16 de octubre, 10:00 PM. ¡Sin disfraz no hay entrada!">
+  <meta property="og:image" content="https://gurdiny.github.io/manuel-party/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Manuel Urias con alas negras y el texto Urías Fest 3, viernes 16 de octubre, 10:00 PM">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎃%3C/text%3E%3C/svg%3E">
   <!-- Activa la intro del sobre solo si hay JavaScript -->
-  <script>document.documentElement.classList.add('has-intro', 'intro-active');</script>
+  <script>document.documentElement.classList.add('js', 'has-intro', 'intro-active');</script>
 
   <title>Urías Fest 3 | Cumpleaños de Manuel Urias 🎃</title>
 
@@ -35,7 +48,8 @@
       "geo": { "@type": "GeoCoordinates", "latitude": 21.1733894, "longitude": -86.8515625 },
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Ubicación en Google Maps",
+        "addressLocality": "Cancún",
+        "addressRegion": "Quintana Roo",
         "addressCountry": "MX"
       }
     },
@@ -106,13 +120,13 @@
 
     html {
       scroll-behavior: smooth;
+      background-color: var(--surface-ground);
     }
 
     html,
     body {
       width: 100%;
       min-height: 100%;
-      background-color: var(--surface-ground);
       color: var(--text-primary);
       font-family: var(--font-body);
       font-size: 16px;
@@ -297,7 +311,7 @@
       }
     }
 
-    .reveal {
+    html.js .reveal {
       opacity: 0;
       transform: translate3d(0, 40px, 0) scale(0.97);
       filter: blur(6px);
@@ -305,7 +319,7 @@
       transition-delay: var(--d, 0s);
     }
 
-    .reveal.is-visible {
+    html.js .reveal.is-visible {
       opacity: 1;
       transform: none;
       filter: none;
@@ -334,6 +348,7 @@
       cursor: pointer;
       box-shadow: 0 0 25px rgba(255, 111, 0, 0.5);
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       transition: transform 0.3s var(--ease-out), border-color 0.3s, box-shadow 0.3s;
     }
 
@@ -420,6 +435,15 @@
       .hero-eyebrow {
         letter-spacing: 3px;
         font-size: 0.78rem;
+      }
+    }
+
+    /* Escritorio: la luna arriba a la derecha, más chica y alta para no tocar "MANUEL" */
+    @media (min-width: 641px) {
+      .moon {
+        top: 1.25rem;
+        right: clamp(1rem, 4vw, 4rem);
+        width: clamp(96px, 9vw, 130px);
       }
     }
 
@@ -641,7 +665,7 @@
       translate: calc(-50% + var(--px) * 18px) calc(var(--py) * 10px);
       font-family: var(--font-display);
       font-weight: 900;
-      font-size: clamp(4.6rem, 25vw, 15rem);
+      font-size: clamp(4.6rem, 19vw, 12.5rem);
       line-height: 0.9;
       letter-spacing: -0.02em;
       white-space: nowrap;
@@ -661,13 +685,13 @@
       from {
         opacity: 0;
         letter-spacing: 0.35em;
-        filter: blur(14px);
+        filter: blur(14px) drop-shadow(0 0 0 transparent);
       }
 
       to {
         opacity: 1;
         letter-spacing: -0.02em;
-        filter: drop-shadow(0 0 18px rgba(255, 111, 0, 0.45));
+        filter: blur(0) drop-shadow(0 0 18px rgba(255, 111, 0, 0.45));
       }
     }
 
@@ -763,7 +787,7 @@
       0% {
         opacity: 0;
         transform: translateY(18%) scale(0.86);
-        filter: brightness(3) blur(12px);
+        filter: brightness(3) blur(12px) drop-shadow(0 0 0 transparent) drop-shadow(0 0 0 transparent) drop-shadow(0 0 0 transparent);
       }
 
       60% {
@@ -773,6 +797,7 @@
       100% {
         opacity: 1;
         transform: none;
+        filter: brightness(1) blur(0) drop-shadow(0 0 1.5px rgba(255, 255, 255, 0.7)) drop-shadow(0 0 12px rgba(230, 0, 255, 0.85)) drop-shadow(0 0 36px rgba(255, 111, 0, 0.5));
       }
     }
 
@@ -792,24 +817,34 @@
       height: 60px;
       translate: -50% 0;
       border-radius: 50%;
-      background: radial-gradient(ellipse, rgba(255, 111, 0, 0.6), rgba(230, 0, 255, 0.25) 45%, transparent 70%);
-      filter: blur(10px);
+      background: radial-gradient(ellipse, rgba(255, 111, 0, 0.5), rgba(230, 0, 255, 0.2) 45%, transparent 70%);
+      filter: blur(18px);
       animation: halo-pulse 4s ease-in-out infinite;
     }
 
     .hero-fog-front {
       position: absolute;
-      left: -20%;
-      right: -20%;
-      bottom: -2px;
+      left: 50%;
+      bottom: -8%;
       z-index: 4;
-      height: 30%;
+      width: 160vw;
+      height: 34%;
+      margin-left: -80vw;
       background:
-        radial-gradient(50% 70% at 30% 100%, rgba(170, 0, 255, 0.35), transparent 70%),
-        radial-gradient(45% 60% at 72% 100%, rgba(255, 111, 0, 0.22), transparent 70%),
-        linear-gradient(transparent, rgba(0, 0, 0, 0.92) 80%);
-      animation: fog-drift 14s ease-in-out infinite alternate;
+        radial-gradient(28% 60% at 38% 70%, rgba(170, 0, 255, 0.32), transparent 70%),
+        radial-gradient(24% 55% at 62% 75%, rgba(255, 111, 0, 0.2), transparent 70%),
+        radial-gradient(40% 70% at 50% 90%, rgba(0, 0, 0, 0.55), transparent 75%);
+      -webkit-mask: linear-gradient(transparent, #000 45%);
+      mask: linear-gradient(transparent, #000 45%);
+      filter: blur(12px);
+      animation: fog-front-drift 14s ease-in-out infinite alternate;
       pointer-events: none;
+    }
+
+    @keyframes fog-front-drift {
+      to {
+        translate: 6vw 0;
+      }
     }
 
     /* Relámpago ocasional en toda la portada */
@@ -895,13 +930,13 @@
         from {
           opacity: 0;
           letter-spacing: 0.25em;
-          filter: blur(10px);
+          filter: blur(10px) drop-shadow(0 0 0 transparent);
         }
 
         to {
           opacity: 1;
           letter-spacing: 0;
-          filter: drop-shadow(0 0 14px rgba(255, 111, 0, 0.45));
+          filter: blur(0) drop-shadow(0 0 14px rgba(255, 111, 0, 0.45));
         }
       }
 
@@ -1028,6 +1063,7 @@
       border-radius: 40px;
       background: rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       font-family: var(--font-accent);
       font-size: clamp(0.82rem, 2.4vw, 0.95rem);
       font-weight: 700;
@@ -1068,55 +1104,6 @@
 
       60% {
         transform: translateY(0) rotate(8deg);
-      }
-    }
-
-    @media (max-width: 640px),
-    (max-height: 820px) {
-      .scroll-hint {
-        display: none;
-      }
-    }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 1.5rem;
-      left: 50%;
-      translate: -50% 0;
-      z-index: 3;
-      width: 26px;
-      height: 42px;
-      border: 2px solid rgba(255, 255, 255, 0.5);
-      border-radius: 14px;
-      animation: rise-in 1s var(--ease-out) 2s both;
-    }
-
-    .scroll-hint::after {
-      content: "";
-      position: absolute;
-      top: 7px;
-      left: 50%;
-      width: 4px;
-      height: 8px;
-      margin-left: -2px;
-      border-radius: 2px;
-      background: var(--c-amber);
-      animation: scroll-dot 1.8s ease-in-out infinite;
-    }
-
-    @keyframes scroll-dot {
-      0% {
-        opacity: 0;
-        transform: translateY(0);
-      }
-
-      40% {
-        opacity: 1;
-      }
-
-      100% {
-        opacity: 0;
-        transform: translateY(14px);
       }
     }
 
@@ -1508,7 +1495,7 @@
       font-family: var(--font-accent);
       font-size: 1.05rem;
       font-weight: 600;
-      color: var(--text-main);
+      color: var(--text-primary);
       transition: transform 0.3s var(--ease-out), border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
       display: flex;
       align-items: center;
@@ -1606,11 +1593,11 @@
 
       0%,
       60% {
-        left: -60%;
+        transform: skewX(-20deg) translateX(0);
       }
 
       100% {
-        left: 130%;
+        transform: skewX(-20deg) translateX(475%);
       }
     }
 
@@ -1693,6 +1680,11 @@
     }
 
     .modal-close {
+      display: inline-grid;
+      place-items: center;
+      min-width: 44px;
+      min-height: 44px;
+      flex-shrink: 0;
       background: transparent;
       border: none;
       color: var(--c-orange);
@@ -1726,6 +1718,17 @@
       font-size: 1.05rem;
     }
 
+    @media (max-width: 400px) {
+
+      .btn-gold,
+      .btn-ghost {
+        white-space: normal;
+        text-align: center;
+        max-width: 100%;
+        padding: 0.7rem 1rem;
+      }
+    }
+
     /* ==========================================================================
        HERO CTA
        ========================================================================== */
@@ -1745,7 +1748,7 @@
     @media (max-width: 640px) {
       .hero-cta {
         flex-direction: column;
-        width: min(100%, 340px);
+        width: min(100% - 2.5rem, 340px);
       }
 
       .hero-cta>a {
@@ -2024,8 +2027,19 @@
         transition: bottom 0.5s var(--ease-out);
       }
 
+      /* Con la barra visible, el botón de música se acomoda dentro de ella, a la derecha */
+      body.has-sticky .sticky-cta {
+        padding-right: calc(1rem + 58px);
+      }
+
       body.has-sticky .ambient-audio-bar {
-        bottom: calc(5.2rem + env(safe-area-inset-bottom));
+        right: 1rem;
+        bottom: calc(0.7rem + 2px + env(safe-area-inset-bottom));
+      }
+
+      body.has-sticky .audio-btn {
+        width: 48px;
+        height: 48px;
       }
     }
 
@@ -2459,6 +2473,11 @@
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+        transition-delay: 0s !important;
+      }
+
+      html {
+        scroll-behavior: auto;
       }
 
       .bats,
@@ -2467,7 +2486,7 @@
         display: none;
       }
 
-      .reveal {
+      html.js .reveal {
         opacity: 1;
         transform: none;
         filter: none;
@@ -2525,7 +2544,7 @@
 
   <!-- ASIDE: Control de Audio Ambiental con la canción TOKETEO (Bella Peya) -->
   <aside class="ambient-audio-bar" aria-label="Control de Audio Ambiental">
-    <audio id="ambient-audio" loop preload="auto">
+    <audio id="ambient-audio" loop preload="metadata">
       <source src="audio/toketeo-bella-peya.mp3" type="audio/mpeg">
       Tu navegador no soporta el elemento de audio.
     </audio>
@@ -2610,7 +2629,7 @@
         <div class="hero-photo-tag">El Cumpleañero 🔥</div>
       </div>
 
-      <h1 id="top" class="hero-title" data-split>URÍAS FEST 3</h1>
+      <h1 class="hero-title" data-split>URÍAS FEST 3</h1>
 
       <p class="hero-subtitle"><span class="text-gradient">Cumpleaños de Manuel Urias</span><span
           class="hero-subtitle-sep" aria-hidden="true">·</span><span class="text-gradient">Fiesta de Disfraces</span>
@@ -2632,7 +2651,6 @@
       </div>
     </div>
 
-    <div class="scroll-hint" aria-hidden="true"></div>
   </header>
 
   <main>
@@ -2702,23 +2720,23 @@
           <h2 class="card-title">Agenda</h2>
           <div class="timeline reveal">
             <div class="timeline-step reveal" style="--d:0.2s">
-              <span class="timeline-time">22:00</span>
+              <span class="timeline-time">10:00 PM</span>
               <p><strong>Llegada:</strong> fotos con tu disfraz y primer shot de bienvenida.</p>
             </div>
             <div class="timeline-step reveal" style="--d:0.35s">
-              <span class="timeline-time">23:00</span>
+              <span class="timeline-time">11:00 PM</span>
               <p><strong>Calentar motores:</strong> arrancan los drinks 🍹</p>
             </div>
             <div class="timeline-step reveal" style="--d:0.5s">
-              <span class="timeline-time">00:00</span>
+              <span class="timeline-time">12:00 AM</span>
               <p><strong>Pastel + shots sincronizados:</strong> deseo de medianoche.</p>
             </div>
             <div class="timeline-step reveal" style="--d:0.65s">
-              <span class="timeline-time">01:00</span>
+              <span class="timeline-time">1:00 AM</span>
               <p><strong>Concurso de disfraces:</strong> el más épico se lleva la gloria.</p>
             </div>
             <div class="timeline-step reveal" style="--d:0.8s">
-              <span class="timeline-time">02:00</span>
+              <span class="timeline-time">2:00 AM</span>
               <p><strong>After:</strong> quien aguante, que le siga.</p>
             </div>
           </div>
@@ -2744,42 +2762,42 @@
         <div class="masonry">
           <figure class="masonry-item portrait reveal" style="--d:0.1s" tabindex="0" role="button"
             aria-label="Ver foto en grande: Puro ambiente del bueno">
-            <img src="img/pasado_1.webp" alt="Fiesta del año pasado 1" width="960" height="1280" loading="lazy">
+            <img src="img/pasado_1.webp" alt="Puro ambiente del bueno en el Urías Fest 2" width="960" height="1280" loading="lazy">
             <figcaption>Puro ambiente del bueno 🥂✨</figcaption>
           </figure>
           <figure class="masonry-item square reveal" style="--d:0.15s" tabindex="0" role="button"
             aria-label="Ver foto en grande: Risas, chupe y buena compañía">
-            <img src="img/pasado_2.webp" alt="Fiesta del año pasado 2" width="960" height="1280" loading="lazy">
+            <img src="img/pasado_2.webp" alt="Risas, chupe y buena compañía en el Urías Fest 2" width="960" height="1280" loading="lazy">
             <figcaption>Risas, chupe y buena compañía 🥳🎉</figcaption>
           </figure>
           <figure class="masonry-item mid reveal" style="--d:0.2s" tabindex="0" role="button"
             aria-label="Ver foto en grande: Celebrando al festejado en grande">
-            <img src="img/pasado_3.webp" alt="Fiesta del año pasado 3" width="960" height="1280" loading="lazy">
+            <img src="img/pasado_3.webp" alt="Celebrando al festejado en grande en el Urías Fest 2" width="960" height="1280" loading="lazy">
             <figcaption>Celebrando al festejado en grande 👑🔥</figcaption>
           </figure>
           <figure class="masonry-item tall reveal" style="--d:0.25s" tabindex="0" role="button"
             aria-label="Ver foto en grande: Momentos inolvidables">
-            <img src="img/pasado_4.webp" alt="Fiesta del año pasado 4" width="960" height="1280" loading="lazy">
+            <img src="img/pasado_4.webp" alt="Momentos inolvidables del Urías Fest 2" width="1067" height="1600" loading="lazy">
             <figcaption>Momentos inolvidables 🎃💥</figcaption>
           </figure>
-          <figure class="masonry-item portrait reveal" style="--d:0.3s" tabindex="0" role="button"
+          <figure class="masonry-item wide reveal" style="--d:0.3s" tabindex="0" role="button"
             aria-label="Ver foto en grande: Actitud al 100%">
-            <img src="img/pasado_5.webp" alt="Fiesta del año pasado 5" width="960" height="1280" loading="lazy">
+            <img src="img/pasado_5.webp" alt="Invitados con actitud al 100% en el Urías Fest 2" width="1600" height="1066" loading="lazy">
             <figcaption>Actitud al 100% 🚀🔥</figcaption>
           </figure>
-          <figure class="masonry-item square reveal" style="--d:0.35s" tabindex="0" role="button"
+          <figure class="masonry-item wide reveal" style="--d:0.35s" tabindex="0" role="button"
             aria-label="Ver foto en grande: Disfraces y fiesta total">
-            <img src="img/pasado_6.webp" alt="Fiesta del año pasado 6" width="960" height="1280" loading="lazy">
+            <img src="img/pasado_6.webp" alt="Disfraces y fiesta total en el Urías Fest 2" width="1600" height="1066" loading="lazy">
             <figcaption>Disfraces y fiesta total 💃🕺</figcaption>
           </figure>
           <figure class="masonry-item mid reveal" style="--d:0.4s" tabindex="0" role="button"
             aria-label="Ver foto en grande: La banda festejando">
-            <img src="img/pasado_7.webp" alt="Fiesta del año pasado 7" width="960" height="1280" loading="lazy">
+            <img src="img/pasado_7.webp" alt="La banda festejando en el Urías Fest 2" width="1207" height="1365" loading="lazy">
             <figcaption>La banda festejando 🍻✨</figcaption>
           </figure>
           <figure class="masonry-item wide reveal" style="--d:0.45s" tabindex="0" role="button"
             aria-label="Ver foto en grande: Hasta que salga el sol">
-            <img src="img/pasado_8.webp" alt="Fiesta del año pasado 8" width="960" height="1280" loading="lazy">
+            <img src="img/pasado_8.webp" alt="La fiesta hasta que sale el sol en el Urías Fest 2" width="1600" height="1066" loading="lazy">
             <figcaption>Hasta que salga el sol ☀️🎉</figcaption>
           </figure>
         </div>
@@ -2797,7 +2815,7 @@
         <div class="venue-info">
           <h3 class="venue-name text-gradient">🏠 En la Casa de la Fiesta</h3>
           <p class="venue-desc">
-            Es en una casa particular para pistear agusto y sin presiones. Aquí abajo está el mapa; si quieres la ruta,
+            Es en una casa particular para pistear a gusto y sin presiones. Aquí abajo está el mapa; si quieres la ruta,
             ábrelo directo en Google Maps.
           </p>
 
@@ -3027,10 +3045,10 @@
   </main>
 
   <!-- MODAL REGALOS Y PISTEO -->
-  <dialog id="modal-regalos" class="modal-luxury">
+  <dialog id="modal-regalos" class="modal-luxury" aria-labelledby="modal-regalos-title">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title text-gradient">¡Cero Rollos, Puro Festín! 🔥</h3>
+        <h3 id="modal-regalos-title" class="modal-title text-gradient">¡Cero Rollos, Puro Festín! 🔥</h3>
         <button id="close-gifts-dialog" class="modal-close" aria-label="Cerrar modal">&times;</button>
       </div>
       <div class="modal-body">
@@ -3139,6 +3157,8 @@
         if (diff <= 0) {
           this.stop();
           this.render([0, 0, 0, 0]);
+          const tag = document.querySelector('#cuenta-regresiva .section-tag');
+          if (tag) tag.textContent = '🎃 ¡Ya empezó la fiesta! 🎃';
           return;
         }
         this.render([
@@ -3273,10 +3293,12 @@
           const alpha = Math.min(1, p.y / h + 0.2) * p.life * (0.6 + Math.sin(p.drift * 3) * 0.4);
           ctx.globalAlpha = Math.max(0, alpha);
           ctx.fillStyle = p.color;
-          ctx.shadowColor = p.color;
-          ctx.shadowBlur = 12;
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.globalAlpha = Math.max(0, alpha) * 0.25;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r * 3.5, 0, Math.PI * 2);
           ctx.fill();
         }
         rafId = requestAnimationFrame(tick);
@@ -3311,7 +3333,7 @@
         const show = !entry.isIntersecting;
         bar.classList.toggle('is-shown', show);
         document.body.classList.toggle('has-sticky', show);
-      }, { threshold: 0.05 }).observe(hero);
+      }, { threshold: 0 }).observe(document.querySelector('.hero-cta') || hero);
     }
 
     function setupIntro() {
@@ -3321,6 +3343,8 @@
       const stage = document.getElementById('envelope-stage');
       if (!intro) return;
 
+      const background = [...document.querySelectorAll('header, main, aside, footer, #sticky-cta')];
+      background.forEach(el => { el.inert = true; });
       if (seal) seal.focus({ preventScroll: true });
 
       // Inclinación 3D siguiendo el mouse
@@ -3377,13 +3401,17 @@
         }, 300);
         setTimeout(() => {
           root.classList.remove('has-intro');
+          background.forEach(el => { el.inert = false; });
           intro.remove();
+          const firstCta = document.querySelector('.hero-cta a');
+          if (firstCta) firstCta.focus({ preventScroll: true });
         }, 700);
       };
 
-      // 1 solo toque abre el sobre desde cualquier parte del intro
+      // 1 solo toque abre el sobre desde cualquier parte del intro.
+      // Solo "click": "touchstart" no cuenta como gesto para el audio en iOS/Android
+      // y la música no arrancaría.
       intro.addEventListener('click', open, { once: true });
-      intro.addEventListener('touchstart', open, { passive: true, once: true });
     }
 
     function setupHeroParallax() {
