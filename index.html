@@ -1,0 +1,3242 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description"
+    content="¡Urías Fest 3! Cumpleaños de Manuel Urias · Halloween Costume Party 🎃. Viernes 16 de Octubre de 2026, 10:00 PM.">
+  <meta name="theme-color" content="#000000">
+  <!-- Activa la intro del sobre solo si hay JavaScript -->
+  <script>document.documentElement.classList.add('has-intro', 'intro-active');</script>
+
+  <title>Urías Fest 3 | Cumpleaños de Manuel Urias 🎃</title>
+
+  <!-- Google Fonts: Orbitron, Space Grotesk & DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@400;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- JSON-LD Schema.org Event -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "Urías Fest 3 - Cumpleaños de Manuel Urias (Halloween Costume Party)",
+    "startDate": "2026-10-16T22:00:00-05:00",
+    "endDate": "2026-10-17T05:00:00-05:00",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "location": {
+      "@type": "Place",
+      "name": "Casa de la Fiesta",
+      "geo": { "@type": "GeoCoordinates", "latitude": 21.1733894, "longitude": -86.8515625 },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Ubicación en Google Maps",
+        "addressCountry": "MX"
+      }
+    },
+    "description": "¡Se armó la fiesta de cumpleaños de Manuel Urias! Disfraces obligatorios, chupe y diversión total.",
+    "organizer": {
+      "@type": "Person",
+      "name": "Manuel Urias"
+    }
+  }
+  </script>
+
+  <style>
+    /* ==========================================================================
+       SYSTEM DESIGN TOKENS - HALLOWEEN NEON (Naranja · Ámbar · Magenta · Púrpura · Negro)
+       ========================================================================== */
+    :root {
+      --c-orange: #FF6F00;
+      /* Calabaza */
+      --c-amber: #FF9900;
+      /* Vela */
+      --c-magenta: #E600FF;
+      /* Poción */
+      --c-purple: #AA00FF;
+      /* Bruja */
+      --c-black: #000000;
+      /* Noche */
+
+      --surface-ground: var(--c-black);
+      --surface-card: rgba(14, 4, 22, 0.72);
+      --text-primary: #FFFFFF;
+      --text-muted: #C9B8D9;
+
+      --border-primary: rgba(255, 111, 0, 0.45);
+      --border-secondary: rgba(170, 0, 255, 0.4);
+
+      --card-radius: 18px;
+      --card-elevation: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(170, 0, 255, 0.18);
+
+      --grad-fire: linear-gradient(135deg, var(--c-orange), var(--c-amber));
+      --grad-potion: linear-gradient(135deg, var(--c-magenta), var(--c-purple));
+      --grad-all: linear-gradient(120deg, var(--c-orange), var(--c-amber), var(--c-magenta), var(--c-purple));
+
+      --font-display: 'Orbitron', sans-serif;
+      --font-accent: 'Space Grotesk', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+
+      --fs-hero: clamp(2.4rem, 8vw, 4.8rem);
+      --fs-title-lg: clamp(1.7rem, 4.5vw, 3rem);
+      --fs-title-md: clamp(1.1rem, 3vw, 1.8rem);
+      --fs-subtext: clamp(0.82rem, 1.2vw, 0.98rem);
+
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @property --angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      background-color: var(--surface-ground);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    .section-title,
+    .card-title {
+      text-wrap: balance;
+    }
+
+    p,
+    li {
+      text-wrap: pretty;
+    }
+
+    ::selection {
+      background: var(--c-magenta);
+      color: #fff;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--c-amber);
+      outline-offset: 3px;
+    }
+
+    a,
+    button,
+    summary,
+    [role="button"] {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .section-lead {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 52ch;
+      margin: 0 auto 1.6rem;
+    }
+
+    .modal-footnote {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* Grano de película sobre todo */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 900;
+      opacity: 0.07;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* Fondo atmosférico fijo */
+    .bg-aura {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(60vmax 50vmax at 15% 10%, rgba(170, 0, 255, 0.16), transparent 60%),
+        radial-gradient(50vmax 40vmax at 90% 40%, rgba(230, 0, 255, 0.10), transparent 60%),
+        radial-gradient(60vmax 45vmax at 30% 95%, rgba(255, 111, 0, 0.12), transparent 60%),
+        var(--c-black);
+      animation: aura-shift 18s ease-in-out infinite alternate;
+    }
+
+    @keyframes aura-shift {
+      to {
+        filter: hue-rotate(-18deg) brightness(1.15);
+      }
+    }
+
+    #embers {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Linterna que sigue al cursor */
+    .cursor-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 420px;
+      height: 420px;
+      margin: -210px 0 0 -210px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 153, 0, 0.13), rgba(230, 0, 255, 0.06) 40%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 0.4s;
+      will-change: transform;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .cursor-glow.is-on {
+        opacity: 1;
+      }
+    }
+
+    /* ==========================================================================
+       TEXTOS NEÓN
+       ========================================================================== */
+    .text-gradient {
+      background: var(--grad-all);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: gradient-flow 6s linear infinite;
+    }
+
+    @keyframes gradient-flow {
+      to {
+        background-position: 300% 0;
+      }
+    }
+
+    /* ==========================================================================
+       CARDS + REVEAL
+       ========================================================================== */
+    section {
+      padding: clamp(0.75rem, 2vw, 1.25rem) 1rem;
+      max-width: 940px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .card-luxury {
+      background: var(--surface-card);
+      backdrop-filter: blur(18px) saturate(140%);
+      -webkit-backdrop-filter: blur(18px) saturate(140%);
+      border: 1px solid var(--border-secondary);
+      border-radius: var(--card-radius);
+      box-shadow: var(--card-elevation);
+      padding: clamp(1.25rem, 4vw, 2.5rem);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    /* Borde que gira con los colores */
+    .card-luxury::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: conic-gradient(from var(--angle), transparent 0deg, var(--c-orange) 60deg, var(--c-magenta) 120deg, transparent 180deg, transparent 360deg);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      mask-composite: exclude;
+      animation: spin-angle 6s linear infinite;
+      opacity: 0.85;
+      pointer-events: none;
+    }
+
+    @keyframes spin-angle {
+      to {
+        --angle: 360deg;
+      }
+    }
+
+    @media (hover: hover) {
+      .card-luxury:hover {
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 50px rgba(230, 0, 255, 0.28);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translate3d(0, 40px, 0) scale(0.97);
+      filter: blur(6px);
+      transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out), filter 0.9s var(--ease-out);
+      transition-delay: var(--d, 0s);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+
+    /* ==========================================================================
+       AUDIO FLOTANTE
+       ========================================================================== */
+    .ambient-audio-bar {
+      position: fixed;
+      bottom: max(1.25rem, env(safe-area-inset-bottom));
+      right: max(1.25rem, env(safe-area-inset-right));
+      z-index: 1000;
+    }
+
+    .audio-btn {
+      background: rgba(0, 0, 0, 0.85);
+      border: 2px solid var(--c-orange);
+      color: var(--text-primary);
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(255, 111, 0, 0.5);
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s var(--ease-out), border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .audio-btn:hover {
+      transform: scale(1.12) rotate(-8deg);
+      border-color: var(--c-magenta);
+      box-shadow: 0 0 35px rgba(230, 0, 255, 0.7);
+    }
+
+    .audio-btn.is-active {
+      border-color: var(--c-magenta);
+      animation: pulse-ring 1.8s infinite;
+    }
+
+    .audio-btn svg {
+      width: 26px;
+      height: 26px;
+      fill: var(--c-orange);
+      transition: fill 0.3s;
+    }
+
+    .audio-btn.is-active svg {
+      fill: var(--c-magenta);
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        box-shadow: 0 0 0 0 rgba(230, 0, 255, 0.7);
+      }
+
+      70% {
+        box-shadow: 0 0 0 18px rgba(230, 0, 255, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(230, 0, 255, 0);
+      }
+    }
+
+    /* ==========================================================================
+       HERO
+       ========================================================================== */
+    header.hero-header {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 1.25rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Luna */
+    .moon {
+      position: absolute;
+      top: clamp(2rem, 8vh, 5rem);
+      right: clamp(-3rem, 6vw, 8rem);
+      width: clamp(110px, 20vw, 200px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 35%, rgba(0, 0, 0, 0.18) 0 8%, transparent 9%),
+        radial-gradient(circle at 62% 60%, rgba(0, 0, 0, 0.16) 0 11%, transparent 12%),
+        radial-gradient(circle at 45% 78%, rgba(0, 0, 0, 0.12) 0 6%, transparent 7%),
+        radial-gradient(circle at 40% 35%, #FFD08A, var(--c-amber) 55%, var(--c-orange));
+      box-shadow: 0 0 60px rgba(255, 153, 0, 0.55), 0 0 140px rgba(255, 111, 0, 0.35), 0 0 260px rgba(230, 0, 255, 0.2);
+      animation: moon-float 9s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    @media (max-width: 640px) {
+      .moon {
+        top: 0.9rem;
+        right: -28px;
+        width: 92px;
+      }
+
+      header.hero-header {
+        padding-top: 7rem;
+      }
+
+      .hero-eyebrow {
+        letter-spacing: 3px;
+        font-size: 0.78rem;
+      }
+    }
+
+    @keyframes moon-float {
+      50% {
+        transform: translateY(14px) scale(1.03);
+      }
+    }
+
+    /* Murciélagos */
+    .bats {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .bat {
+      position: absolute;
+      left: 0;
+      width: var(--s, 48px);
+      color: #050008;
+      filter: drop-shadow(0 0 6px rgba(230, 0, 255, 0.55));
+      offset-rotate: 0deg;
+      animation: bat-fly var(--t, 14s) linear infinite;
+      animation-delay: var(--delay, 0s);
+      top: var(--y, 20%);
+      opacity: 0;
+    }
+
+    .bat svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .bat .wings {
+      transform-origin: 50% 50%;
+      animation: flap 0.28s ease-in-out infinite alternate;
+    }
+
+    @keyframes flap {
+      from {
+        transform: scaleY(1);
+      }
+
+      to {
+        transform: scaleY(0.35);
+      }
+    }
+
+    @keyframes bat-fly {
+      0% {
+        transform: translate(-15vw, 0) rotate(-6deg);
+        opacity: 0;
+      }
+
+      8% {
+        opacity: 1;
+      }
+
+      25% {
+        transform: translate(20vw, -6vh) rotate(4deg);
+      }
+
+      50% {
+        transform: translate(50vw, 4vh) rotate(-4deg);
+      }
+
+      75% {
+        transform: translate(80vw, -5vh) rotate(6deg);
+      }
+
+      92% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translate(115vw, 2vh) rotate(0deg);
+        opacity: 0;
+      }
+    }
+
+    /* Araña colgante */
+    .spider {
+      position: absolute;
+      top: 0;
+      left: clamp(1rem, 10vw, 7rem);
+      width: 2px;
+      height: 0;
+      transform-origin: top center;
+      animation: spider-drop 2.4s var(--ease-out) 1.2s forwards, spider-swing 4s ease-in-out 3.6s infinite;
+      z-index: 2;
+    }
+
+    .spider::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.45));
+    }
+
+    .spider svg {
+      position: absolute;
+      bottom: -22px;
+      left: 50%;
+      width: 40px;
+      transform: translateX(-50%);
+      filter: drop-shadow(0 0 8px rgba(255, 111, 0, 0.6));
+    }
+
+    @keyframes spider-drop {
+      to {
+        height: clamp(110px, 22vh, 210px);
+      }
+    }
+
+    @keyframes spider-swing {
+
+      0%,
+      100% {
+        transform: rotate(4deg);
+      }
+
+      50% {
+        transform: rotate(-4deg);
+      }
+    }
+
+    /* Niebla */
+    .fog {
+      position: absolute;
+      left: -50%;
+      bottom: -6%;
+      width: 200%;
+      height: 38%;
+      pointer-events: none;
+      z-index: 1;
+      background:
+        radial-gradient(40% 60% at 20% 70%, rgba(170, 0, 255, 0.22), transparent 70%),
+        radial-gradient(35% 55% at 55% 80%, rgba(255, 111, 0, 0.16), transparent 70%),
+        radial-gradient(40% 60% at 85% 70%, rgba(230, 0, 255, 0.18), transparent 70%);
+      filter: blur(30px);
+      animation: fog-drift 22s linear infinite alternate;
+    }
+
+    .fog.fog-2 {
+      animation-duration: 30s;
+      animation-direction: alternate-reverse;
+      opacity: 0.7;
+      bottom: -12%;
+    }
+
+    @keyframes fog-drift {
+      to {
+        transform: translateX(25%);
+      }
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-accent);
+      font-size: var(--fs-subtext);
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      color: var(--c-amber);
+      margin-bottom: 1.4rem;
+      font-weight: 700;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.95), 0 0 10px rgba(0, 0, 0, 0.9), 0 0 18px rgba(255, 153, 0, 0.45);
+      text-wrap: balance;
+      animation: rise-in 1s var(--ease-out) both;
+    }
+
+    @keyframes rise-in {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+        filter: blur(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+        filter: none;
+      }
+    }
+
+    /* Foto de portada con borde giratorio */
+    .hero-photo-wrapper {
+      position: relative;
+      width: min(64vw, 300px);
+      margin: 0 auto 2.2rem;
+      border-radius: 22px;
+      padding: 4px;
+      background: conic-gradient(from var(--angle), var(--c-orange), var(--c-amber), var(--c-magenta), var(--c-purple), var(--c-orange));
+      animation: spin-angle 5s linear infinite, rise-in 1.2s var(--ease-out) 0.15s both, photo-bob 7s ease-in-out 1.4s infinite;
+      box-shadow: 0 0 45px rgba(230, 0, 255, 0.45), 0 0 90px rgba(255, 111, 0, 0.25);
+    }
+
+    @keyframes photo-bob {
+      50% {
+        translate: 0 -10px;
+        rotate: -1.2deg;
+      }
+    }
+
+    .hero-photo {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      border-radius: 18px;
+      display: block;
+      background: #0d0013;
+    }
+
+    .hero-photo-tag {
+      position: absolute;
+      bottom: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--c-black);
+      border: 1.5px solid var(--c-magenta);
+      color: #fff;
+      font-family: var(--font-accent);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      padding: 0.45rem 1.2rem;
+      border-radius: 30px;
+      white-space: nowrap;
+      box-shadow: 0 0 18px rgba(230, 0, 255, 0.55);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-hero);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 0.8rem;
+      letter-spacing: 2px;
+    }
+
+    .hero-title .char {
+      display: inline-block;
+      color: #fff;
+      opacity: 0;
+      animation: char-in 0.9s var(--ease-out) forwards, neon-flicker 5s ease-in-out infinite;
+      animation-delay: calc(0.5s + var(--i) * 0.06s), calc(2s + var(--i) * 0.12s);
+      text-shadow: 0 0 6px #fff, 0 0 18px var(--c-orange), 0 0 40px var(--c-orange), 0 0 80px var(--c-magenta);
+    }
+
+    .hero-title .char.space {
+      width: 0.4em;
+    }
+
+    @keyframes char-in {
+      from {
+        opacity: 0;
+        transform: translateY(0.6em) rotate(12deg) scale(0.6);
+        filter: blur(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+        filter: none;
+      }
+    }
+
+    @keyframes neon-flicker {
+
+      0%,
+      18%,
+      22%,
+      62%,
+      64%,
+      100% {
+        text-shadow: 0 0 6px #fff, 0 0 18px var(--c-orange), 0 0 40px var(--c-orange), 0 0 80px var(--c-magenta);
+      }
+
+      20%,
+      63% {
+        text-shadow: none;
+        color: rgba(255, 255, 255, 0.55);
+      }
+
+      40% {
+        text-shadow: 0 0 6px #fff, 0 0 18px var(--c-magenta), 0 0 40px var(--c-purple), 0 0 80px var(--c-purple);
+      }
+    }
+
+    .hero-subtitle {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      column-gap: 0.6em;
+      font-family: var(--font-accent);
+      font-size: clamp(0.95rem, 2.6vw, 1.35rem);
+      line-height: 1.35;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      animation: rise-in 1s var(--ease-out) 1.2s both;
+    }
+
+    .hero-subtitle-sep {
+      color: var(--c-amber);
+    }
+
+    @media (max-width: 640px) {
+      .hero-subtitle {
+        flex-direction: column;
+      }
+
+      .hero-subtitle-sep {
+        display: none;
+      }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.7rem 1.4rem;
+      white-space: nowrap;
+      border: 1.5px solid var(--c-orange);
+      border-radius: 40px;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      font-family: var(--font-accent);
+      font-size: clamp(0.82rem, 2.4vw, 0.95rem);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
+      box-shadow: 0 0 22px rgba(255, 111, 0, 0.4);
+      animation: rise-in 1s var(--ease-out) 1.4s both;
+    }
+
+    .hero-badge-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hero-badge-divider {
+      width: 1px;
+      height: 1.1em;
+      background: linear-gradient(transparent, var(--c-orange), transparent);
+    }
+
+    .hero-badge .pumpkin {
+      display: inline-block;
+      animation: pumpkin-bounce 1.6s ease-in-out infinite;
+    }
+
+    @keyframes pumpkin-bounce {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(0);
+      }
+
+      30% {
+        transform: translateY(-6px) rotate(-12deg);
+      }
+
+      60% {
+        transform: translateY(0) rotate(8deg);
+      }
+    }
+
+    @media (max-width: 640px),
+    (max-height: 820px) {
+      .scroll-hint {
+        display: none;
+      }
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      translate: -50% 0;
+      z-index: 3;
+      width: 26px;
+      height: 42px;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      border-radius: 14px;
+      animation: rise-in 1s var(--ease-out) 2s both;
+    }
+
+    .scroll-hint::after {
+      content: "";
+      position: absolute;
+      top: 7px;
+      left: 50%;
+      width: 4px;
+      height: 8px;
+      margin-left: -2px;
+      border-radius: 2px;
+      background: var(--c-amber);
+      animation: scroll-dot 1.8s ease-in-out infinite;
+    }
+
+    @keyframes scroll-dot {
+      0% {
+        opacity: 0;
+        transform: translateY(0);
+      }
+
+      40% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+    }
+
+    /* ==========================================================================
+       TITULARES DE SECCIÓN
+       ========================================================================== */
+    .section-header {
+      text-align: center;
+      margin-bottom: clamp(1.25rem, 3vw, 1.75rem);
+    }
+
+    .section-tag {
+      font-family: var(--font-accent);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--c-amber);
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      text-shadow: 0 0 10px rgba(255, 153, 0, 0.45);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: var(--fs-title-lg);
+      font-weight: 700;
+      letter-spacing: 1px;
+      line-height: 1.2;
+    }
+
+    /* Fantasmas decorativos */
+    .ghost {
+      position: absolute;
+      width: clamp(34px, 6vw, 54px);
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.85;
+      filter: drop-shadow(0 0 14px rgba(230, 0, 255, 0.7));
+      animation: ghost-float 6s ease-in-out infinite;
+    }
+
+    .ghost svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .ghost.g-left {
+      left: -4px;
+      top: 0.5rem;
+    }
+
+    .ghost.g-right {
+      right: -4px;
+      top: 1rem;
+      animation-delay: -3s;
+      animation-duration: 7s;
+    }
+
+    @keyframes ghost-float {
+
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(-6deg);
+      }
+
+      50% {
+        transform: translate(8px, -16px) rotate(6deg);
+      }
+    }
+
+    /* ==========================================================================
+       CUENTA REGRESIVA
+       ========================================================================== */
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(0.6rem, 2vw, 1.4rem);
+      text-align: center;
+    }
+
+    .countdown-box {
+      background: linear-gradient(180deg, rgba(170, 0, 255, 0.12), rgba(0, 0, 0, 0.8));
+      border: 1px solid var(--border-primary);
+      border-radius: 14px;
+      padding: clamp(1rem, 2.5vw, 1.8rem) 0.4rem;
+      position: relative;
+      box-shadow: inset 0 0 20px rgba(255, 111, 0, 0.1);
+      transition: transform 0.4s var(--ease-out);
+    }
+
+    .countdown-box:hover {
+      transform: translateY(-6px);
+    }
+
+    .countdown-number {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 5vw, 3.6rem);
+      font-weight: 900;
+      background: var(--grad-fire);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 12px rgba(255, 111, 0, 0.6));
+      line-height: 1;
+      margin-bottom: 0.4rem;
+      display: inline-block;
+    }
+
+    .countdown-number.tick {
+      animation: tick 0.5s var(--ease-out);
+    }
+
+    @keyframes tick {
+      0% {
+        transform: translateY(-40%) rotateX(80deg);
+        opacity: 0;
+      }
+
+      100% {
+        transform: none;
+        opacity: 1;
+      }
+    }
+
+    .countdown-label {
+      font-family: var(--font-accent);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--c-magenta);
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       GALERÍA MASONRY
+       ========================================================================== */
+    .past-party-intro {
+      text-align: center;
+      margin: 0 auto 2rem;
+      max-width: 560px;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .masonry {
+      columns: 3 200px;
+      column-gap: 1rem;
+      padding-bottom: 2.2rem;
+    }
+
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 1rem;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: zoom-in;
+      background: #0d0013;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      rotate: var(--r, 0deg);
+      transition: opacity 0.9s var(--ease-out), filter 0.9s var(--ease-out), transform 0.5s var(--ease-out), rotate 0.5s var(--ease-out), translate 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out), border-color 0.3s;
+      transition-delay: var(--d, 0s);
+      display: block;
+      width: 100%;
+      padding: 0;
+      font: inherit;
+      color: inherit;
+      text-align: left;
+    }
+
+    .masonry-item:nth-child(odd) {
+      --r: -1.2deg;
+    }
+
+    .masonry-item:nth-child(even) {
+      --r: 1.2deg;
+    }
+
+    .masonry-item:hover,
+    .masonry-item:focus-visible {
+      transform: scale(1.03);
+      rotate: 0deg;
+      transition-delay: 0s;
+      border-color: var(--c-magenta);
+      box-shadow: 0 18px 50px rgba(230, 0, 255, 0.35), 0 0 30px rgba(255, 111, 0, 0.25);
+      z-index: 2;
+      outline: none;
+    }
+
+    .masonry-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-position: center 30%;
+      object-fit: cover;
+      transition: transform 0.8s var(--ease-out), filter 0.5s;
+      filter: saturate(1.05) contrast(1.05);
+    }
+
+    .masonry-item:hover img {
+      transform: scale(1.08);
+      filter: saturate(1.25) contrast(1.1);
+    }
+
+    .masonry-item.tall img {
+      aspect-ratio: 2 / 3;
+    }
+
+    .masonry-item.square img {
+      aspect-ratio: 1 / 1;
+    }
+
+    .masonry-item.mid img {
+      aspect-ratio: 4 / 5;
+    }
+
+    .masonry-item.portrait img {
+      aspect-ratio: 3 / 4;
+    }
+
+    .masonry-item.wide img {
+      aspect-ratio: 3 / 2;
+    }
+
+    .masonry-item figcaption {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 3rem 0.9rem 0.85rem;
+      font-family: var(--font-accent);
+      font-size: 0.92rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #fff;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.6) 35%, rgba(0, 0, 0, 0.92));
+    }
+
+    @media (max-width: 600px) {
+      .masonry-item figcaption {
+        font-size: 0.8rem;
+        padding: 2.4rem 0.65rem 0.65rem;
+      }
+    }
+
+    /* Cinta de película (Así se vivió) */
+    .filmstrip {
+      position: relative;
+      margin: 0 calc(-1 * clamp(1.25rem, 4vw, 2.5rem));
+      padding: 22px 0;
+      background: #050007;
+      overflow: hidden;
+      -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    }
+
+    .filmstrip::before,
+    .filmstrip::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: repeating-linear-gradient(90deg, transparent 0 10px, rgba(255, 153, 0, 0.55) 10px 22px, transparent 22px 32px);
+      border-radius: 2px;
+    }
+
+    .filmstrip::before {
+      top: 6px;
+    }
+
+    .filmstrip::after {
+      bottom: 6px;
+    }
+
+    .filmstrip-track {
+      display: flex;
+      width: max-content;
+      animation: film-scroll calc(var(--n, 6) * 4.5s) linear infinite;
+    }
+
+    .filmstrip:hover .filmstrip-track,
+    .filmstrip:focus-within .filmstrip-track,
+    .filmstrip:active .filmstrip-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes film-scroll {
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .film-frame {
+      flex: none;
+      margin-right: 10px;
+      padding: 0;
+      border: 2px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #0d0013;
+      cursor: zoom-in;
+      transition: border-color 0.3s, transform 0.4s var(--ease-out), box-shadow 0.4s;
+    }
+
+    .film-frame img {
+      height: clamp(190px, 32vw, 280px);
+      width: auto;
+      display: block;
+      filter: saturate(1.1) contrast(1.05);
+    }
+
+    @media (hover: hover) {
+      .film-frame:hover {
+        border-color: var(--c-magenta);
+        transform: scale(1.04);
+        box-shadow: 0 0 25px rgba(230, 0, 255, 0.45);
+      }
+    }
+
+    .filmstrip-hint {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .filmstrip {
+        overflow-x: auto;
+      }
+
+      .filmstrip-track {
+        animation: none;
+      }
+    }
+
+    /* Lightbox */
+    dialog.lightbox {
+      border: none;
+      background: transparent;
+      max-width: min(92vw, 640px);
+      max-height: 92dvh;
+      margin: auto;
+      padding: 0;
+      overflow: visible;
+    }
+
+    dialog.lightbox img {
+      width: 100%;
+      max-height: 86dvh;
+      object-fit: contain;
+      border-radius: 16px;
+      display: block;
+      box-shadow: 0 0 60px rgba(230, 0, 255, 0.45);
+    }
+
+    dialog.lightbox[open] {
+      animation: zoom-in 0.45s var(--ease-out);
+    }
+
+    @keyframes zoom-in {
+      from {
+        opacity: 0;
+        transform: scale(0.85) rotate(-2deg);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    dialog.lightbox .modal-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--c-black);
+      border: 1.5px solid var(--c-orange);
+    }
+
+    /* ==========================================================================
+       UBICACIÓN + MAPA
+       ========================================================================== */
+    .venue-info {
+      text-align: center;
+    }
+
+    .venue-name {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      margin-bottom: 0.6rem;
+    }
+
+    .venue-desc {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 540px;
+      margin: 0 auto 1.6rem;
+    }
+
+    .map-frame {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 1.8rem;
+      border: 1px solid var(--border-primary);
+      box-shadow: 0 0 30px rgba(255, 111, 0, 0.2);
+      aspect-ratio: 16 / 10;
+      background: #0d0013;
+    }
+
+    .map-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      /* Mapa en modo oscuro con tinte morado */
+      filter: invert(0.9) hue-rotate(200deg) saturate(1.4) brightness(0.95);
+    }
+
+    .map-frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.7);
+      border-radius: inherit;
+    }
+
+    @media (max-width: 600px) {
+      .map-frame {
+        aspect-ratio: 4 / 5;
+      }
+    }
+
+    /* ==========================================================================
+       DRESS CODE
+       ========================================================================== */
+    .dress-code-box {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .dress-code-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 3.4vw, 1.6rem);
+      margin-bottom: 1rem;
+    }
+
+    .dress-code-text {
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+
+    .dress-code-text strong {
+      color: var(--c-amber);
+    }
+
+    .dress-code-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 1.8rem auto 0;
+      max-width: 460px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .dress-code-bullets li {
+      position: relative;
+      padding: 0.9rem 1.2rem 0.9rem 2.8rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 111, 0, 0.25);
+      border-radius: 14px;
+      font-family: var(--font-accent);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-main);
+      transition: transform 0.3s var(--ease-out), border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+      display: flex;
+      align-items: center;
+    }
+
+    .dress-code-bullets li::before {
+      content: "🎃";
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    .dress-code-bullets li:hover {
+      transform: translateX(6px);
+      background: rgba(255, 111, 0, 0.07);
+      border-color: var(--c-magenta);
+      box-shadow: 0 4px 20px rgba(230, 0, 255, 0.25);
+    }
+
+    /* ==========================================================================
+       BOTONES
+       ========================================================================== */
+    .gifts-container,
+    .spotify-card {
+      text-align: center;
+    }
+
+    .btn-gold,
+    .btn-ghost {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      min-height: 52px;
+      padding: 0 1.6rem;
+      font-family: var(--font-accent);
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: 0.08em;
+      line-height: 1.2;
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+      border-radius: 14px;
+      cursor: pointer;
+    }
+
+    .btn-gold svg,
+    .btn-ghost svg {
+      flex-shrink: 0;
+    }
+
+    .btn-gold:active,
+    .btn-ghost:active {
+      transform: scale(0.97);
+    }
+
+    .btn-gold {
+      background: var(--grad-fire);
+      color: var(--c-black);
+      border: none;
+      box-shadow: 0 0 25px rgba(255, 111, 0, 0.55);
+      transition: transform 0.35s var(--ease-out), box-shadow 0.35s, color 0.35s;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .btn-gold::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--grad-potion);
+      opacity: 0;
+      transition: opacity 0.35s;
+      z-index: -1;
+    }
+
+    .btn-gold::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -60%;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+      transform: skewX(-20deg);
+      animation: shine 3.2s ease-in-out infinite;
+    }
+
+    @keyframes shine {
+
+      0%,
+      60% {
+        left: -60%;
+      }
+
+      100% {
+        left: 130%;
+      }
+    }
+
+    .btn-ghost {
+      border: 1.5px solid var(--c-magenta);
+      background: rgba(230, 0, 255, 0.06);
+      color: #fff;
+      transition: background 0.3s, box-shadow 0.3s, transform 0.3s var(--ease-out);
+    }
+
+    @media (hover: hover) {
+      .btn-gold:hover {
+        transform: translateY(-3px);
+        color: #fff;
+        box-shadow: 0 0 40px rgba(230, 0, 255, 0.75);
+      }
+
+      .btn-gold:hover::before {
+        opacity: 1;
+      }
+
+      .btn-ghost:hover {
+        background: rgba(230, 0, 255, 0.15);
+        box-shadow: 0 0 25px rgba(230, 0, 255, 0.5);
+        transform: translateY(-2px);
+      }
+    }
+
+    .spotify-embed {
+      border-radius: 14px;
+      overflow: hidden;
+      line-height: 0;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border-secondary);
+    }
+
+    /* ==========================================================================
+       MODAL REGALOS
+       ========================================================================== */
+    dialog.modal-luxury {
+      border: 1.5px solid var(--c-magenta);
+      border-radius: var(--card-radius);
+      background: #0a0010;
+      color: var(--text-primary);
+      padding: 0;
+      max-width: 520px;
+      width: 90%;
+      margin: auto;
+      box-shadow: 0 0 50px rgba(230, 0, 255, 0.4), 0 25px 60px rgba(0, 0, 0, 0.95);
+    }
+
+    dialog.modal-luxury[open] {
+      animation: zoom-in 0.45s var(--ease-out);
+    }
+
+    dialog::backdrop {
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .modal-content {
+      padding: 2.2rem;
+      position: relative;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-secondary);
+      padding-bottom: 1rem;
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+    }
+
+    .modal-close {
+      background: transparent;
+      border: none;
+      color: var(--c-orange);
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: transform 0.25s var(--ease-out), color 0.25s;
+    }
+
+    .modal-close:hover {
+      color: var(--c-magenta);
+      transform: rotate(90deg) scale(1.15);
+    }
+
+    .modal-body {
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .gift-rule-box {
+      background: rgba(255, 111, 0, 0.12);
+      border-left: 4px solid var(--c-orange);
+      padding: 1.2rem 1.4rem;
+      margin: 1.5rem 0;
+      font-family: var(--font-accent);
+      border-radius: 6px;
+    }
+
+    .gift-rule-box strong {
+      color: var(--c-amber);
+      font-size: 1.05rem;
+    }
+
+    /* ==========================================================================
+       HERO CTA
+       ========================================================================== */
+    .hero-cta {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 1.6rem;
+      animation: rise-in 1s var(--ease-out) 1.6s both;
+    }
+
+    .hero-cta>a {
+      min-width: 220px;
+    }
+
+    @media (max-width: 640px) {
+      .hero-cta {
+        flex-direction: column;
+        width: min(100%, 340px);
+      }
+
+      .hero-cta>a {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+
+    /* ==========================================================================
+       LO BÁSICO + AGENDA
+       ========================================================================== */
+    .kv-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 768px) {
+      .kv-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        align-items: stretch;
+      }
+
+      .kv-grid.even {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      margin-bottom: 1.2rem;
+      line-height: 1.25;
+    }
+
+    .info-list {
+      list-style: none;
+    }
+
+    .info-list li {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 0.85rem;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    }
+
+    .info-list li:last-child {
+      border-bottom: none;
+    }
+
+    .info-list strong {
+      color: var(--c-amber);
+    }
+
+    .info-list a {
+      color: var(--c-magenta);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .info-list a:hover {
+      text-decoration: underline;
+    }
+
+    .info-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      font-size: 1.05rem;
+      background: linear-gradient(135deg, rgba(255, 111, 0, 0.22), rgba(170, 0, 255, 0.22));
+      border: 1px solid var(--border-primary);
+      box-shadow: 0 0 14px rgba(255, 111, 0, 0.2);
+      transition: transform 0.4s var(--ease-out);
+    }
+
+    .info-list li:hover .info-badge {
+      transform: rotate(-10deg) scale(1.12);
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 1.4rem;
+      padding-left: 2.1rem;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(var(--c-orange), var(--c-magenta), var(--c-purple));
+      transform-origin: top;
+      transform: scaleY(0);
+      transition: transform 1.8s var(--ease-out) 0.3s;
+    }
+
+    .timeline.is-visible::before {
+      transform: scaleY(1);
+    }
+
+    .timeline-step {
+      position: relative;
+    }
+
+    .timeline-step::before {
+      content: "";
+      position: absolute;
+      left: -2.1rem;
+      top: 0.25rem;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--c-black);
+      border: 3px solid var(--c-magenta);
+      box-shadow: 0 0 12px var(--c-magenta);
+      animation: dot-pulse 2.4s ease-in-out infinite;
+      animation-delay: var(--d, 0s);
+    }
+
+    @keyframes dot-pulse {
+      50% {
+        border-color: var(--c-orange);
+        box-shadow: 0 0 20px var(--c-orange);
+      }
+    }
+
+    .timeline-time {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      color: var(--c-orange);
+      margin-bottom: 0.15rem;
+    }
+
+    .timeline-step p {
+      color: var(--text-muted);
+    }
+
+    .timeline-step strong {
+      color: #fff;
+    }
+
+    /* ==========================================================================
+       QUÉ TRAER + CHISPA PICOSA
+       ========================================================================== */
+    .card-text {
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .card-text strong {
+      color: var(--c-amber);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .chip {
+      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-secondary);
+      background: rgba(170, 0, 255, 0.1);
+      font-family: var(--font-accent);
+      font-weight: 600;
+      font-size: 0.93rem;
+      transition: transform 0.35s var(--ease-out), border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .chip:hover {
+      transform: translateY(-3px) rotate(-2deg);
+      border-color: var(--c-orange);
+      box-shadow: 0 0 18px rgba(255, 111, 0, 0.4);
+    }
+
+    /* ==========================================================================
+       FAQ
+       ========================================================================== */
+    .faq details {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      margin: 0.65rem 0;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .faq details[open] {
+      border-color: var(--border-primary);
+      background: rgba(255, 111, 0, 0.06);
+    }
+
+    .faq summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 1rem 1.2rem;
+      font-family: var(--font-accent);
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .faq summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq summary::after {
+      content: "+";
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      line-height: 1;
+      color: var(--c-orange);
+      transition: transform 0.35s var(--ease-out), color 0.35s;
+    }
+
+    .faq details[open] summary::after {
+      transform: rotate(45deg);
+      color: var(--c-magenta);
+    }
+
+    .faq details p {
+      padding: 0 1.2rem 1.1rem;
+      color: var(--text-muted);
+      animation: rise-in 0.5s var(--ease-out);
+    }
+
+    /* ==========================================================================
+       BARRA FIJA EN CELULAR
+       ========================================================================== */
+    .sticky-cta {
+      display: none;
+    }
+
+    @media (max-width: 640px) {
+      .sticky-cta {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 950;
+        display: flex;
+        gap: 0.5rem;
+        padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom));
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.5));
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-top: 1px solid var(--border-secondary);
+        transform: translateY(110%);
+        transition: transform 0.5s var(--ease-out);
+      }
+
+      .sticky-cta.is-shown {
+        transform: none;
+      }
+
+      .sticky-cta a {
+        flex: 1;
+        padding: 0.85rem 0.5rem;
+        font-size: 0.7rem;
+        letter-spacing: 1px;
+        justify-content: center;
+      }
+
+      .ambient-audio-bar {
+        transition: bottom 0.5s var(--ease-out);
+      }
+
+      body.has-sticky .ambient-audio-bar {
+        bottom: calc(5.2rem + env(safe-area-inset-bottom));
+      }
+    }
+
+    .hashtag {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 4vw, 2rem);
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 0.6rem;
+      text-transform: none;
+    }
+
+    footer a {
+      color: var(--c-amber);
+      text-decoration: none;
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    footer {
+      text-align: center;
+      padding: 3rem 1.5rem 6rem;
+      border-top: 1px solid var(--border-secondary);
+      color: var(--text-muted);
+      font-family: var(--font-accent);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* En pantallas táctiles no hay hover: evita estados "pegados" */
+    @media (hover: none) {
+
+      .countdown-box:hover,
+      .chip:hover,
+      .masonry-item:hover img,
+      .dress-code-bullets li:hover,
+      .info-list li:hover .info-badge {
+        transform: none;
+      }
+
+      .masonry-item:hover {
+        transform: none;
+        rotate: var(--r, 0deg);
+      }
+    }
+
+    dialog.modal-luxury {
+      max-height: 85dvh;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+
+    @media (max-width: 600px) {
+      .countdown-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .masonry {
+        columns: 2;
+        column-gap: 0.7rem;
+      }
+
+      .masonry-item {
+        margin-bottom: 0.7rem;
+      }
+
+      .masonry {
+        padding-bottom: 0;
+      }
+
+      .masonry-item:nth-child(2) {
+        translate: none;
+      }
+
+      .bat:nth-child(n+4) {
+        display: none;
+      }
+    }
+
+    /* ==========================================================================
+       INTRO: SOBRE CON SELLO DE CERA
+       ========================================================================== */
+    html.has-intro,
+    html.has-intro body {
+      overflow: hidden;
+    }
+
+    html.intro-active .hero-header,
+    html.intro-active .hero-header * {
+      animation-play-state: paused !important;
+    }
+
+    .intro {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.2rem;
+      padding: 1.5rem;
+      background:
+        radial-gradient(60vmax 50vmax at 50% 40%, rgba(170, 0, 255, 0.25), transparent 60%),
+        radial-gradient(40vmax 30vmax at 50% 95%, rgba(255, 111, 0, 0.2), transparent 60%),
+        var(--c-black);
+      perspective: 1200px;
+      transition: opacity 0.9s var(--ease-out), filter 0.9s var(--ease-out);
+    }
+
+    html.has-intro .intro {
+      display: flex;
+    }
+
+    .intro.is-leaving {
+      opacity: 0;
+      filter: blur(14px);
+      pointer-events: none;
+    }
+
+    .intro-kicker,
+    .intro-hint {
+      font-family: var(--font-accent);
+      font-weight: 700;
+      text-transform: uppercase;
+      text-align: center;
+      transition: opacity 0.4s;
+    }
+
+    .intro-kicker {
+      font-size: 0.85rem;
+      letter-spacing: 5px;
+      color: var(--c-amber);
+      text-shadow: 0 0 12px rgba(255, 153, 0, 0.5);
+      animation: rise-in 1s var(--ease-out) 0.2s both;
+    }
+
+    .intro-hint {
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      color: var(--text-muted);
+      animation: rise-in 1s var(--ease-out) 1s both, hint-pulse 2s ease-in-out 2s infinite;
+    }
+
+    @keyframes hint-pulse {
+      50% {
+        opacity: 0.35;
+      }
+    }
+
+    .intro.is-breaking .intro-kicker,
+    .intro.is-breaking .intro-hint {
+      opacity: 0;
+      animation: none;
+    }
+
+    .envelope-stage {
+      transform-style: preserve-3d;
+      transition: transform 0.4s ease-out;
+    }
+
+    .envelope {
+      --ew: min(86vw, 420px);
+      position: relative;
+      width: var(--ew);
+      height: calc(var(--ew) * 0.66);
+      transform-style: preserve-3d;
+      cursor: pointer;
+      animation: env-in 1.2s var(--ease-out) 0.3s both, env-float 5s ease-in-out 1.5s infinite;
+      transition: transform 0.9s var(--ease-out);
+    }
+
+    @keyframes env-in {
+      from {
+        opacity: 0;
+        transform: translateY(70px) rotateX(30deg) scale(0.8);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes env-float {
+      50% {
+        transform: translateY(-10px) rotate(-1deg);
+      }
+    }
+
+    .intro.is-breaking .envelope {
+      animation: none;
+    }
+
+    .intro.is-leaving .envelope {
+      transform: translateY(8vh) scale(1.3);
+    }
+
+    .env-back {
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      background: linear-gradient(160deg, #1d0629, #07000c);
+      border: 1px solid rgba(170, 0, 255, 0.4);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9), 0 0 70px rgba(170, 0, 255, 0.35);
+    }
+
+    .env-letter {
+      position: absolute;
+      left: 6%;
+      right: 6%;
+      top: 6%;
+      height: 88%;
+      z-index: 2;
+      border-radius: 10px;
+      padding: 1.1rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      text-align: center;
+      background:
+        linear-gradient(#0d0013, #0d0013) padding-box,
+        conic-gradient(from var(--angle), var(--c-orange), var(--c-amber), var(--c-magenta), var(--c-purple), var(--c-orange)) border-box;
+      border: 2px solid transparent;
+      box-shadow: 0 0 35px rgba(230, 0, 255, 0.45);
+      animation: spin-angle 4s linear infinite;
+      transition: transform 1s var(--ease-out);
+    }
+
+    .intro.is-letter .env-letter {
+      transform: translateY(-70%);
+    }
+
+    .letter-tag {
+      font-family: var(--font-accent);
+      font-size: 0.72rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--c-amber);
+    }
+
+    .letter-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(1.25rem, 5.5vw, 1.8rem);
+      line-height: 1.1;
+      text-shadow: 0 0 6px #fff, 0 0 18px var(--c-orange), 0 0 36px var(--c-magenta);
+    }
+
+    .letter-date {
+      font-family: var(--font-accent);
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+    }
+
+    .env-pocket {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      border-radius: 12px;
+      clip-path: polygon(0 0, 50% 54%, 100% 0, 100% 100%, 0 100%);
+      background: linear-gradient(200deg, #260a38 0%, #0e0016 70%);
+    }
+
+    .env-to,
+    .env-brand {
+      position: absolute;
+      bottom: 11%;
+      font-family: var(--font-accent);
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .env-to {
+      left: 8%;
+      font-size: 0.95rem;
+      color: #fff;
+    }
+
+    .env-brand {
+      right: 8%;
+      font-size: 0.7rem;
+      color: var(--c-orange);
+      text-transform: uppercase;
+    }
+
+    .env-flap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 56%;
+      z-index: 4;
+      transform-origin: top center;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      background: linear-gradient(180deg, #2e0b44, #13001d);
+      transition: transform 0.8s var(--ease-out);
+    }
+
+    .intro.is-open .env-flap {
+      transform: rotateX(180deg);
+    }
+
+    .intro.flap-back .env-flap {
+      z-index: 1;
+    }
+
+    .env-seal {
+      position: absolute;
+      left: 50%;
+      top: 56%;
+      width: 84px;
+      height: 84px;
+      margin: -42px 0 0 -42px;
+      z-index: 5;
+      border: none;
+      background: none;
+      padding: 0;
+      cursor: pointer;
+      border-radius: 50%;
+      animation: seal-pulse 2.2s ease-in-out 1.5s infinite;
+    }
+
+    @keyframes seal-pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(255, 111, 0, 0.6);
+      }
+
+      60% {
+        box-shadow: 0 0 0 20px rgba(255, 111, 0, 0);
+      }
+    }
+
+    .env-seal:focus-visible {
+      outline: 2px solid var(--c-amber);
+      outline-offset: 6px;
+    }
+
+    .seal-half {
+      position: absolute;
+      inset: 0;
+      border-radius: 48% 52% 45% 55% / 52% 46% 54% 48%;
+      background: radial-gradient(circle at 35% 30%, #FFC069, var(--c-orange) 45%, #9E3500);
+      box-shadow: inset 0 -4px 8px rgba(0, 0, 0, 0.35), inset 0 3px 6px rgba(255, 255, 255, 0.35), 0 6px 16px rgba(0, 0, 0, 0.6);
+      display: grid;
+      place-items: center;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.25rem;
+      color: rgba(90, 25, 0, 0.85);
+      text-shadow: 0 1px 0 rgba(255, 220, 170, 0.6);
+      transition: transform 0.7s var(--ease-out), opacity 0.7s;
+    }
+
+    .seal-half::before {
+      content: "";
+      position: absolute;
+      inset: 11px;
+      border-radius: 50%;
+      border: 2px dashed rgba(90, 25, 0, 0.35);
+    }
+
+    .seal-half.l {
+      clip-path: polygon(0 0, 52% 0, 44% 22%, 56% 40%, 46% 60%, 55% 78%, 48% 100%, 0 100%);
+    }
+
+    .seal-half.r {
+      clip-path: polygon(52% 0, 100% 0, 100% 100%, 48% 100%, 55% 78%, 46% 60%, 56% 40%, 44% 22%);
+    }
+
+    .env-seal:hover .seal-half {
+      transform: scale(1.07);
+    }
+
+    .intro.is-breaking .env-seal {
+      animation: none;
+      pointer-events: none;
+    }
+
+    .intro.is-breaking .seal-half.l {
+      transform: translate(-55px, 80px) rotate(-45deg);
+      opacity: 0;
+    }
+
+    .intro.is-breaking .seal-half.r {
+      transform: translate(55px, 80px) rotate(45deg);
+      opacity: 0;
+    }
+
+    .spark {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      margin: -4px 0 0 -4px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 2001;
+      background: var(--c);
+      box-shadow: 0 0 12px var(--c);
+      animation: spark-burst 1s var(--ease-out) forwards;
+    }
+
+    .spark.bat-spark {
+      width: auto;
+      height: auto;
+      background: none;
+      box-shadow: none;
+      font-size: 1.4rem;
+      animation-duration: 1.4s;
+    }
+
+    @keyframes spark-burst {
+      to {
+        transform: translate(var(--x), var(--y)) rotate(var(--rot, 0deg)) scale(0.2);
+        opacity: 0;
+      }
+    }
+
+    /* Accesibilidad: sin animaciones si el usuario lo pide */
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .bats,
+      .cursor-glow,
+      #embers {
+        display: none;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+        filter: none;
+      }
+
+      .hero-title .char {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- INTRO: SOBRE CON SELLO DE CERA -->
+  <div class="intro" id="intro" role="dialog" aria-modal="true" aria-label="Invitación cerrada">
+    <p class="intro-kicker">🦇 Tienes una invitación 🦇</p>
+    <div class="envelope-stage" id="envelope-stage">
+      <div class="envelope" id="envelope">
+        <div class="env-back"></div>
+        <div class="env-letter" aria-hidden="true">
+          <span class="letter-tag">Estás invitado a</span>
+          <strong class="letter-title">URÍAS FEST 3</strong>
+          <span class="letter-date">16 · OCT · 2026 · 10 PM</span>
+        </div>
+        <div class="env-pocket">
+          <span class="env-to">Para: ti 👻</span>
+          <span class="env-brand">Urías Fest 3</span>
+        </div>
+        <div class="env-flap"></div>
+        <button class="env-seal" id="env-seal" type="button" aria-label="Romper el sello y abrir la invitación">
+          <span class="seal-half l">UF3</span>
+          <span class="seal-half r">UF3</span>
+        </button>
+      </div>
+    </div>
+    <p class="intro-hint">Toca el sello para abrir</p>
+  </div>
+
+  <!-- SÍMBOLOS SVG REUTILIZABLES -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="ghost" viewBox="0 0 40 48">
+        <path d="M20 2C10 2 4 10 4 20v24l5-4 5 4 6-4 6 4 5-4 5 4V20C36 10 30 2 20 2z" fill="#F4E9FF" />
+        <ellipse cx="14.5" cy="20" rx="3" ry="4" fill="#000" />
+        <ellipse cx="25.5" cy="20" rx="3" ry="4" fill="#000" />
+        <ellipse cx="20" cy="30" rx="3" ry="2.4" fill="#000" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <div class="bg-aura" aria-hidden="true"></div>
+  <canvas id="embers" aria-hidden="true"></canvas>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <!-- ASIDE: Control de Audio Ambiental con la canción TOKETEO (Bella Peya) -->
+  <aside class="ambient-audio-bar" aria-label="Control de Audio Ambiental">
+    <audio id="ambient-audio" loop preload="auto">
+      <source src="audio/toketeo-bella-peya.mp3" type="audio/mpeg">
+      Tu navegador no soporta el elemento de audio.
+    </audio>
+    <button id="ambient-audio-trigger" class="audio-btn" aria-label="Reproducir o pausar canción TOKETEO"
+      aria-pressed="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+      </svg>
+    </button>
+  </aside>
+
+  <!-- HEADER -->
+  <header class="hero-header">
+    <div class="moon" aria-hidden="true"></div>
+
+    <div class="bats" aria-hidden="true">
+      <div class="bat" style="--y:14%; --t:13s; --delay:0s; --s:54px"><svg viewBox="0 0 64 32">
+          <g class="wings">
+            <path fill="currentColor"
+              d="M32 10c-1.5-3-2.5-5-2-7l-2 4c-5-4-14-6-24-3 5 2 7 6 7 11 5-2 11-1 15 4 1.5-2 3.5-3 6-3s4.5 1 6 3c4-5 10-6 15-4 0-5 2-9 7-11-10-3-19-1-24 3l-2-4c.5 2-.5 4-2 7z" />
+          </g>
+        </svg></div>
+      <div class="bat" style="--y:30%; --t:17s; --delay:-6s; --s:36px"><svg viewBox="0 0 64 32">
+          <g class="wings">
+            <path fill="currentColor"
+              d="M32 10c-1.5-3-2.5-5-2-7l-2 4c-5-4-14-6-24-3 5 2 7 6 7 11 5-2 11-1 15 4 1.5-2 3.5-3 6-3s4.5 1 6 3c4-5 10-6 15-4 0-5 2-9 7-11-10-3-19-1-24 3l-2-4c.5 2-.5 4-2 7z" />
+          </g>
+        </svg></div>
+      <div class="bat" style="--y:8%; --t:21s; --delay:-12s; --s:28px"><svg viewBox="0 0 64 32">
+          <g class="wings">
+            <path fill="currentColor"
+              d="M32 10c-1.5-3-2.5-5-2-7l-2 4c-5-4-14-6-24-3 5 2 7 6 7 11 5-2 11-1 15 4 1.5-2 3.5-3 6-3s4.5 1 6 3c4-5 10-6 15-4 0-5 2-9 7-11-10-3-19-1-24 3l-2-4c.5 2-.5 4-2 7z" />
+          </g>
+        </svg></div>
+      <div class="bat" style="--y:52%; --t:19s; --delay:-3s; --s:42px"><svg viewBox="0 0 64 32">
+          <g class="wings">
+            <path fill="currentColor"
+              d="M32 10c-1.5-3-2.5-5-2-7l-2 4c-5-4-14-6-24-3 5 2 7 6 7 11 5-2 11-1 15 4 1.5-2 3.5-3 6-3s4.5 1 6 3c4-5 10-6 15-4 0-5 2-9 7-11-10-3-19-1-24 3l-2-4c.5 2-.5 4-2 7z" />
+          </g>
+        </svg></div>
+      <div class="bat" style="--y:22%; --t:15s; --delay:-9s; --s:30px"><svg viewBox="0 0 64 32">
+          <g class="wings">
+            <path fill="currentColor"
+              d="M32 10c-1.5-3-2.5-5-2-7l-2 4c-5-4-14-6-24-3 5 2 7 6 7 11 5-2 11-1 15 4 1.5-2 3.5-3 6-3s4.5 1 6 3c4-5 10-6 15-4 0-5 2-9 7-11-10-3-19-1-24 3l-2-4c.5 2-.5 4-2 7z" />
+          </g>
+        </svg></div>
+    </div>
+
+    <div class="spider" aria-hidden="true">
+      <svg viewBox="0 0 40 40">
+        <g stroke="#111" stroke-width="2.2" fill="none" stroke-linecap="round">
+          <path d="M14 18 L4 10 L1 4" />
+          <path d="M14 21 L3 18 L0 14" />
+          <path d="M14 24 L3 27 L1 33" />
+          <path d="M15 27 L6 34 L5 39" />
+          <path d="M26 18 L36 10 L39 4" />
+          <path d="M26 21 L37 18 L40 14" />
+          <path d="M26 24 L37 27 L39 33" />
+          <path d="M25 27 L34 34 L35 39" />
+        </g>
+        <ellipse cx="20" cy="24" rx="7.5" ry="9" fill="#111" />
+        <circle cx="20" cy="13" r="5" fill="#111" />
+        <circle cx="18" cy="12.5" r="1.4" fill="#FF6F00" />
+        <circle cx="22" cy="12.5" r="1.4" fill="#FF6F00" />
+      </svg>
+    </div>
+
+    <div class="fog" aria-hidden="true"></div>
+    <div class="fog fog-2" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <p class="hero-eyebrow">🎃 ¡Se armó el festín de Halloween! 🎃</p>
+
+      <div class="hero-photo-wrapper">
+        <img src="img/portada.webp" alt="Manuel Urias" class="hero-photo" width="300" height="400">
+        <div class="hero-photo-tag">El Cumpleañero 🔥</div>
+      </div>
+
+      <h1 id="top" class="hero-title" data-split>URÍAS FEST 3</h1>
+
+      <p class="hero-subtitle"><span class="text-gradient">Cumpleaños de Manuel Urias</span><span
+          class="hero-subtitle-sep" aria-hidden="true">·</span><span class="text-gradient">Fiesta de Disfraces</span>
+      </p>
+
+      <time class="hero-badge" datetime="2026-10-16T22:00-05:00">
+        <span class="hero-badge-item"><span class="pumpkin" aria-hidden="true">🎃</span>Vie 16 Oct</span>
+        <span class="hero-badge-divider" aria-hidden="true"></span>
+        <span class="hero-badge-item">10:00 PM</span>
+      </time>
+
+      <div class="hero-cta" role="group" aria-label="Acciones principales">
+        <a class="btn-gold"
+          href="https://wa.me/5219982608296?text=%C2%A1Qu%C3%A9%20onda%20Manuel!%20Ya%20estoy%20list%C3%ADsimo%20con%20mi%20disfraz%20y%20mi%20chupe%20para%20tu%20fiesta%20de%20cumplea%C3%B1os%20%F0%9F%8E%83%F0%9F%94%A5"
+          target="_blank" rel="noopener noreferrer">📲 Confirmar asistencia</a>
+        <a class="btn-ghost"
+          href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=UR%C3%8DAS%20FEST%203%20%F0%9F%8E%83&amp;dates=20261017T030000Z/20261017T100000Z&amp;details=Cumplea%C3%B1os%20de%20Manuel%20Urias%20%C2%B7%20Fiesta%20de%20Disfraces.%20%C2%A1Sin%20disfraz%20no%20hay%20entrada!&amp;location=21.1733894,-86.8515625"
+          target="_blank" rel="noopener noreferrer">📅 Guardar fecha</a>
+      </div>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true"></div>
+  </header>
+
+  <main>
+
+    <!-- SECCIÓN 1: CUENTA REGRESIVA -->
+    <section id="cuenta-regresiva" aria-label="Cuenta regresiva para la fiesta">
+      <div class="card-luxury reveal">
+        <div class="section-header">
+          <span class="section-tag">⏳ Faltan poquitos días ⏳</span>
+          <h2 class="section-title">Cuenta Regresiva</h2>
+        </div>
+
+        <div class="countdown-grid">
+          <div class="countdown-box">
+            <div id="cd-days" class="countdown-number">00</div>
+            <div class="countdown-label">Días</div>
+          </div>
+          <div class="countdown-box">
+            <div id="cd-hours" class="countdown-number">00</div>
+            <div class="countdown-label">Horas</div>
+          </div>
+          <div class="countdown-box">
+            <div id="cd-minutes" class="countdown-number">00</div>
+            <div class="countdown-label">Minutos</div>
+          </div>
+          <div class="countdown-box">
+            <div id="cd-seconds" class="countdown-number">00</div>
+            <div class="countdown-label">Segundos</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LO BÁSICO + AGENDA -->
+    <section id="lo-basico" aria-label="Información clave del evento">
+      <div class="kv-grid">
+        <article class="card-luxury reveal">
+          <span class="section-tag">🦇 Lo que tienes que saber</span>
+          <h2 class="card-title">Lo Básico</h2>
+          <ul class="info-list">
+            <li><span class="info-badge" aria-hidden="true">📅</span>
+              <div><strong>Fecha:</strong> Viernes 16 de octubre, 2026</div>
+            </li>
+            <li><span class="info-badge" aria-hidden="true">⏰</span>
+              <div><strong>Hora:</strong> 10:00 PM</div>
+            </li>
+            <li><span class="info-badge" aria-hidden="true">📍</span>
+              <div><strong>Ubicación:</strong> Casa de la Fiesta · <a href="#ubicacion">Ver mapa</a></div>
+            </li>
+            <li><span class="info-badge" aria-hidden="true">🧛</span>
+              <div><strong>Dress code:</strong> Disfraz obligatorio. Sin disfraz no hay entrada.</div>
+            </li>
+            <li><span class="info-badge" aria-hidden="true">🍻</span>
+              <div><strong>Entrada:</strong> No cover · trae tu chupe.</div>
+            </li>
+            <li><span class="info-badge" aria-hidden="true">🎁</span>
+              <div><strong>Regalo:</strong> Algo chido para consentir al cumpleañero.</div>
+            </li>
+            <li><span class="info-badge" aria-hidden="true">🛟</span>
+              <div><strong>Seguridad:</strong> Conductor designado o pide tu ride.</div>
+            </li>
+          </ul>
+        </article>
+
+        <article class="card-luxury reveal" style="--d:0.15s">
+          <span class="section-tag">🕸️ El ritual de la noche</span>
+          <h2 class="card-title">Agenda</h2>
+          <div class="timeline reveal">
+            <div class="timeline-step reveal" style="--d:0.2s">
+              <span class="timeline-time">22:00</span>
+              <p><strong>Llegada:</strong> fotos con tu disfraz y primer shot de bienvenida.</p>
+            </div>
+            <div class="timeline-step reveal" style="--d:0.35s">
+              <span class="timeline-time">23:00</span>
+              <p><strong>Calentar motores:</strong> arrancan los drinks 🍹</p>
+            </div>
+            <div class="timeline-step reveal" style="--d:0.5s">
+              <span class="timeline-time">00:00</span>
+              <p><strong>Pastel + shots sincronizados:</strong> deseo de medianoche.</p>
+            </div>
+            <div class="timeline-step reveal" style="--d:0.65s">
+              <span class="timeline-time">01:00</span>
+              <p><strong>Concurso de disfraces:</strong> el más épico se lleva la gloria.</p>
+            </div>
+            <div class="timeline-step reveal" style="--d:0.8s">
+              <span class="timeline-time">02:00</span>
+              <p><strong>After:</strong> quien aguante, que le siga.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: GALERÍA MASONRY -->
+    <section id="galeria-pasado">
+      <div class="ghost g-left" aria-hidden="true"><svg>
+          <use href="#ghost" />
+        </svg></div>
+      <div class="card-luxury reveal">
+        <div class="section-header">
+          <span class="section-tag">📸 Antecedentes de la Locura 📸</span>
+          <h2 class="section-title">Así se puso el año pasado 🔥</h2>
+        </div>
+
+        <p class="past-party-intro">
+          Para que te des una idea de lo que nos espera este año... ¡no te lo puedes perder por nada del mundo!
+        </p>
+
+        <div class="masonry">
+          <figure class="masonry-item portrait reveal" style="--d:0.1s" tabindex="0" role="button"
+            aria-label="Ver foto en grande: Puro ambiente del bueno">
+            <img src="img/pasado_1.webp" alt="Fiesta del año pasado 1" width="960" height="1280" loading="lazy">
+            <figcaption>Puro ambiente del bueno 🥂✨</figcaption>
+          </figure>
+          <figure class="masonry-item square reveal" style="--d:0.15s" tabindex="0" role="button"
+            aria-label="Ver foto en grande: Risas, chupe y buena compañía">
+            <img src="img/pasado_2.webp" alt="Fiesta del año pasado 2" width="960" height="1280" loading="lazy">
+            <figcaption>Risas, chupe y buena compañía 🥳🎉</figcaption>
+          </figure>
+          <figure class="masonry-item mid reveal" style="--d:0.2s" tabindex="0" role="button"
+            aria-label="Ver foto en grande: Celebrando al festejado en grande">
+            <img src="img/pasado_3.webp" alt="Fiesta del año pasado 3" width="960" height="1280" loading="lazy">
+            <figcaption>Celebrando al festejado en grande 👑🔥</figcaption>
+          </figure>
+          <figure class="masonry-item tall reveal" style="--d:0.25s" tabindex="0" role="button"
+            aria-label="Ver foto en grande: Momentos inolvidables">
+            <img src="img/pasado_4.webp" alt="Fiesta del año pasado 4" width="960" height="1280" loading="lazy">
+            <figcaption>Momentos inolvidables 🎃💥</figcaption>
+          </figure>
+          <figure class="masonry-item portrait reveal" style="--d:0.3s" tabindex="0" role="button"
+            aria-label="Ver foto en grande: Actitud al 100%">
+            <img src="img/pasado_5.webp" alt="Fiesta del año pasado 5" width="960" height="1280" loading="lazy">
+            <figcaption>Actitud al 100% 🚀🔥</figcaption>
+          </figure>
+          <figure class="masonry-item square reveal" style="--d:0.35s" tabindex="0" role="button"
+            aria-label="Ver foto en grande: Disfraces y fiesta total">
+            <img src="img/pasado_6.webp" alt="Fiesta del año pasado 6" width="960" height="1280" loading="lazy">
+            <figcaption>Disfraces y fiesta total 💃🕺</figcaption>
+          </figure>
+          <figure class="masonry-item mid reveal" style="--d:0.4s" tabindex="0" role="button"
+            aria-label="Ver foto en grande: La banda festejando">
+            <img src="img/pasado_7.webp" alt="Fiesta del año pasado 7" width="960" height="1280" loading="lazy">
+            <figcaption>La banda festejando 🍻✨</figcaption>
+          </figure>
+          <figure class="masonry-item wide reveal" style="--d:0.45s" tabindex="0" role="button"
+            aria-label="Ver foto en grande: Hasta que salga el sol">
+            <img src="img/pasado_8.webp" alt="Fiesta del año pasado 8" width="960" height="1280" loading="lazy">
+            <figcaption>Hasta que salga el sol ☀️🎉</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: UBICACIÓN CON MAPA -->
+    <section id="ubicacion">
+      <div class="card-luxury reveal">
+        <div class="section-header">
+          <span class="section-tag">📍 ¿Dónde le caigo? 📍</span>
+          <h2 class="section-title">Ubicación de la Fiesta</h2>
+        </div>
+
+        <div class="venue-info">
+          <h3 class="venue-name text-gradient">🏠 En la Casa de la Fiesta</h3>
+          <p class="venue-desc">
+            Es en una casa particular para pistear agusto y sin presiones. Aquí abajo está el mapa; si quieres la ruta,
+            ábrelo directo en Google Maps.
+          </p>
+
+          <div class="map-frame">
+            <iframe src="https://maps.google.com/maps?q=21.1733894,-86.8515625&z=17&hl=es&output=embed"
+              title="Mapa de la ubicación de la fiesta" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen></iframe>
+          </div>
+
+          <a href="https://maps.app.goo.gl/dbtWrzhPxMKc2nbQ6" target="_blank" rel="noopener noreferrer"
+            class="btn-gold">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+              <circle cx="12" cy="9" r="2.5" />
+            </svg>
+            Cómo llegar
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: CÓDIGO DE VESTIMENTA -->
+    <section id="dress-code">
+      <div class="ghost g-right" aria-hidden="true"><svg>
+          <use href="#ghost" />
+        </svg></div>
+      <div class="card-luxury reveal">
+        <div class="section-header">
+          <span class="section-tag">🎭 Regla de Entrada 🎭</span>
+          <h2 class="section-title">Código de Vestimenta</h2>
+        </div>
+
+        <div class="dress-code-box">
+          <h3 class="dress-code-title text-gradient">¡DISFRACES OBLIGATORIOS! 🧟‍♂️🧛‍♀️</h3>
+          <p class="dress-code-text">
+            La regla es súper clara: <strong>¡Sin disfraz NO hay entrada!</strong><br>
+            Ponte creativo, saca tu mejor disfraz de Halloween, aterrador, gracioso o épico. ¡Aquí venimos a divertirnos
+            y romperla!
+          </p>
+        </div>
+
+        <ul class="dress-code-bullets reveal" style="--d:0.2s">
+          <li>Horror Clásico</li>
+          <li>Creativo / DIY</li>
+          <li>Cyber Rave</li>
+          <li>Vampiros &amp; Brujas</li>
+          <li>Personajes Pop</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- QUÉ TRAER + CHISPA PICOSA -->
+    <section id="que-traer" aria-label="Qué traer a la fiesta">
+      <div class="kv-grid even">
+        <article class="card-luxury reveal">
+          <span class="section-tag">🎒 Checklist</span>
+          <h2 class="card-title">Qué traer (no seas gorrón) 😘</h2>
+          <p class="card-text">La casa pone el mood. Tú pon el turbo: <strong>no seas gorrón y trae tu alcohol</strong>
+            🍾. Ayuda con hielos, vasos y snacks.</p>
+          <div class="chips" aria-label="Lista de esenciales">
+            <span class="chip">🍾 Botella favorita</span>
+            <span class="chip">🧊 Hielos</span>
+            <span class="chip">🥤 Vasos</span>
+            <span class="chip">🍿 Snacks</span>
+            <span class="chip">🎁 Regalo</span>
+            <span class="chip">🧟 Tu disfraz</span>
+          </div>
+        </article>
+
+        <article class="card-luxury reveal" style="--d:0.15s">
+          <span class="section-tag">🔥 Advertencia</span>
+          <h2 class="card-title">Sin atacarse pelucas…</h2>
+          <p class="card-text">
+            Aquí venimos a asustar y a perrear, no a dormir. <strong>Tráete una tanga de repuesto</strong> por si el
+            perreo se pone serio.
+            Y recuerda: <strong>no seas gorrón y trae tu alcohol</strong>.
+          </p>
+          <ul class="info-list">
+            <li><span class="info-badge" aria-hidden="true">🎭</span>
+              <div>Si no hay disfraz, no hay entrada.</div>
+            </li>
+            <li><span class="info-badge" aria-hidden="true">🎃</span>
+              <div>Si te pierdes, sigue a la calabaza.</div>
+            </li>
+            <li><span class="info-badge" aria-hidden="true">📸</span>
+              <div>Si no hay foto, te lo perdiste.</div>
+            </li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ASÍ SE VIVIÓ EL AÑO PASADO (cinta de película) -->
+    <!-- Las fotos se ponen en fotos/vivio/ y se generan con: python3 optimizar.py -->
+    <section id="asi-se-vivio" hidden>
+      <div class="card-luxury reveal">
+        <div class="section-header">
+          <span class="section-tag">🎞️ Urías Fest 2 🎞️</span>
+          <h2 class="section-title">Así se vivió el año pasado</h2>
+        </div>
+        <div class="filmstrip" aria-label="Fotos del Urías Fest 2">
+          <!-- GALERIA-VIVIO:INICIO (la genera optimizar.py, no editar a mano) -->
+          <!-- GALERIA-VIVIO:FIN -->
+        </div>
+        <p class="filmstrip-hint">Toca una foto para verla en grande</p>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 5: CANCIÓN OFICIAL -->
+    <section id="musica">
+      <div class="card-luxury spotify-card reveal">
+        <div class="section-header">
+          <span class="section-tag">🎵 El Soundtrack de la Noche 🎵</span>
+          <h2 class="section-title">TOKETEO - Bella Peya</h2>
+        </div>
+
+        <p class="section-lead">
+          ¡Esta es la rola oficial de la fiesta! Escúchala en Spotify para calentar motores:
+        </p>
+
+        <div class="spotify-embed">
+          <iframe src="https://open.spotify.com/embed/track/5p9hS6EiqXR09TXT31t0ds?utm_source=generator&amp;theme=0"
+            title="TOKETEO de Bella Peya en Spotify" width="100%" height="152" frameBorder="0" allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+
+        <a href="https://open.spotify.com/track/5p9hS6EiqXR09TXT31t0ds?si=8ybJwLgVRwS4V7Ku7TemfQ" target="_blank"
+          rel="noopener noreferrer" class="btn-ghost">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.516 17.31c-.217.356-.677.472-1.033.254-2.83-1.73-6.393-2.122-10.59-1.162-.405.093-.814-.158-.907-.563-.093-.405.158-.813.563-.906 4.606-1.053 8.544-.606 11.71 1.332.357.217.472.677.257 1.045zm1.472-3.275c-.273.444-.853.585-1.296.313-3.237-1.99-8.172-2.565-12.002-1.403-.5.152-1.025-.133-1.177-.633-.152-.5.133-1.024.633-1.177 4.38-1.33 9.81-.69 13.53 1.604.442.272.583.853.312 1.296zm.127-3.41c-3.88-2.304-10.28-2.517-13.974-1.396-.6.183-1.24-.162-1.423-.762-.183-.6.162-1.24.762-1.423 4.242-1.288 11.31-1.037 15.78 1.616.54.32.718 1.027.397 1.567-.32.538-1.027.717-1.542.398z" />
+          </svg>
+          Abrir Canción en Spotify
+        </a>
+      </div>
+    </section>
+
+    <!-- PLAYLIST DE LA FIESTA -->
+    <section id="playlist">
+      <div class="card-luxury spotify-card reveal">
+        <div class="section-header">
+          <span class="section-tag">🎧 Calienta motores 🎧</span>
+          <h2 class="section-title">La Playlist de la Noche</h2>
+        </div>
+
+        <p class="section-lead">
+          Dale play y ve entrando en modo fiesta. Esto es lo que va a sonar en el Urías Fest 3:
+        </p>
+
+        <div class="spotify-embed">
+          <iframe data-testid="embed-iframe" title="Playlist del Urías Fest 3 en Spotify"
+            src="https://open.spotify.com/embed/playlist/2N6Jy6yudlNJr8QG0MMqWZ?utm_source=generator&amp;theme=0"
+            width="100%" height="352" frameBorder="0" allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+
+        <a href="https://open.spotify.com/playlist/2N6Jy6yudlNJr8QG0MMqWZ" target="_blank" rel="noopener noreferrer"
+          class="btn-ghost">
+          🎧 Abrir Playlist en Spotify
+        </a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="card-luxury faq reveal">
+        <div class="section-header">
+          <span class="section-tag">👻 Dudas rápidas 👻</span>
+          <h2 class="section-title">FAQ Express</h2>
+        </div>
+        <details>
+          <summary>¿Qué me pongo?</summary>
+          <p>Un disfraz, sí o sí: aterrador, gracioso o épico. Que sea cómodo para bailar toda la noche.</p>
+        </details>
+        <details>
+          <summary>¿Puedo llevar +1?</summary>
+          <p>Sí, pero avísale a Manuel por WhatsApp para tenerlo en la lista. Y también viene disfrazado.</p>
+        </details>
+        <details>
+          <summary>¿Hay cover?</summary>
+          <p>No. Solo trae tu chupe y un regalo chido para el cumpleañero.</p>
+        </details>
+        <details>
+          <summary>¿Hasta qué hora?</summary>
+          <p>Hasta que salga el sol (o hasta las 5 AM, lo que pase primero). After opcional para la élite del aguante.
+          </p>
+        </details>
+        <details>
+          <summary>¿Cómo llego?</summary>
+          <p>Checa el mapa de arriba. Si vas a pistear, mejor pide ride o lleva conductor designado.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 6: ENTRADA & REGALOS -->
+    <section id="regalos">
+      <div class="card-luxury gifts-container reveal">
+        <div class="section-header">
+          <span class="section-tag">🍻 ¿Cómo está el show de la entrada? 🍻</span>
+          <h2 class="section-title">Mesa de Regalos & Pisteo</h2>
+        </div>
+
+        <p class="section-lead">
+          ¡Aquí venimos a pasarla chicles bomba! Checa las indicaciones de consumo y regalos:
+        </p>
+
+        <button id="open-gifts-dialog" class="btn-gold" type="button">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 12 20 22 4 22 4 12" />
+            <rect x="2" y="7" width="20" height="5" />
+            <line x1="12" y1="22" x2="12" y2="7" />
+            <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" />
+            <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
+          </svg>
+          Ver Indicaciones
+        </button>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 7: RSVP POR WHATSAPP -->
+    <section id="rsvp">
+      <div class="card-luxury gifts-container reveal">
+        <div class="section-header">
+          <span class="section-tag">📲 ¡Confirma tu lugar! 📲</span>
+          <h2 class="section-title">Confirmación de Asistencia</h2>
+        </div>
+
+        <p class="section-lead">
+          Avisa por WhatsApp que le vas a caer para tenerte en cuenta en el conteo de las bellas y las bestias.
+        </p>
+
+        <a href="https://wa.me/5219982608296?text=%C2%A1Qu%C3%A9%20onda%20Manuel!%20Ya%20estoy%20list%C3%ADsimo%20con%20mi%20disfraz%20y%20mi%20chupe%20para%20tu%20fiesta%20de%20cumplea%C3%B1os%20%F0%9F%8E%83%F0%9F%94%A5"
+          target="_blank" rel="noopener noreferrer" class="btn-gold">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z" />
+          </svg>
+          Confirmar por WhatsApp
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL REGALOS Y PISTEO -->
+  <dialog id="modal-regalos" class="modal-luxury">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title text-gradient">¡Cero Rollos, Puro Festín! 🔥</h3>
+        <button id="close-gifts-dialog" class="modal-close" aria-label="Cerrar modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>
+          ¡Banda! La regla de oro de la noche es súper sencilla para que todos la pasemos increíble:
+        </p>
+        <div class="gift-rule-box">
+          <strong>¡NO COVER! 🍻</strong><br>
+          La única indicación es: <strong>Trae tu propio chupe / botella favorita</strong> para pistear a gusto toda la
+          noche y <strong>un regalo chido para consentir al cumpleañero Manuel Urias</strong>.
+        </div>
+        <p class="modal-footnote">
+          ¡Trae la mejor actitud y prepárate para la mejor fiesta de Halloween! 🎃⚡
+        </p>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- LIGHTBOX GALERÍA -->
+  <dialog id="lightbox" class="lightbox" aria-label="Foto ampliada">
+    <button class="modal-close" id="close-lightbox" aria-label="Cerrar foto">&times;</button>
+    <img id="lightbox-img" src="" alt="">
+  </dialog>
+
+  <!-- BARRA FIJA SOLO EN CELULAR -->
+  <div class="sticky-cta" id="sticky-cta">
+    <a class="btn-gold"
+      href="https://wa.me/5219982608296?text=%C2%A1Qu%C3%A9%20onda%20Manuel!%20Ya%20estoy%20list%C3%ADsimo%20con%20mi%20disfraz%20y%20mi%20chupe%20para%20tu%20fiesta%20de%20cumplea%C3%B1os%20%F0%9F%8E%83%F0%9F%94%A5"
+      target="_blank" rel="noopener noreferrer">📲 Confirmar</a>
+    <a class="btn-ghost"
+      href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=UR%C3%8DAS%20FEST%203%20%F0%9F%8E%83&amp;dates=20261017T030000Z/20261017T100000Z&amp;details=Cumplea%C3%B1os%20de%20Manuel%20Urias%20%C2%B7%20Fiesta%20de%20Disfraces.%20%C2%A1Sin%20disfraz%20no%20hay%20entrada!&amp;location=21.1733894,-86.8515625"
+      target="_blank" rel="noopener noreferrer">📅 Guardar</a>
+  </div>
+
+  <footer>
+    <p class="hashtag text-gradient">#UriasFest3</p>
+    <p>© 2026 Urías Fest 3 • Cumpleaños de Manuel Urias 🎃 • <a href="#top">Volver arriba</a></p>
+  </footer>
+
+  <script>
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ==========================================================================
+       1. CONTROLADOR DE AUDIO AMBIENTAL
+       ========================================================================== */
+    class AmbientMediaController {
+      constructor(audioNodeId, triggerNodeId) {
+        this.audio = document.getElementById(audioNodeId);
+        this.trigger = document.getElementById(triggerNodeId);
+        this.isPlaying = false;
+        if (!this.audio || !this.trigger) return;
+        this.trigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          this.toggle();
+        });
+        this.audio.addEventListener('play', () => this.syncUi(true));
+        this.audio.addEventListener('pause', () => this.syncUi(false));
+      }
+      async toggle() {
+        if (this.isPlaying) {
+          this.audio.pause();
+        } else {
+          await this.audio.play().catch(() => this.syncUi(false));
+        }
+      }
+      syncUi(state) {
+        this.isPlaying = state;
+        this.trigger.setAttribute('aria-pressed', String(state));
+        this.trigger.classList.toggle('is-active', state);
+      }
+    }
+
+    /* ==========================================================================
+       2. CONTADOR REGRESIVO (con animación al cambiar cada dígito)
+       ========================================================================== */
+    class LuxuryCountdown {
+      constructor(targetIsoDate) {
+        this.targetTime = new Date(targetIsoDate).getTime();
+        this.els = ['cd-days', 'cd-hours', 'cd-minutes', 'cd-seconds'].map(id => document.getElementById(id));
+        this.timerId = null;
+        if (this.els.some(el => !el) || isNaN(this.targetTime)) return;
+
+        this.update();
+        this.start();
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) {
+            this.stop();
+          } else {
+            this.update();
+            this.start();
+          }
+        });
+      }
+      start() {
+        this.stop();
+        this.timerId = setInterval(() => this.update(), 1000);
+      }
+      stop() {
+        if (this.timerId) {
+          clearInterval(this.timerId);
+          this.timerId = null;
+        }
+      }
+      update() {
+        const diff = this.targetTime - Date.now();
+        if (diff <= 0) {
+          this.stop();
+          this.render([0, 0, 0, 0]);
+          return;
+        }
+        this.render([
+          Math.floor(diff / 86400000),
+          Math.floor((diff % 86400000) / 3600000),
+          Math.floor((diff % 3600000) / 60000),
+          Math.floor((diff % 60000) / 1000)
+        ]);
+      }
+      render(values) {
+        values.forEach((v, i) => {
+          const el = this.els[i];
+          const text = String(v).padStart(2, '0');
+          if (el.textContent === text) return;
+          el.textContent = text;
+          el.classList.remove('tick');
+          void el.offsetWidth; // reinicia la animación
+          el.classList.add('tick');
+        });
+      }
+    }
+
+    /* ==========================================================================
+       3. MODALES <dialog>
+       ========================================================================== */
+    function closeOnBackdrop(dialog) {
+      dialog.addEventListener('click', (e) => {
+        const rect = dialog.getBoundingClientRect();
+        const isInDialog =
+          rect.top <= e.clientY && e.clientY <= rect.bottom &&
+          rect.left <= e.clientX && e.clientX <= rect.right;
+        if (!isInDialog) dialog.close();
+      });
+    }
+
+    function setupDialogEvents() {
+      const dialog = document.getElementById('modal-regalos');
+      const btnOpen = document.getElementById('open-gifts-dialog');
+      const btnClose = document.getElementById('close-gifts-dialog');
+      if (!dialog || !btnOpen || !btnClose) return;
+      btnOpen.addEventListener('click', () => dialog.showModal());
+      btnClose.addEventListener('click', () => dialog.close());
+      closeOnBackdrop(dialog);
+    }
+
+    function setupLightbox() {
+      const box = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      document.getElementById('close-lightbox').addEventListener('click', () => box.close());
+      closeOnBackdrop(box);
+      document.querySelectorAll('.masonry-item, .film-frame').forEach(item => {
+        const open = () => {
+          if (box.open) return;
+          const src = item.querySelector('img');
+          img.src = src.currentSrc || src.src;
+          img.alt = src.alt;
+          box.showModal();
+        };
+        item.addEventListener('click', open);
+        // Los <button> ya responden a Enter/Espacio; las <figure> necesitan ayuda
+        if (item.tagName !== 'BUTTON') {
+          item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+          });
+        }
+      });
+    }
+
+    /* ==========================================================================
+       4. ANIMACIONES: título letra por letra, reveal al hacer scroll,
+          brasas flotantes y linterna del cursor
+       ========================================================================== */
+    function splitTitle() {
+      document.querySelectorAll('[data-split]').forEach(el => {
+        const text = el.textContent.trim();
+        el.setAttribute('aria-label', text);
+        el.innerHTML = [...text].map((ch, i) =>
+          `<span class="char${ch === ' ' ? ' space' : ''}" style="--i:${i}" aria-hidden="true">${ch === ' ' ? '&nbsp;' : ch}</span>`
+        ).join('');
+      });
+    }
+
+    function setupReveal() {
+      const items = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        items.forEach(el => el.classList.add('is-visible'));
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      items.forEach(el => io.observe(el));
+    }
+
+    function setupEmbers() {
+      const canvas = document.getElementById('embers');
+      const ctx = canvas.getContext('2d');
+      const colors = ['#FF6F00', '#FF9900', '#E600FF', '#AA00FF'];
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      let w, h, particles = [], rafId = null;
+
+      const resize = () => {
+        w = canvas.clientWidth;
+        h = canvas.clientHeight;
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      };
+      const spawn = (initial) => ({
+        x: Math.random() * w,
+        y: initial ? Math.random() * h : h + 10,
+        r: Math.random() * 2.2 + 0.6,
+        vy: Math.random() * 0.5 + 0.2,
+        drift: Math.random() * Math.PI * 2,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        life: Math.random() * 0.5 + 0.5
+      });
+
+      resize();
+      const count = w < 600 ? 28 : 55;
+      for (let i = 0; i < count; i++) particles.push(spawn(true));
+
+      const tick = () => {
+        ctx.clearRect(0, 0, w, h);
+        for (const p of particles) {
+          p.y -= p.vy;
+          p.drift += 0.02;
+          p.x += Math.sin(p.drift) * 0.35;
+          if (p.y < -10) Object.assign(p, spawn(false));
+          const alpha = Math.min(1, p.y / h + 0.2) * p.life * (0.6 + Math.sin(p.drift * 3) * 0.4);
+          ctx.globalAlpha = Math.max(0, alpha);
+          ctx.fillStyle = p.color;
+          ctx.shadowColor = p.color;
+          ctx.shadowBlur = 12;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        rafId = requestAnimationFrame(tick);
+      };
+
+      window.addEventListener('resize', resize);
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          cancelAnimationFrame(rafId);
+        } else {
+          rafId = requestAnimationFrame(tick);
+        }
+      });
+      rafId = requestAnimationFrame(tick);
+    }
+
+    function setupCursorGlow() {
+      const glow = document.querySelector('.cursor-glow');
+      if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+      window.addEventListener('pointermove', (e) => {
+        glow.classList.add('is-on');
+        glow.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+      }, { passive: true });
+      document.addEventListener('pointerleave', () => glow.classList.remove('is-on'));
+    }
+
+    function setupStickyCta() {
+      const bar = document.getElementById('sticky-cta');
+      const hero = document.querySelector('.hero-header');
+      if (!bar || !hero || !('IntersectionObserver' in window)) return;
+      new IntersectionObserver(([entry]) => {
+        const show = !entry.isIntersecting;
+        bar.classList.toggle('is-shown', show);
+        document.body.classList.toggle('has-sticky', show);
+      }, { threshold: 0.05 }).observe(hero);
+    }
+
+    function setupIntro() {
+      const root = document.documentElement;
+      const intro = document.getElementById('intro');
+      const seal = document.getElementById('env-seal');
+      const stage = document.getElementById('envelope-stage');
+      if (!intro) return;
+
+      if (seal) seal.focus({ preventScroll: true });
+
+      // Inclinación 3D siguiendo el mouse
+      const onMove = (e) => {
+        if (!stage) return;
+        const x = e.clientX / window.innerWidth - 0.5;
+        const y = e.clientY / window.innerHeight - 0.5;
+        stage.style.transform = `rotateY(${x * 18}deg) rotateX(${-y * 14}deg)`;
+      };
+      if (!prefersReducedMotion && stage) intro.addEventListener('pointermove', onMove);
+
+      const burst = () => {
+        const rect = seal ? seal.getBoundingClientRect() : { left: window.innerWidth / 2, top: window.innerHeight / 2, width: 0, height: 0 };
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const colors = ['#FF6F00', '#FF9900', '#E600FF', '#AA00FF'];
+        for (let i = 0; i < 34; i++) {
+          const el = document.createElement('span');
+          const isBat = i % 6 === 0;
+          el.className = isBat ? 'spark bat-spark' : 'spark';
+          if (isBat) el.textContent = '🦇';
+          const angle = Math.random() * Math.PI * 2;
+          const dist = 90 + Math.random() * (isBat ? 260 : 170);
+          el.style.left = cx + 'px';
+          el.style.top = cy + 'px';
+          el.style.setProperty('--c', colors[i % colors.length]);
+          el.style.setProperty('--x', Math.cos(angle) * dist + 'px');
+          el.style.setProperty('--y', Math.sin(angle) * dist + 'px');
+          el.style.setProperty('--rot', (Math.random() * 360 - 180) + 'deg');
+          document.body.appendChild(el);
+          el.addEventListener('animationend', () => el.remove());
+        }
+      };
+
+      let opened = false;
+      const open = (e) => {
+        if (e && e.stopPropagation) e.stopPropagation();
+        if (opened) return;
+        opened = true;
+        intro.removeEventListener('pointermove', onMove);
+        if (stage) stage.style.transform = '';
+
+        // Arranca la música con el toque
+        const audio = document.getElementById('ambient-audio');
+        if (audio) audio.play().catch(() => { });
+
+        // Abre el sobre instantáneamente al primer toque
+        intro.classList.add('is-breaking', 'is-open', 'flap-back', 'is-letter');
+        if (!prefersReducedMotion) burst();
+
+        setTimeout(() => {
+          intro.classList.add('is-leaving');
+          root.classList.remove('intro-active');
+        }, 300);
+        setTimeout(() => {
+          root.classList.remove('has-intro');
+          intro.remove();
+        }, 700);
+      };
+
+      // 1 solo toque abre el sobre desde cualquier parte del intro
+      intro.addEventListener('click', open, { once: true });
+      intro.addEventListener('touchstart', open, { passive: true, once: true });
+    }
+
+    /* INICIALIZACIÓN */
+    document.addEventListener('DOMContentLoaded', () => {
+      setupIntro();
+      splitTitle();
+      setupReveal();
+      new AmbientMediaController('ambient-audio', 'ambient-audio-trigger');
+      new LuxuryCountdown('2026-10-16T22:00:00-05:00');
+      setupDialogEvents();
+      setupLightbox();
+      setupStickyCta();
+      if (!prefersReducedMotion) {
+        setupEmbers();
+        setupCursorGlow();
+      }
+    });
+  </script>
+</body>
+
+</html>
