@@ -8,6 +8,10 @@
     content="¡Urías Fest 3! Cumpleaños de Manuel Urias · Halloween Costume Party 🎃. Viernes 16 de Octubre de 2026, 10:00 PM.">
   <meta name="theme-color" content="#000000">
 
+  <!-- Política de seguridad: solo se cargan recursos propios y de los servicios que usa la invitación -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; frame-src https://open.spotify.com https://maps.google.com https://www.google.com; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
   <!-- Vista previa al compartir por WhatsApp / redes -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_MX">
@@ -3232,9 +3236,15 @@
       document.querySelectorAll('[data-split]').forEach(el => {
         const text = el.textContent.trim();
         el.setAttribute('aria-label', text);
-        el.innerHTML = [...text].map((ch, i) =>
-          `<span class="char${ch === ' ' ? ' space' : ''}" style="--i:${i}" aria-hidden="true">${ch === ' ' ? '&nbsp;' : ch}</span>`
-        ).join('');
+        // Se arma con nodos del DOM (sin innerHTML) para que el texto nunca se interprete como HTML
+        el.replaceChildren(...[...text].map((ch, i) => {
+          const span = document.createElement('span');
+          span.className = ch === ' ' ? 'char space' : 'char';
+          span.style.setProperty('--i', i);
+          span.setAttribute('aria-hidden', 'true');
+          span.textContent = ch === ' ' ? '\u00a0' : ch;
+          return span;
+        }));
       });
     }
 
