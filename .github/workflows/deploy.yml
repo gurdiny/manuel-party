@@ -1,5 +1,5 @@
-# Publica en GitHub Pages SOLO los archivos de la página (index.html, img/, audio/).
-# optimizar.py, el README y los originales nunca llegan al sitio.
+# Publica en GitHub Pages SOLO archivos estáticos: index.html, img/ y audio/.
+# Nunca se publica código ejecutable (scripts .py, etc.), el README ni los originales.
 #
 # Activar una sola vez: GitHub > Settings > Pages > Source: "GitHub Actions".
 name: Deploy a GitHub Pages
@@ -11,8 +11,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages
@@ -21,11 +19,18 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      # Acciones fijadas por commit (no por etiqueta) para que no puedan cambiar a escondidas
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
 
       - name: Armar la carpeta pública
         run: |
@@ -33,11 +38,22 @@ jobs:
           cp index.html _site/
           cp -r img audio _site/
 
-      - uses: actions/configure-pages@v5
+      - name: Verificar que solo haya archivos estáticos permitidos
+        run: |
+          prohibidos=$(find _site -type f ! \( -name '*.html' -o -name '*.webp' -o -name '*.jpg' -o -name '*.png' -o -name '*.mp3' \))
+          if [ -n "$prohibidos" ]; then
+            echo "::error::Archivos no permitidos en el sitio público:"
+            echo "$prohibidos"
+            exit 1
+          fi
+          echo "Archivos a publicar:"
+          find _site -type f | sort
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
         with:
           path: _site
 
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

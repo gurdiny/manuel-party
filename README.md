@@ -10,13 +10,13 @@ Es una sola página (`index.html`) sin frameworks ni dependencias: HTML, CSS y J
 index.html          La invitación (todo el diseño y la lógica viven aquí)
 img/                Fotos optimizadas en WebP (las genera optimizar.py)
 audio/              Música de fondo optimizada (la genera optimizar.py)
-optimizar.py        Script para comprimir fotos y audio (no se publica)
 .github/workflows/  Deploy automático a GitHub Pages
 ```
 
-Carpetas que solo existen en tu compu (están en `.gitignore`):
+Archivos que solo existen en tu compu (están en `.gitignore` y nunca se suben):
 
 ```
+optimizar.py        Script para comprimir fotos y audio
 fotos/pagina/       Originales de la portada y de "Así se puso el año pasado"
 audio-original/     Pon aquí audios originales (o déjalos en la raíz)
 ```
@@ -54,7 +54,13 @@ Nunca borra ni modifica los originales.
 
 ## Publicar (deploy)
 
-Cada `git push` a `main` publica la página en GitHub Pages. El workflow copia **solo** `index.html`, `img/` y `audio/`; `optimizar.py`, este README y los originales no se publican.
+Cada `git push` a `main` publica la página en GitHub Pages. El workflow copia **solo** `index.html`, `img/` y `audio/`, y antes de publicar verifica que no haya nada más que archivos estáticos (`.html`, `.webp`, `.jpg`, `.png`, `.mp3`). Si se cuela cualquier otro tipo de archivo, el deploy falla en lugar de publicarlo.
+
+Seguridad:
+
+- `optimizar.py` (y cualquier `.py`) está en `.gitignore`: no se sube ni al repo ni al sitio.
+- La página trae una política de seguridad (CSP) que solo permite cargar recursos propios, Google Fonts, Google Maps y Spotify. Si agregas otro servicio embebido, tienes que añadir su dominio en la etiqueta `Content-Security-Policy` del `<head>`.
+- Las acciones de GitHub del deploy están fijadas por commit para que no puedan cambiar sin que lo notes.
 
 Configuración de una sola vez: en GitHub ve a **Settings → Pages → Source** y elige **GitHub Actions**.
 

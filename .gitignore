@@ -17,3 +17,7 @@ Thumbs.db
 desktop.ini
 .vscode/
 .idea/
+
+# Herramientas locales: nunca se suben al repo ni a producción
+optimizar.py
+*.py
